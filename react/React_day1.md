@@ -37,4 +37,5 @@ const memoizedCallback = useCallback(
 - 不必要なレンダーを避けるために（例えば shouldComponentUpdate などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利
 - **useCallback(fn, deps) は useMemo(() => fn, deps) と等価**
 
-useCallbackなどはとにかく使った方がいい!が、
+useCallbackなどはとにかく使った方がいい!
+> 特にカスタムフックが関数を返すなら常にuseCallbackで囲む [参照](https://blog.uhy.ooo/entry/2021-02-23/usecallback-custom-hooks/)
