@@ -54,3 +54,6 @@ const MyComponent = React.memo(function MyComponent(props) {
 - Djagno(最終課題)修正
 - 「りあクト！」を読む
 
+### 次回
+今回memo化を調べる文脈でカスタムフックの話がたびたび出てきた。  
+useCallbackとの関連性も含めて調べてみたい。
