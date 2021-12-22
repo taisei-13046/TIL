@@ -32,6 +32,9 @@ const memoizedCallback = useCallback(
 );
 ```
 - メモ化されたコールバックを返す
+- 関数に特化している
 - インラインのコールバックとそれが依存している値の配列を渡す
 - 不必要なレンダーを避けるために（例えば shouldComponentUpdate などを使って）参照の同一性を見るよう最適化されたコンポーネントにコールバックを渡す場合に便利
 - **useCallback(fn, deps) は useMemo(() => fn, deps) と等価**
+
+useCallbackなどはとにかく使った方がいい!が、
