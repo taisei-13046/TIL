@@ -1,5 +1,5 @@
 # やったこと
-### パフォーマンスの最適化について (useMemo, useCallback)
+### パフォーマンスの最適化について (useMemo, useCallback, React.memo)
 
 メモ化とは  
 *関数内における任意のサブルーチンを呼び出した結果を後で再利用するために保持しておき、  
@@ -39,3 +39,12 @@ const memoizedCallback = useCallback(
 
 useCallbackなどはとにかく使った方がいい!
 > 特にカスタムフックが関数を返すなら常にuseCallbackで囲む [参照](https://blog.uhy.ooo/entry/2021-02-23/usecallback-custom-hooks/)
+<br />
+
+React.memo
+```
+const MyComponent = React.memo(function MyComponent(props) {
+  /* render using props */
+});
+```
+> もしあるコンポーネントが同じ props を与えられたときに同じ結果をレンダーするなら、結果を記憶してパフォーマンスを向上させるためにそれを React.memo でラップすることができます。つまり、React はコンポーネントのレンダーをスキップし、最後のレンダー結果を再利用します。
