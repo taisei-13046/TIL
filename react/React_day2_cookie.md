@@ -2,7 +2,8 @@
 ### cookieについて
 
 今日本当はカスタムフックについてまとめようと思っていたが、DjangoでTwitter cloneを作成する途中でcookieの内容が出てきてわからなかったので、まとめることにした。
-対象となるコードは以下のコードである。
+対象となるコードは以下のコードである。  
+[Django Doc クロスサイトリクエストフォージェリ (CSRF) 対策](https://docs.djangoproject.com/ja/1.11/ref/csrf/)
 ```
     function getCookie(name) {
         var cookieValue = null;
@@ -39,7 +40,10 @@
 
 ### 1. cookieとは何か
 Cookieは**WebサイトやWebサーバーにアクセスした人の情報を、ブラウザに一時的に保存するための仕組み**  
-Cookieが有効化されると、使用中のブラウザで初めてアクセスしたWebサイトに、Webサイト側が指定した訪問ユーザーを識別できる情報が保存される。
+Cookieが有効化されると、使用中のブラウザで初めてアクセスしたWebサイトに、Webサイト側が指定した訪問ユーザーを識別できる情報が保存される。  
+1st party Cookie と 3rd party Cookieがある
+> - 1st party Cookie：実際に訪問したウェブサイトのドメインから発行される。ウェブサイトごとに独自で発行されているため、複数のウェブサイトの横断はできない。また、同じウェブサイトを再訪する場合でも、ブラウザや端末が違えば過去の情報の呼び出しは不可能。
+> - 3rd party Cookie：訪問したウェブサイトのドメインではなく、ウェブサイト上に掲載されている広告配信事業社のドメインなどから発行される。
 
 ![スクリーンショット 2021-12-23 12 51 35](https://user-images.githubusercontent.com/78260526/147185482-8a00aac3-dd58-482f-bb9e-29d95592834a.png)
 #### キャッシュとの違い
@@ -55,3 +59,32 @@ Cookieが有効化されると、使用中のブラウザで初めてアクセ�
 
 参考資料
 [「Cookieとは？」わかりやすく解説｜仕組みや無効化・削除する方法](https://persol-tech-s.co.jp/hatalabo/it_engineer/567.html)
+
+cookieについて理解が深まったところで、改めて上のコードの理解に移る。
+```
+    function getCookie(name) {
+        var cookieValue = null;
+        if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                // Does this cookie string begin with the name we want?
+                if (cookie.substring(0, name.length + 1) == (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                }
+            }
+        }
+        return cookieValue;
+    }
+    var csrftoken = getCookie('csrftoken');
+
+```
+ここでは何をしているのか。
+大元の目的は**クロスサイトリクエストフォージェリ (CSRF) 対策**である
+
+#### CSRFとは
+掲示板や問い合わせフォームなどを処理するWebアプリケーションが、本来拒否すべき他サイトからのリクエストを受信し処理してしまう脆弱性を利用した攻撃手法。
+
+この対策として、AJAXのPOSTにもCSRFトークンをデータに含めなくてはいけない。
+それには、**X-CSRFTokenという独自ヘッダーにCSRF トークンの値を設定すること**で解決する
