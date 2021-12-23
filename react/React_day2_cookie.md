@@ -61,6 +61,16 @@ Cookieが有効化されると、使用中のブラウザで初めてアクセ�
 [「Cookieとは？」わかりやすく解説｜仕組みや無効化・削除する方法](https://persol-tech-s.co.jp/hatalabo/it_engineer/567.html)
 
 cookieについて理解が深まったところで、改めて上のコードの理解に移る。
+
+ここでは何をしているのか。
+大元の目的は**クロスサイトリクエストフォージェリ (CSRF) 対策**である
+
+#### CSRFとは
+掲示板や問い合わせフォームなどを処理するWebアプリケーションが、本来拒否すべき他サイトからのリクエストを受信し処理してしまう脆弱性を利用した攻撃手法。
+
+この対策として、AJAXのPOSTにもCSRFトークンをデータに含めなくてはいけない。  
+それには、**X-CSRFTokenという独自ヘッダーにCSRF トークンの値を設定すること**で解決する  
+初めにトークンを取得する。
 ```
     function getCookie(name) {
         var cookieValue = null;
@@ -78,13 +88,25 @@ cookieについて理解が深まったところで、改めて上のコード�
         return cookieValue;
     }
     var csrftoken = getCookie('csrftoken');
-
 ```
-ここでは何をしているのか。
-大元の目的は**クロスサイトリクエストフォージェリ (CSRF) 対策**である
+- document.cookieで文書に関連付けられたクッキーを読み書きすることができる。
+```
+allCookies = document.cookie;
+```
+> 上記のコードで allCookies は、セミコロンで区切られたクッキーのリストです (つまり key=value のペア)。なお、それぞれの key および value の周囲にはホワイトスペース (空白やタブ文字) をおくことができます。実際のところ、 RFC 6265 ではそれぞれのセミコロンの後に空白1文字を入れることを必須としていますが、一部のユーザーエージェントはこれに従っていません。  
+[MDN cookie](https://developer.mozilla.org/ja/docs/Web/API/Document/cookie)  
 
-#### CSRFとは
-掲示板や問い合わせフォームなどを処理するWebアプリケーションが、本来拒否すべき他サイトからのリクエストを受信し処理してしまう脆弱性を利用した攻撃手法。
-
-この対策として、AJAXのPOSTにもCSRFトークンをデータに含めなくてはいけない。
-それには、**X-CSRFTokenという独自ヘッダーにCSRF トークンの値を設定すること**で解決する
+上記のコードでtokenを取得し、それをAJAXのrequestに設定する。
+```
+function csrfSafeMethod(method) {
+    // these HTTP methods do not require CSRF protection
+    return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
+}
+$.ajaxSetup({
+    beforeSend: function(xhr, settings) {
+        if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
+            xhr.setRequestHeader("X-CSRFToken", csrftoken);
+        }
+    }
+});
+```
