@@ -177,3 +177,31 @@ class Student(CommonInfo):
 抽象基底クラスを作成した際、Django は基底クラスで宣言したすべての Meta インナークラスを子クラスの属性とします。  
 子クラスが自身の Meta クラスを定義しなければ、親の Meta クラスを継承します。  
 子クラスが親の Meta クラスを拡張したい場合、サブクラス化できます。  
+
+### related_name と related_query_name の利用に関して注意するべき点
+ForeignKey もしくは ManyToManyField に対して related_name または related_query_name を使う場合、  
+そのフィールドに対して 一意の 逆引き名およびクエリ名を常に定義しなければいけない。  
+```
+from django.db import models
+
+class Base(models.Model):
+    m2m = models.ManyToManyField(
+        OtherModel,
+        related_name="%(app_label)s_%(class)s_related",
+        related_query_name="%(app_label)s_%(class)ss",
+    )
+
+    class Meta:
+        abstract = True
+
+class ChildA(Base):
+    pass
+
+class ChildB(Base):
+    pass
+```
+この問題には上記のように対応する。
+- **'%(class)s'** は、フィールドが使用されている子クラスの名前を小文字にした文字列と置換される。
+- **'%(app_label)s'** は、子クラスが含まれているアプリ名を小文字にした文字列と置換される。
+
+### 複数テーブルの継承
