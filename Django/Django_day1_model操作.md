@@ -133,3 +133,4 @@ class Membership(models.Model):
 OneToOneFieldを使用する
 [一対一モデル使用例](https://docs.djangoproject.com/ja/4.0/topics/db/examples/one_to_one/)
 
+## モデルの継承
