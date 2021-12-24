@@ -9,7 +9,7 @@
 
 useMemo: **関数の結果を保持する**
 
-```
+```js
 const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 ```
 - メモ化された値を返す
@@ -23,7 +23,7 @@ const memoizedValue = useMemo(() => computeExpensiveValue(a, b), [a, b]);
 <br />
 
 useCallback: **関数自体をメモ化する**
-```
+```js
 const memoizedCallback = useCallback(
   () => {
     doSomething(a, b);
@@ -42,7 +42,7 @@ useCallbackなどはとにかく使った方がいい!
 <br />
 
 React.memo
-```
+```js
 const MyComponent = React.memo(function MyComponent(props) {
   /* render using props */
 });
