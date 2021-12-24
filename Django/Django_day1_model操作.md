@@ -3,7 +3,7 @@ Modelの操作をいまいち理解せずにしている気がするので、改
 まずはドキュメントを読む [Django Doc Model](https://docs.djangoproject.com/ja/4.0/topics/db/models/)
 ## Modelについて
 
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -11,7 +11,7 @@ class Person(models.Model):
     last_name = models.CharField(max_length=30)
 ```
 このモデルを定義した場合は、
-```
+```python
 CREATE TABLE myapp_person (
     "id" serial NOT NULL PRIMARY KEY,
     "first_name" varchar(30) NOT NULL,
@@ -51,7 +51,7 @@ null と blankの組み合わせは以下の4パターンがある
 
 ### choicesについて
 - フィールドを選択肢として使用するには、2タプルの sequence を使用
-```
+```python
 YEAR_IN_SCHOOL_CHOICES = [
     ('FR', 'Freshman'),
     ('SO', 'Sophomore'),
@@ -63,7 +63,7 @@ YEAR_IN_SCHOOL_CHOICES = [
 - choices の順番を変更すると、変更のたびに新しいマイグレーションが生成される  
 
 ### 詳細な (verbose) フィールド名
-```
+```python
 first_name = models.CharField("person's first name", max_length=30)
 ```
 上のように第一引数にverbose_nameを指定できる。  
@@ -72,7 +72,7 @@ verbose_nameとは、**管理画面でのモデルの名前を指定すること
 ## リレーション 
 ### 多対一 (many-to-one) 関係
 ForignKeyを使用する
-```
+```python
 class Car(models.Model):
     company_that_makes_it = models.ForeignKey(
         Manufacturer,
@@ -83,7 +83,7 @@ class Car(models.Model):
 - フィールド名はモデル名を小文字にしたものをおすすめ
 
 ### 多対多 (many-to-many) 関係
-```
+```python
 from django.db import models
 
 class Topping(models.Model):
@@ -107,7 +107,7 @@ class Pizza(models.Model):
 このような場合、 Django ではそのような多対多リレーションを規定するのに使われるモデルを指定することができる。  
 そうすることで、中間モデルに追加のフィールドを配置することができます。  
 中間モデルは、 through 引数で中間として振る舞うモデルを指定することで、 ManyToManyField に紐付けることができる。  
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -143,7 +143,7 @@ Djangoにおいて可能な継承には3つの方式がある
 
 ### 抽象基底クラス
 抽象基底クラスは、複数の他モデルに対して共通の情報を入れ込みたいときに有用。  
-```
+```python
 from django.db import models
 
 class CommonInfo(models.Model):
@@ -160,7 +160,7 @@ class Student(CommonInfo):
 これで、このモデルはデータベーステーブルを作成するために使用されることはなくなる。  
 代わりに、他のモデルで基底クラスとして使われる際に、これら子クラスのフィールドとして追加される。
 
-```
+```python
 from django.db import models
 
 class CommonInfo(models.Model):
@@ -181,7 +181,7 @@ class Student(CommonInfo):
 ### related_name と related_query_name の利用に関して注意するべき点
 ForeignKey もしくは ManyToManyField に対して related_name または related_query_name を使う場合、  
 そのフィールドに対して 一意の 逆引き名およびクエリ名を常に定義しなければいけない。  
-```
+```python
 from django.db import models
 
 class Base(models.Model):
@@ -207,7 +207,7 @@ class ChildB(Base):
 ### 複数テーブルの継承
 Django がサポートするもう一つのモデル継承は、ヒエラルキー内の各モデルすべてが、それ自体モデルであるような場合。  
 それぞれのモデルはデータベース上のテーブルに対応しており、個別にクエリーを作成したり、テーブルの作成ができる。  
-```
+```python
 from django.db import models
 
 class Place(models.Model):
@@ -220,7 +220,7 @@ class Restaurant(Place):
 ```
 - PlaceのフィールドはRestaurantでも利用可能
 - もし、Restaurant でもある Place が存在する時、小文字にしたモデル名を使うことで、Place オブジェクトから Restaurant オブジェクトを取得できる。
-```
+```python
 >>> p = Place.objects.get(id=12)
 # If p is a Restaurant object, this will give the child class:
 >>> p.restaurant
@@ -233,7 +233,7 @@ p.restaurant を参照すると、Restaurant.DoesNotExist 例外が発生する
 モデルの Python 上の振る舞いを変更したい事も有る  
 デフォルトのマネージャーを変更したり、新たなメソッドを追加したりする場合
 
-```
+```python
 from django.db import models
 
 class Person(models.Model):
@@ -248,9 +248,10 @@ class MyPerson(Person):
         # ...
         pass
 ```
-**proxy = True**でプロキシモデルを作成できる
-プロキシモデルマネージャー
-```
+**proxy = True**でプロキシモデルを作成できる  
+
+プロキシモデル上にモデルのマネージャーを定義しない場合、そのプロキシモデルはマネージャーを親のモデルから継承します。プロキシモデル上にマネージャーを定義する場合、親クラス上のマネージャーで定義されて利用可能な物が有ったとしても、そのマネージャーがデフォルトになります。
+```python
 from django.db import models
 
 class NewManager(models.Manager):
@@ -262,4 +263,12 @@ class MyPerson(Person):
 
     class Meta:
         proxy = True
+```
+
+## パッケージ化したモデルを扱う
+多数のモデルが存在する場合、それらを別のファイルとして管理するのが良い時もある。  
+その場合は、modelsパッケージを作成してmyapp/models/ディレクトリに__init__.pyを設置する
+```python
+from .organic import Person
+from .synthetic import Robot
 ```
