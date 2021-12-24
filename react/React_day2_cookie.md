@@ -4,7 +4,7 @@
 今日本当はカスタムフックについてまとめようと思っていたが、DjangoでTwitter cloneを作成する途中でcookieの内容が出てきてわからなかったので、まとめることにした。
 対象となるコードは以下のコードである。  
 [Django Doc クロスサイトリクエストフォージェリ (CSRF) 対策](https://docs.djangoproject.com/ja/1.11/ref/csrf/)
-```
+```js
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -71,7 +71,7 @@ cookieについて理解が深まったところで、改めて上のコード�
 この対策として、AJAXのPOSTにもCSRFトークンをデータに含めなくてはいけない。  
 それには、**X-CSRFTokenという独自ヘッダーにCSRF トークンの値を設定すること**で解決する  
 初めにトークンを取得する。
-```
+```js
     function getCookie(name) {
         var cookieValue = null;
         if (document.cookie && document.cookie != '') {
@@ -90,14 +90,14 @@ cookieについて理解が深まったところで、改めて上のコード�
     var csrftoken = getCookie('csrftoken');
 ```
 - document.cookieで文書に関連付けられたクッキーを読み書きすることができる。
-```
+```js
 allCookies = document.cookie;
 ```
 > 上記のコードで allCookies は、セミコロンで区切られたクッキーのリストです (つまり key=value のペア)。なお、それぞれの key および value の周囲にはホワイトスペース (空白やタブ文字) をおくことができます。実際のところ、 RFC 6265 ではそれぞれのセミコロンの後に空白1文字を入れることを必須としていますが、一部のユーザーエージェントはこれに従っていません。  
 [MDN cookie](https://developer.mozilla.org/ja/docs/Web/API/Document/cookie)  
 
 上記のコードでtokenを取得し、それをAJAXのrequestに設定する。
-```
+```js
 function csrfSafeMethod(method) {
     // these HTTP methods do not require CSRF protection
     return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
