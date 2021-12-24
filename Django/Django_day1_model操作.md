@@ -20,11 +20,17 @@ CREATE TABLE myapp_person (
 ```
 このようなデータベースのテーブルを作成する。 (SQLがさっぱりなのでまた読まないとな。。。)
 
-#### フィールドオプション
+
+## フィールドオプション
 1. **null**: True の場合、Django はデータベース内に NULL として空の値を保持する
 2. **blank**: True の場合、フィールドはブランクになることが許容される
+3. **choices**: デフォルトのフォームウィジェットが標準のテキストボックスではなくセレクトボックスになり、与えられた選択肢を選ぶように制限される
+4. **default**: そのフィールドのデフォルト値。
+5. **primary_key**: True の場合、設定したフィールドはそのモデルの主キーとなる。設定されなかったら、自動的に設定される。
+6. **unique**: True の場合、そのフィールドはテーブル上で一意となる制約を受ける。
 
-null と blankの違い  
+
+### null と blankの違い  
 - blank がバリデーション由来である一方、 null は完全にデータベース由来である。
 - blankはDjangoのフォームからの投稿が空かどうかを判定するもの、nullはデータベースの中身が空かどうかを判定するもの  
 
@@ -40,4 +46,26 @@ null と blankの組み合わせは以下の4パターンがある
 - **blank=False, null=Trueのパターン**
     - フォームからの入力時には必ずこのフィールドを入力する必要がある、しかし、データベースの値は空であっても構わない
     - これは使う機会が少ない  
-このようにnullとblankの組み合わせを場合分けしてみると、お互いの違いがよくわかる。
+このようにnullとblankの組み合わせを場合分けしてみると、お互いの違いがよくわかる。  
+参考資料[nullとblankの違いについて](https://djangobrothers.com/blogs/django_null_blank/#blankFalsenullTrue)
+
+### choicesについて
+- フィールドを選択肢として使用するには、2タプルの sequence を使用
+```
+YEAR_IN_SCHOOL_CHOICES = [
+    ('FR', 'Freshman'),
+    ('SO', 'Sophomore'),
+    ('JR', 'Junior'),
+    ('SR', 'Senior'),
+    ('GR', 'Graduate'),
+]
+```
+- choices の順番を変更すると、変更のたびに新しいマイグレーションが生成される
+---
+### 詳細な (verbose) フィールド名
+```
+first_name = models.CharField("person's first name", max_length=30)
+```
+上のように第一引数にverbose_nameを指定できる。  
+verbose_nameとは、**管理画面でのモデルの名前を指定することができるもの**であり、指定しないとモデル名を解体した文字列がそのまま管理画面に表示される。
+
