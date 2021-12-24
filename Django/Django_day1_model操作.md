@@ -272,3 +272,7 @@ class MyPerson(Person):
 from .organic import Person
 from .synthetic import Robot
 ```
+
+##　次回の予定
+今回はDjango documentのModelの章を読んだ。  
+次はクエリ操作について熟読したい。
