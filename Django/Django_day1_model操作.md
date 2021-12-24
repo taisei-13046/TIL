@@ -1,5 +1,5 @@
 # やったこと
-Djangoでviewをいじってる時に、Modelの操作をいまいち理解せずにしている気がするので、振り返りとしてまとめてみる。  
+Modelの操作をいまいち理解せずにしている気がするので、改めて振り返りとしてまとめてみる。  
 まずはドキュメントを読む [Django Doc Model](https://docs.djangoproject.com/ja/4.0/topics/db/models/)
 ## Modelについて
 
@@ -60,8 +60,8 @@ YEAR_IN_SCHOOL_CHOICES = [
     ('GR', 'Graduate'),
 ]
 ```
-- choices の順番を変更すると、変更のたびに新しいマイグレーションが生成される
----
+- choices の順番を変更すると、変更のたびに新しいマイグレーションが生成される  
+
 ### 詳細な (verbose) フィールド名
 ```
 first_name = models.CharField("person's first name", max_length=30)
@@ -69,3 +69,36 @@ first_name = models.CharField("person's first name", max_length=30)
 上のように第一引数にverbose_nameを指定できる。  
 verbose_nameとは、**管理画面でのモデルの名前を指定することができるもの**であり、指定しないとモデル名を解体した文字列がそのまま管理画面に表示される。
 
+## リレーション 
+### 多対一 (many-to-one) 関係
+ForignKeyを使用する
+```
+class Car(models.Model):
+    company_that_makes_it = models.ForeignKey(
+        Manufacturer,
+        on_delete=models.CASCADE,
+    )
+    # ...
+```
+- フィールド名はモデル名を小文字にしたものをおすすめ
+
+### 多対多 (many-to-many) 関係
+```
+from django.db import models
+
+class Topping(models.Model):
+    # ...
+    pass
+
+class Pizza(models.Model):
+    # ...
+    toppings = models.ManyToManyField(Topping)
+```
+- 命名は関係モデルオブジェクトの複数形が推奨
+- ManyToManyField インスタンスは、フォームで編集されるオブジェクトの側にある
+- 上の例では、 toppings は Pizza の中にあります  
+    ( Topping が pizzas の ManyToManyField を持つとするよりはそのほうがいいでしょう ) 。  
+    というのは、ピザが複数のトッピングを持つほうが、トッピングが複数のピザの上にあるというよりも自然だからです。  
+    このようにすることで、ユーザは `` Pizza`` フォームでトッピングを選ぶことができるようになります。  
+
+### 多対多リレーションにおける追加フィールド
