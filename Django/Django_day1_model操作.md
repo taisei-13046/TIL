@@ -230,3 +230,36 @@ class Restaurant(Place):
 p.restaurant を参照すると、Restaurant.DoesNotExist 例外が発生する
 
 ### プロキシモデル
+モデルの Python 上の振る舞いを変更したい事も有る  
+デフォルトのマネージャーを変更したり、新たなメソッドを追加したりする場合
+
+```
+from django.db import models
+
+class Person(models.Model):
+    first_name = models.CharField(max_length=30)
+    last_name = models.CharField(max_length=30)
+
+class MyPerson(Person):
+    class Meta:
+        proxy = True
+
+    def do_something(self):
+        # ...
+        pass
+```
+**proxy = True**でプロキシモデルを作成できる
+プロキシモデルマネージャー
+```
+from django.db import models
+
+class NewManager(models.Manager):
+    # ...
+    pass
+
+class MyPerson(Person):
+    objects = NewManager()
+
+    class Meta:
+        proxy = True
+```
