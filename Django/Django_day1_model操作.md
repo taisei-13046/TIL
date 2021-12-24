@@ -205,3 +205,28 @@ class ChildB(Base):
 - **'%(app_label)s'** は、子クラスが含まれているアプリ名を小文字にした文字列と置換される。
 
 ### 複数テーブルの継承
+Django がサポートするもう一つのモデル継承は、ヒエラルキー内の各モデルすべてが、それ自体モデルであるような場合。  
+それぞれのモデルはデータベース上のテーブルに対応しており、個別にクエリーを作成したり、テーブルの作成ができる。  
+```
+from django.db import models
+
+class Place(models.Model):
+    name = models.CharField(max_length=50)
+    address = models.CharField(max_length=80)
+
+class Restaurant(Place):
+    serves_hot_dogs = models.BooleanField(default=False)
+    serves_pizza = models.BooleanField(default=False)
+```
+- PlaceのフィールドはRestaurantでも利用可能
+- もし、Restaurant でもある Place が存在する時、小文字にしたモデル名を使うことで、Place オブジェクトから Restaurant オブジェクトを取得できる。
+```
+>>> p = Place.objects.get(id=12)
+# If p is a Restaurant object, this will give the child class:
+>>> p.restaurant
+<Restaurant: ...>
+```
+しかし、上の例において p が Restaurant オブジェクト ではない 場合 (つまり、継承を用いず Place オブジェクトが直接作成されたもしくは他のクラスの親であった場合)、  
+p.restaurant を参照すると、Restaurant.DoesNotExist 例外が発生する
+
+### プロキシモデル
