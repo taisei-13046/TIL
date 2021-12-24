@@ -102,3 +102,34 @@ class Pizza(models.Model):
     このようにすることで、ユーザは `` Pizza`` フォームでトッピングを選ぶことができるようになります。  
 
 ### 多対多リレーションにおける追加フィールド
+ピザとトッピングを組み合わせる程度の多対多リレーションを扱うのであれば、標準の ManyToManyField で十分。  
+しかし、2 つのモデルのリレーションに他のデータを付加したくなることもある。  
+このような場合、 Django ではそのような多対多リレーションを規定するのに使われるモデルを指定することができる。  
+そうすることで、中間モデルに追加のフィールドを配置することができます。  
+中間モデルは、 through 引数で中間として振る舞うモデルを指定することで、 ManyToManyField に紐付けることができる。  
+```
+from django.db import models
+
+class Person(models.Model):
+    name = models.CharField(max_length=128)
+
+    def __str__(self):
+        return self.name
+
+class Group(models.Model):
+    name = models.CharField(max_length=128)
+    members = models.ManyToManyField(Person, through='Membership')
+
+    def __str__(self):
+        return self.name
+
+class Membership(models.Model):
+    person = models.ForeignKey(Person, on_delete=models.CASCADE)
+    group = models.ForeignKey(Group, on_delete=models.CASCADE)
+    date_joined = models.DateField()
+    invite_reason = models.CharField(max_length=64)
+```
+### 一対一 (one-to-one) 関係
+OneToOneFieldを使用する
+[一対一モデル使用例](https://docs.djangoproject.com/ja/4.0/topics/db/examples/one_to_one/)
+
