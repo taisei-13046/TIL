@@ -134,3 +134,46 @@ OneToOneFieldを使用する
 [一対一モデル使用例](https://docs.djangoproject.com/ja/4.0/topics/db/examples/one_to_one/)
 
 ## モデルの継承
+Djangoにおいて可能な継承には3つの方式がある
+1. 子モデルそれぞれに対して一々定義し直さないで済ませたい情報を保持するためだけに、親クラスを使用することがあるかもしれません。  
+    このクラスが単体で用いられることはないので、この場合 **抽象基底クラス** が適切です。
+2. もし既存のモデル (完全に別のアプリケーション等から取得した) のサブクラスを作成していてモデルそれぞれにデータベース上のテーブルを定義したい場合、   
+    **複数テーブルの継承** を利用するとよいでしょう。
+3. 最後に、モデルの Python レベルでの振る舞いを、モデルのフィールドを変更せずに修正したい場合は、 **プロキシモデル** を利用できます。
+
+### 抽象基底クラス
+抽象基底クラスは、複数の他モデルに対して共通の情報を入れ込みたいときに有用。  
+```
+from django.db import models
+
+class CommonInfo(models.Model):
+    name = models.CharField(max_length=100)
+    age = models.PositiveIntegerField()
+
+    class Meta:
+        abstract = True
+
+class Student(CommonInfo):
+    home_group = models.CharField(max_length=5)
+```
+基底クラスを書いて Meta クラス内で abstract=True をセットする。  
+これで、このモデルはデータベーステーブルを作成するために使用されることはなくなる。  
+代わりに、他のモデルで基底クラスとして使われる際に、これら子クラスのフィールドとして追加される。
+
+```
+from django.db import models
+
+class CommonInfo(models.Model):
+    # ...
+    class Meta:
+        abstract = True
+        ordering = ['name']
+
+class Student(CommonInfo):
+    # ...
+    class Meta(CommonInfo.Meta):
+        db_table = 'student_info'
+```
+抽象基底クラスを作成した際、Django は基底クラスで宣言したすべての Meta インナークラスを子クラスの属性とします。  
+子クラスが自身の Meta クラスを定義しなければ、親の Meta クラスを継承します。  
+子クラスが親の Meta クラスを拡張したい場合、サブクラス化できます。  
