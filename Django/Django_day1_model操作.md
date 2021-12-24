@@ -1,6 +1,6 @@
 # やったこと
-Modelの操作をいまいち理解せずにしている気がするので、改めて振り返りとしてまとめてみる。  
-まずはドキュメントを読む [Django Doc Model](https://docs.djangoproject.com/ja/4.0/topics/db/models/)
+Modelの操作をいまいち理解していない気がするので、改めて振り返りとしてまとめてみる。  
+ひたすらドキュメントを読む [Django Doc Model](https://docs.djangoproject.com/ja/4.0/topics/db/models/)
 ## Modelについて
 
 ```python
