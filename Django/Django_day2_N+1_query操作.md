@@ -207,3 +207,77 @@ class Dog(models.Model):
 ```
 
 #### モデルのインスタンスを複製する
+```python
+blog = Blog(name='My blog', tagline='Blogging is easy')
+blog.save() # blog.pk == 1
+
+blog.pk = None
+blog._state.adding = True
+blog.save() # blog.pk == 2
+```
+**._state.adding**を使用することで複製が可能  
+
+### 関係オブジェクト
+#### 1 対多のリレーションシップ
+```python
+>>> e = Entry.objects.get(id=2)
+>>> e.blog # Returns the related Blog object.
+```
+リレーションシップ "反対向き” を理解する  
+モデルが ForeignKey を持つ場合、外部キーのモデルのインスタンスは最初のモデルのインスタンスを返す Manager にアクセスできる  
+デフォルトでは、この Manager は FOO_set と名付けられており、FOO には元のモデル名が小文字で入る  
+```python
+>>> b = Blog.objects.get(id=1)
+>>> b.entry_set.all() # Returns all Entry objects related to Blog.
+
+# b.entry_set is a Manager that returns QuerySets.
+>>> b.entry_set.filter(headline__contains='Lennon')
+>>> b.entry_set.count()
+```
+#### 関係オブジェクトを処理する他のメソッド
+- add(obj1, obj2, ...)
+    - 関係オブジェクトのセットに、指定したモデルオブジェクトを追加します。
+- create(**kwargs)
+    - 新しいオブジェクトを作成、保存して、関係オブジェクトのセットに格納します。新しく作成したオブジェクトを返します。
+- remove(obj1, obj2, ...)
+    - 関係オブジェクトのセットから、指定したモデルオブジェクトを削除します。
+- clear()
+    - 関係オブジェクトのセットからすべてのオブジェクトを削除します。
+- set(objs)
+    - 関係オブジェクトのセットを置き換えます。
+
+#### 多対多 (many-to-many) 関係
+多対多リレーションシップの両方の側で、もう片方に対する自動的な API アクセスを使える。
+```python
+e = Entry.objects.get(id=3)
+e.authors.all() # Returns all Author objects for this Entry.
+e.authors.count()
+e.authors.filter(name__contains='John')
+
+a = Author.objects.get(id=5)
+a.entry_set.all() # Returns all Entry objects for this Author.
+```
+
+#### 一対一 (one-to-one) 関係
+```python
+class EntryDetail(models.Model):
+    entry = models.OneToOneField(Entry, on_delete=models.CASCADE)
+    details = models.TextField()
+
+ed = EntryDetail.objects.get(id=2)
+ed.entry # Returns the related Entry object.
+```
+1対1はそのまま取得できる。
+
+### 関係オブジェクトを横断したクエリ
+id=5 の Blog オブジェクト b がある場合、以下の 3 つのクエリは同一
+```python
+Entry.objects.filter(blog=b) # Query using object instance
+Entry.objects.filter(blog=b.id) # Query using id from instance
+Entry.objects.filter(blog=5) # Query using id directly
+```
+
+### 今日やったこと
+- Djnagoのdocを読む
+- 最終課題の修正(N+1問題の解消)
+- 次のハッカソンのMeeting
