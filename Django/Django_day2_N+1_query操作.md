@@ -156,3 +156,41 @@ SELECT * FROM blog_entry WHERE pub_date <= '2006-01-01';
 >>> Blog.objects.get(name__iexact="beatles blog")
 >>> Entry.objects.get(headline__contains='Lennon')
 ```
+
+#### リレーションを横断するルックアップ
+name に 'Beatles Blog' を持つ Blog のすべての Entry オブジェクトを取得する。
+```python
+>>> Entry.objects.filter(blog__name='Beatles Blog')
+```
+この横断は、好きなだけ深くすることができる
+```python
+>>> Blog.objects.filter(entry__headline__contains='Lennon')
+>>> Blog.objects.filter(entry__headline__contains='Lennon', entry__pub_date__year=2008)
+>>> Blog.objects.filter(entry__headline__contains='Lennon').filter(entry__pub_date__year=2008)
+```
+
+#### フィルターはモデルのフィールドを参照できる
+モデルのフィールドの値を、同じモデルの他のフィールドと比較したい時にDjango は F 式 を用意している  
+ F() のインスタンスは、クエリの中でモデルのフィールドへの参照として振る舞う。  
+ これによって、同じモデルのインスタンスの異なる2つのフィールドの値を比較することができる  
+```python
+>>> from django.db.models import F
+>>> Entry.objects.filter(number_of_comments__gt=F('number_of_pingbacks'))
+```
+こんなこともできる
+```python
+>>> from datetime import timedelta
+>>> Entry.objects.filter(mod_date__gt=F('pub_date') + timedelta(days=3))
+```
+
+#### Querying JSONField
+```python
+from django.db import models
+
+class Dog(models.Model):
+    name = models.CharField(max_length=200)
+    data = models.JSONField(null=True)
+
+    def __str__(self):
+        return self.name
+```
