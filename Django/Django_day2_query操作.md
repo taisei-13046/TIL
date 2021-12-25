@@ -65,3 +65,6 @@ c = p.hometown       #取得済みのオブジェクトを参照
 [DjangoのN+1問題を考える](https://selfs-ryo.com/detail/django_nplusone)
 [document](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)
 [N+1問題におけるORMの重たさについて](https://aish.dev/misc/orm_n1problem.html)
+
+
+## クエリに関するDjangoのdocument
