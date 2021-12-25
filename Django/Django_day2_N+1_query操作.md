@@ -68,3 +68,26 @@ c = p.hometown       #取得済みのオブジェクトを参照
 
 
 ## クエリに関するDjangoのdocument
+### オブジェクトを作成する
+オブジェクトを生成するためには、作成するモデルのクラスにキーワード引数を渡してインスタンス化し、  
+そのデータをデータベースに保存するために save() を呼び出す。  
+[save source code](https://github.com/django/django/blob/main/django/db/models/base.py)  
+- 内部でINSERTSQL分が実行されている
+- saveを呼ぶまではDBに保存されない
+- saveは値を返さない
+- オブジェクトの作成と保存を一つの処理で行うには、 create() メソッドを利用する
+
+### オブジェクトを取得する
+データベースからオブジェクトを取得するには、モデルクラスの Manager から QuerySet を作る
+#### [Manager](https://docs.djangoproject.com/ja/4.0/topics/db/managers/#django.db.models.Manager)とは
+- Django のモデルに対するデータベースクエリの操作を提供するインターフェイス
+- Django アプリケーション内の1つのモデルに対して、Manager は最低でも1つは存在する
+- デフォルトでは、Django は **objects** という名前の Manager を各 Django モデルクラスに対して追加している
+- Manager はモデルのインスタンスでなく、モデルのクラスを経由してのみアクセスできる
+    - それは "テーブル水準" の処理と "レコード水準" の処理とで責任を明確に分離するためです。
+
+##### すべてのオブジェクトを取得する
+```python
+all_entries = Entry.objects.all()
+```
+
