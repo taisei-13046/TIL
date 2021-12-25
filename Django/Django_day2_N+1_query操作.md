@@ -61,10 +61,10 @@ c = p.hometown       #取得済みのオブジェクトを参照
 クエリが発行される時間も2.75 -> 1.62に短くなっている。  
 これからはN+1問題にも意識しながらクエリ発行をしていきたい。
 
-参考資料
-[DjangoのN+1問題を考える](https://selfs-ryo.com/detail/django_nplusone)
-[document](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)
-[N+1問題におけるORMの重たさについて](https://aish.dev/misc/orm_n1problem.html)
+参考資料  
+[DjangoのN+1問題を考える](https://selfs-ryo.com/detail/django_nplusone)  
+[document](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)  
+[N+1問題におけるORMの重たさについて](https://aish.dev/misc/orm_n1problem.html)  
 
 
 ## クエリに関するDjangoのdocument
