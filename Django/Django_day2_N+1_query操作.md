@@ -91,3 +91,27 @@ c = p.hometown       #取得済みのオブジェクトを参照
 all_entries = Entry.objects.all()
 ```
 
+##### フィルタを用いて特定のオブジェクトを取得する
+1. フィルターのチェーン
+```python
+>>> Entry.objects.filter(
+...     headline__startswith='What'
+... ).exclude(
+...     pub_date__gte=datetime.date.today()
+... ).filter(
+...     pub_date__gte=datetime.date(2005, 1, 30)
+... )
+```
+このようにフィルターをチェーン状につなげることができる
+
+2. フィルターを適用した QuerySet はユニーク
+QuerySet に対して絞り込みを適用するごとに、前の QuerySet から独立した完全に新しい QuerySet が作られる  
+そのため絞り込みごとに独立した QuerySet が作られるため、保存したり何度も再利用したりできる
+```python
+>>> q1 = Entry.objects.filter(headline__startswith="What")
+>>> q2 = q1.exclude(pub_date__gte=datetime.date.today())
+>>> q3 = q1.filter(pub_date__gte=datetime.date.today())
+```
+これら３つは全て独立している。
+
+3. 
