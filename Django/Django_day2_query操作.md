@@ -56,5 +56,12 @@ c = p.hometown       #取得済みのオブジェクトを参照
 
 では実際に先ほどのdjango-debug-toolbarで確認してみる。
 ![スクリーンショット 2021-12-25 14 09 20](https://user-images.githubusercontent.com/78260526/147378093-4ff3729c-622b-40f0-aa67-f26c2c857630.png)
-すると、先ほどの状態に比べて、重複していたクエリが解消されて,
-SQL文を確認すると、テーブルがJOINされて
+すると、先ほどの状態に比べて、重複していたクエリが解消されていることがわかる  
+また、SQL文を確認すると、テーブルがJOINされて発行されるクエリが1つになっている。  
+クエリが発行される時間も2.75 -> 1.62に短くなっている。  
+これからはN+1問題にも意識しながらクエリ発行をしていきたい。
+
+参考資料
+[DjangoのN+1問題を考える](https://selfs-ryo.com/detail/django_nplusone)
+[document](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)
+[N+1問題におけるORMの重たさについて](https://aish.dev/misc/orm_n1problem.html)
