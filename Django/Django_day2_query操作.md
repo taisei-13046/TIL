@@ -37,3 +37,19 @@ N+1問題のありかを発見するためには、**django-debug-toolbar**を�
 
 ### N+1問題の解決方法
 結論, [select_related()](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)を使用することで解決できる  
+ではselect_relatedとはなんなのか？
+##### select_related: クエリを実行したときに、指定された外部キーのオブジェクトも一緒にとってくるというもの
+select_relatedを使用しない
+```
+b = Entry.objects.get(id=4)  # DBを叩く
+p = b.author         # DBを叩く
+c = p.hometown       # DBを叩く
+```
+使用すると、
+```
+# 一度のクエリでauthorとhometownテーブルからもオブジェクトを取得する
+b = Entry.objects.select_related('author__hometown').get(id=4)
+p = b.author         # 取得済みのオブジェクトを参照
+c = p.hometown       #取得済みのオブジェクトを参照
+```
+これによって、無駄にSQLを叩く回数が減った。
