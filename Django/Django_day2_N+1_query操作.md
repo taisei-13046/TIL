@@ -194,3 +194,16 @@ class Dog(models.Model):
     def __str__(self):
         return self.name
 ```
+
+#### オブジェクトを削除する
+```python
+>>> e.delete()
+(1, {'blog.Entry': 1})
+```
+オブジェクトを一括で消去することもできる
+```python
+>>> Entry.objects.filter(pub_date__year=2005).delete()
+(5, {'webapp.Entry': 5})
+```
+
+#### モデルのインスタンスを複製する
