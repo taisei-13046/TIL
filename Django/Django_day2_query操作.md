@@ -10,7 +10,7 @@ SQLクエリのN+1問題とは、
 - データベースアクセス（SELECT）が合計 N+1 回も実行されるというもの (**JOIN して 1 回の SQL で取得した方が効率的**)
 
 このようなモデルがあったとき、
-```
+```python
 class Table1(models.Model):
     text = models.TextField()
 
@@ -18,7 +18,7 @@ class Table2(models.Model):
     table1 = models.ForeignKey(Table1, on_delete=models.CASCADE)
 ```
 Table2 の全レコードが参照している Table1 オブジェクトのカラムを出力する場合、
-```
+```python
 for table2 in Table2.objects.all():
     print(table2.table1.text)
 ```
@@ -40,16 +40,21 @@ N+1問題のありかを発見するためには、**django-debug-toolbar**を�
 ではselect_relatedとはなんなのか？
 ##### select_related: クエリを実行したときに、指定された外部キーのオブジェクトも一緒にとってくるというもの
 select_relatedを使用しない
-```
+```python
 b = Entry.objects.get(id=4)  # DBを叩く
 p = b.author         # DBを叩く
 c = p.hometown       # DBを叩く
 ```
 使用すると、
-```
+```python
 # 一度のクエリでauthorとhometownテーブルからもオブジェクトを取得する
 b = Entry.objects.select_related('author__hometown').get(id=4)
 p = b.author         # 取得済みのオブジェクトを参照
 c = p.hometown       #取得済みのオブジェクトを参照
 ```
 これによって、無駄にSQLを叩く回数が減った。
+
+では実際に先ほどのdjango-debug-toolbarで確認してみる。
+![スクリーンショット 2021-12-25 14 09 20](https://user-images.githubusercontent.com/78260526/147378093-4ff3729c-622b-40f0-aa67-f26c2c857630.png)
+すると、先ほどの状態に比べて、重複していたクエリが解消されて,
+SQL文を確認すると、テーブルがJOINされて
