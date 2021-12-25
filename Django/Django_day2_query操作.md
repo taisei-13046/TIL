@@ -28,3 +28,12 @@ for table2 in Table2.objects.all():
 このように合計で**N+1回**SQLが実行されてしまっている。
 
 ### まずはDjnagoでN+1問題を発見する
+今回は[この記事](https://selfs-ryo.com/detail/django_nplusone)を参照して解決した。  
+N+1問題のありかを発見するためには、**django-debug-toolbar**をインストールする。  
+そして各種設定を行うと、  
+![スクリーンショット 2021-12-25 14 08 46](https://user-images.githubusercontent.com/78260526/147377951-17f604cd-ea70-4825-a434-567d9876101a.png)
+このようなツールバーが右に表示されるため、そのSQLをみるとN+１の存在が発見できる。  
+今回の場合は4つの重複したクエリが発行されてしまっていることがわかる。  
+
+### N+1問題の解決方法
+結論, [select_related()](https://docs.djangoproject.com/ja/3.1/ref/models/querysets/#select-related)を使用することで解決できる  
