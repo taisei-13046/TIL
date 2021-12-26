@@ -35,3 +35,23 @@ React hooksにスタイルを合わせるメリット
 - テスト時に値を取りやすい (result.current.〇〇でとれる)
 
 ### 2. メモ化を意識する
+**関数を返すカスタムフックに関してはすべてuseCallbackで囲ってあげるのがよい**
+
+[useCallbackはとにかく使え！　特にカスタムフックでは](https://blog.uhy.ooo/entry/2021-02-23/usecallback-custom-hooks/)  
+
+(例)  
+```js
+const App: React.VFC = () => {
+  const handleClick = useCallback((e: React.MouseEvent) => {
+    console.log("clicked!");
+  }, []);
+
+  return (
+    <button onClick={handleClick}>button</button>
+  );
+};
+```
+useCallbackは、初回の呼び出し（Appの初回のレンダリング）では渡された関数をそのまま返す。  
+Appが再レンダリングされたとき、useCallbackの返り値としては初回レンダリング時のときの関数オブジェクトが再利用される。  
+（useCallbackに渡された関数オブジェクトは今回は捨てられます）  
+つまり、handleClickは初回のレンダリング時も2回目のレンダリング時も同じ（===の意味で等しい）関数オブジェクトである。  
