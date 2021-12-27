@@ -1,6 +1,5 @@
 ## やったこと 
 CSSに不安を持っていたため、今日からひたすらCSSについて勉強する。  
-基本的にはMDNをとにかく読みまくる  
 どこまで分かってるかもわからないので、超基本的なところからやる。
 
 ### CSS の構文
@@ -195,3 +194,39 @@ relativeを使うときは、**”要素が自分自身を基準にする”**
 
 ## Atomic Designについて
 こっからは、フロントの最終課題を進めていく  
+
+1. atoms/button  
+```scss
+.button {
+  display: flex;
+  width: 180px;
+  height: 45px;
+  padding: 0px 16px;
+  font-size: $fontsize-s;
+  align-items: center;
+  justify-content: center;
+  background-color: $black;
+  color: $white;
+  transition: background-color 0.2s;
+
+  @media screen and (min-width: $breakpoint-md) {
+    width: 150px;
+    height: 55px;
+  }
+
+  @media screen and (min-width: $breakpoint-lg) {
+    width: 200px;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $orange_bistre;
+    text-decoration: none;
+  }
+}
+```
+
+[justify-contentとalign-itemsで楽々レイアウト](https://goodsan.jp/wp/justifycontent/)  
+- `justify-content`: 横方向のレイアウトを指定  
+- `align-items`: 垂直方向のレイアウトを指定  
+
