@@ -179,3 +179,6 @@ p::first-line {
   text-transform: uppercase;
 }
 ```
+
+### positionについて
+positionは**要素を好きな位置に固定するプロパティ**
