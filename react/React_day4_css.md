@@ -42,3 +42,29 @@ li em {
   color: rebeccapurple;
 }
 ```
+
+状態に基づいてスタイリングする
+```css
+a:link {
+  color: pink;
+}
+
+a:visited {
+  color: green;
+}
+
+a:hover {
+  text-decoration: none;
+}
+```
+
+セレクタとコンビネーターを組み合わせる
+```css
+/* <article> 要素の内側にある <p> 要素の <span> 要素に焦点を当てるとき  */
+article p span { ... }
+
+/* <h1> 要素の直後に来る <ul> 要素の、そのまた直後に来る <p> 要素に焦点を当てるとき */
+h1 + ul + p { ... }
+```
+
+### CSS の全体像
