@@ -89,3 +89,21 @@ p {
 
 #### アット規則
 CSS のアット規則 は、 CSS が実行すること、またはそれがどのように動作するべきかの指示を提供する
+`@import` はスタイルシートを別の CSS スタイルシートにインポートする
+```css
+@import 'styles2.css';
+```
+
+`@media` があり、メディアクエリを作成するために使用される
+@import 'styles2.css';
+```css
+body {
+  background-color: pink;
+}
+
+@media (min-width: 30em) {
+  body {
+    background-color: blue;
+  }
+}
+```
