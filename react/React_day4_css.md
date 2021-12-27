@@ -229,4 +229,3 @@ relativeを使うときは、**”要素が自分自身を基準にする”**
 [justify-contentとalign-itemsで楽々レイアウト](https://goodsan.jp/wp/justifycontent/)  
 - `justify-content`: 横方向のレイアウトを指定  
 - `align-items`: 垂直方向のレイアウトを指定  
-
