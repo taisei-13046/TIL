@@ -167,3 +167,15 @@ h1 {
 ## frontendコース課題を履修
 その中で、ポイントになったところをまとめる
 
+#### [擬似要素 (Pseudo-elements)](https://developer.mozilla.org/ja/docs/Web/CSS/Pseudo-elements)
+CSS の 擬似要素Pseudo-elementsはセレクターに付加するキーワードで、  
+選択された要素の特定の部分にスタイル付けできるようにするもの
+
+したの例は段落の最初の行のフォントを変更するために使用する  
+```css
+/* 各 <p> 要素の最初の行です。 */
+p::first-line {
+  color: blue;
+  text-transform: uppercase;
+}
+```
