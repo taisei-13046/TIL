@@ -47,3 +47,12 @@ line-height: 3.5;
 <img width="348" alt="スクリーンショット 2021-12-28 14 14 15" src="https://user-images.githubusercontent.com/78260526/147530534-f8a69752-c852-4dae-9928-f8b079d433c4.png">  
 
 ### Molecules/NewsAndEventsMore
+<img width="242" alt="スクリーンショット 2021-12-28 15 01 56" src="https://user-images.githubusercontent.com/78260526/147536814-12ee4d5e-50a8-4d6a-8aba-9873df430917.png">  
+
+**inlineについて**  
+
+- `block`: 要素が横までいっぱいに広がり、縦に並んでいく
+- `inline`: 要素が平ぺったく横に並んでいく
+- `inline-block`: 要素の並び方はinline的で、要素の中身はblock的  
+
+![スクリーンショット 2021-12-28 16 13 51](https://user-images.githubusercontent.com/78260526/147538959-a825544e-59fb-4970-ad97-48199b496d75.png)
