@@ -17,4 +17,12 @@ flex-direction: column;
 flex-direction: column-reverse;
 ```
 - `line-height`: **テキストの行間を設定するために使用**  
+```css
+/* 単位のない値: この値を要素のフォントサイズに
+掛けたものを使用する */
+line-height: 3.5;
+```
 - `font-weight`: **フォントの太さ (あるいは重み) を指定**
+
+https://user-images.githubusercontent.com/78260526/147527866-5eadc37f-03f7-4065-988a-c0caec9ba7a8.mov
+
