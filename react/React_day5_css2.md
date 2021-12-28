@@ -56,3 +56,14 @@ line-height: 3.5;
 - `inline-block`: 要素の並び方はinline的で、要素の中身はblock的  
 
 ![スクリーンショット 2021-12-28 16 13 51](https://user-images.githubusercontent.com/78260526/147538959-a825544e-59fb-4970-ad97-48199b496d75.png)
+
+### Molecules/Card
+<img width="600" alt="スクリーンショット 2021-12-28 17 23 22" src="https://user-images.githubusercontent.com/78260526/147545372-28cf1deb-5345-4fab-83e9-2e38e770215e.png">
+
+#### [transitionについて](https://www.asobou.co.jp/blog/web/css-animation3#transitionanimation)  
+- transitionプロパティは:hoverや:activeなど、要素が変化するためのトリガーが必要
+- transitionで設定できるプロパティ
+  - transition-property: **指定要素の度のプロパティにアニメーションを適用するかを定義する**
+  - transition-duration: **アニメーションの時間を定義する**
+  - transition-delay: **アニメーションを開始するタイミングを定義する**
+  - transition-timing-function: **アニメーション変化の度合を定義する**
