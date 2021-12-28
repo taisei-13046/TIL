@@ -67,3 +67,10 @@ line-height: 3.5;
   - transition-duration: **アニメーションの時間を定義する**
   - transition-delay: **アニメーションを開始するタイミングを定義する**
   - transition-timing-function: **アニメーション変化の度合を定義する**
+
+### Molecules/Plan
+**`<dl><dt><dd>`タグについて**  
+- 「description list(dl）= 説明リスト」
+- 「description term(dt）= 説明する言葉」
+- 「definition / description(dd）= 定義分もしくは説明文」
+
