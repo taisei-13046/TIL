@@ -100,3 +100,5 @@ line-height: 3.5;
 
 [Qiita](https://qiita.com/7note/items/2df14c399f8a233e0328)  
 
+**nth-child**  
+`要素:nth-child(値){スタイルの内容}`  
