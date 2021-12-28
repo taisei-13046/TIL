@@ -24,5 +24,9 @@ line-height: 3.5;
 ```
 - `font-weight`: **フォントの太さ (あるいは重み) を指定**
 
-https://user-images.githubusercontent.com/78260526/147527866-5eadc37f-03f7-4065-988a-c0caec9ba7a8.mov
+<img width="1023" alt="スクリーンショット 2021-12-28 13 27 11" src="https://user-images.githubusercontent.com/78260526/147528010-610d8974-b041-4d56-adfe-7a8c17df1c8d.png">
 
+<img width="1017" alt="スクリーンショット 2021-12-28 13 27 23" src="https://user-images.githubusercontent.com/78260526/147528015-820b1d53-0871-4b6b-87c6-be95eb216925.png">
+
+
+### Molecules/NewsAndEventsTitle
