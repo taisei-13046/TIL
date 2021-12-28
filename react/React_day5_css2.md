@@ -102,3 +102,5 @@ line-height: 3.5;
 
 **nth-child**  
 `要素:nth-child(値){スタイルの内容}`  
+
+<img width="584" alt="スクリーンショット 2021-12-28 20 16 37" src="https://user-images.githubusercontent.com/78260526/147560869-6b79ffe5-4518-48ed-b20b-3110565bbace.png">
