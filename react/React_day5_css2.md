@@ -30,3 +30,17 @@ line-height: 3.5;
 
 
 ### Molecules/NewsAndEventsTitle
+#### [margin: 0 auto;で要素が中央ぞろえになる仕組み](https://farm-fruits-riceplant.work/mechanism-margin-zero-auto/)  
+**余白を左右均等に割り当てる**ことで要素が中央寄せされている  
+
+#### [marginの正しい理解](https://kojika17.com/2012/08/margin-of-css.html)
+![スクリーンショット 2021-12-28 14 02 20](https://user-images.githubusercontent.com/78260526/147529913-3ed3d5d7-b19c-4138-a34d-9f07a18d2110.png)  
+**margin と auto と width の関係**
+- marginに対して、autoを設定した場合は数値は0になる
+- しかし、横幅(width)を指定した状態で、marginの左右のどちらかにautoを指定すると、指定した方に数値を算出する
+
+**marginの相殺**  
+特定のケースだと、相殺が起きないなどトリッキーな動きをする  
+相殺は、数値の**大きい方**が適用される  
+![スクリーンショット 2021-12-28 14 10 17](https://user-images.githubusercontent.com/78260526/147530324-634c593c-eb18-49dd-9969-037f9eaf80c7.png)  
+
