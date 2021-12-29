@@ -26,3 +26,22 @@ select_related()の場合: リレーション先のオブジェクトも含め�
 しかし、これをM2Mの関係で行うとすごい数のオブジェクトを取得することになるため、  
 select_relatedは`ForeignKey`か`one-to-one`のリレーションにだけ行うよう制限されてる  
 
+一方で、prefetch_related()は: 対多のあギブキーに対してクエリの最適化を行える
+リレーション先を取得するために別のクエリを発行する  
+そして取得したオブジェクトとリレーション先をSQLではなく、Pythonを使ってJoiningする  
+
+今回の自分のコードは
+```python
+context['post_list'] = Post.objects.prefetch_related('like_post').all()
+```
+このような感じで、受け取り先でもlike_post以上絞り込みをしないため、このままの記述で問題ない。  
+しかし、  
+```python
+article = Article.objects.prefetch_related('comments').get(id=5)
+comments = article.comments.filter(created__gte='2020-10-01').order_by('-created')
+```
+
+
+参考資料  
+- [prefetch_related()をちょっと詳しく調べてみた](https://mkai.hateblo.jp/entry/2018/11/05/234611)
+- [select_relatedとprefetch_relatedでクエリの最適化](https://just-python.com/document/django/orm-query/select_related-prefetch_related)
