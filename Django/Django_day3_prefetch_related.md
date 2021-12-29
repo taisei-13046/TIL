@@ -17,7 +17,7 @@ chromeのキャッシュを消去したら治った！！
 Djnagoはheaderに`'X-CSRFToken': csrftoken,`を設定しないと受け付けてくれないようだ  
 
 
-### prefetch_relatedを使う
+### その他の変更点としてprefetch_relatedを使う
 **一度のクエリでリレーション先のオブジェクトも取ってくるもの**  
 
 #### select_related()との違い
@@ -50,6 +50,8 @@ comments = article.article_comments
 for comment in comments:
     print(comment.user.username)
 ```
+テンプレ  
+`refetch_related(Prefetch(*related_name, queryset=*クエリ文, to_attr=*参照するための名前を設定))`  
 
 
 参考資料  
