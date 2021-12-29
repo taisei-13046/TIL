@@ -40,6 +40,16 @@ context['post_list'] = Post.objects.prefetch_related('like_post').all()
 article = Article.objects.prefetch_related('comments').get(id=5)
 comments = article.comments.filter(created__gte='2020-10-01').order_by('-created')
 ```
+この記述のように、prefetch_relatedをした後にさらにfilterで絞り込みをしてしまうと、  
+またさらにクエリが飛んでしまうことになる。  
+この時には、追加のクエリを一つ飛ばしてさらに多くのデータを一緒に取得する方法を使うのが良い  
+```python
+article = Article.objects.prefetch_related(Prefetch('comments', queryset=Comment.objects.select_related('user').filter(created__gte='2020-10-01').order_by('-created'), to_attr='article_comments')).get(id=5)
+comments = article.article_comments
+
+for comment in comments:
+    print(comment.user.username)
+```
 
 
 参考資料  
