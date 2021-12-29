@@ -53,7 +53,6 @@ for comment in comments:
 テンプレ  
 `refetch_related(Prefetch(*related_name, queryset=*クエリ文, to_attr=*参照するための名前を設定))`  
 
-
 参考資料  
 - [prefetch_related()をちょっと詳しく調べてみた](https://mkai.hateblo.jp/entry/2018/11/05/234611)
 - [select_relatedとprefetch_relatedでクエリの最適化](https://just-python.com/document/django/orm-query/select_related-prefetch_related)
