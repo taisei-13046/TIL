@@ -162,3 +162,80 @@ CSSで大きさを指定する際の単位
     </ResourceContext.Consumer>
 ```
 参考資料 [React Contextの使い方](https://qiita.com/ryokkkke/items/dc25111fcf52ea579d58)  
+
+### Context のアンチパターン
+1. 値本体と値を入れる関数を 1つ の Context に入れている
+2. Provider の中に子コンポーネントを書いている
+
+#### 1. 値本体と値を入れる関数を 1つ の Context に入れている
+(悪い例)  
+```js
+const CountProvider: FC = ({ children }) => {
+  const [count, setCount] = useState<number>(0);
+
+  return (
+    <countContext.Provider value={{ count, setCount }}>
+      {children}
+    </countContext.Provider>
+  );
+};
+```
+これをすると、setCount 関数自体は毎回同じでも、 count が変わるごとに新しいオブジェクトが生成されてしまうので、  
+count に依存していないボタンコンポーネントもそれに引きづられてレンダリングされてしまうということになる   
+
+そのため、値と値を変更する関数はそれぞれのContextを使用するべき  
+```js
+const CountProvider: FC = ({ children }) => {
+  const [count, setCount] = useState<number>(0);
+
+  return (
+    <countContext.Provider value={count}>
+      <setCountContext.Provider value={setCount}>
+        {children}
+      </setCountContext.Provider>
+    </countContext.Provider>
+  );
+};
+```
+
+#### 2. Provider の中に子コンポーネントを書いている
+(悪い例)  
+```js
+const Root = () => {
+  const [count, setCount] = useState<number>(0);
+
+  return (
+    <countContext.Provider value={count}>
+      <setCountContext.Provider value={setCount}>
+        <App />
+      </setCountContext.Provider>
+    </countContext.Provider>
+  );
+};
+```
+これをすると、値が変わるたびにAppコンポーネントも再レンダリングされてしまう  
+(いい例)
+```js
+// Provider は props で子コンポーネントを受ける
+const CountProvider: FC = ({ children }) => {
+  const [count, setCount] = useState<number>(0);
+
+  return (
+    <countContext.Provider value={count}>
+      <setCountContext.Provider value={setCount}>
+        {children}
+      </setCountContext.Provider>
+    </countContext.Provider>
+  );
+};
+
+const Root = () => {
+  return (
+    <CountProvider>
+      <App />
+    </CountProvider>
+  );
+};
+```
+このようにProvider は props で子コンポーネントを受け取るべき  
+参考資料 [正しく使う ReactContext](https://zenn.dev/yuta_ura/articles/react-context-api)  
