@@ -151,3 +151,14 @@ CSSで大きさを指定する際の単位
 ```
   - propsとしてvalueを受け取る、このvalueを配下のコンポーネントに渡す。
   - valueが変更されると配下のコンポーネントを再レンダリングする
+- Consumerコンポーネントの使用(実際は使わない)  
+```js
+    // Provider配下のコンテキストでは、その値をConsumerコンポーネントから受け取ることができる。
+    // Render Propsと同じように受け取る。function as a childとも呼ばれる。
+    <ResourceContext.Consumer>
+      { (resourceName) => (
+        <TitleComponent title={resourceName} />
+      )}
+    </ResourceContext.Consumer>
+```
+参考資料 [React Contextの使い方](https://qiita.com/ryokkkke/items/dc25111fcf52ea579d58)  
