@@ -77,7 +77,21 @@ const SButton = styled(BaseButton)`
 
 
 #### organisms
+styled-componentsでも子要素に対して、sassのようにネスとして記載できる  
+```js
+const SDl = styled.dl`
+  text-align: left;
+  dt {
+    float: left;
+  }
 
+  dd {
+    padding-left: 32px;
+    padding-bottom: 8px;
+    overflow-wrap: break-word;
+  }
+`
+```
 
 #### templates
 
