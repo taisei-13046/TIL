@@ -41,17 +41,8 @@ export const PrimaryButton = (props) => {
 ```
 表示するボタンの文字をchildrenで受け取って、再利用できるようにする  
 
-
-#### molecules
-
-
-#### organisms
-
-
 #### templates
-
-
-#### pages
+templatesではページの枠組みだけを定義し、具体的なデータはあるかわない  
 
 #### Atomic Designに取り組む際のポイント  
 - あくまでベース！！
