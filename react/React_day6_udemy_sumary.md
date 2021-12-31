@@ -41,8 +41,34 @@ export const PrimaryButton = (props) => {
 ```
 表示するボタンの文字をchildrenで受け取って、再利用できるようにする  
 
-**styled-componentsの要素をまとめてBase化して使用できる**
-
+**styled-componentsの要素をまとめてBase化して使用できる**  
+components/atoms/button/BaseButton.jsx
 ```js
+import styled from "styled-components";
 
+export const BaseButton = styled.button`
+  color: #fff;
+  padding: 6px 24px;
+  border-radius: 9999px;
+  border: none;
+  outline: none;
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
+`;
+```
+components/atoms/button/PrimaryButton.jsx
+```js
+import styled from "styled-components";
+import { BaseButton } from "./BaseButton";
+
+export const PrimaryButton = (props) => {
+  const { children } = props;
+  return <SButton>{children}</SButton>;
+};
+
+const SButton = styled(BaseButton)`
+  background-color: #40514e;
+`;
 ```
