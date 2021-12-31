@@ -128,6 +128,26 @@ CSSで大きさを指定する際の単位
 #### コンテクストをいつ使用すべきか
 コンテクストは、ある Reactコンポーネントのツリーに対して「**グローバル**」とみなすことができる、  
 現在の認証済みユーザ・テーマ・優先言語といったデータを共有するために設計されている  
-しかし、コンテクストはコンポーネントの再利用をより難しくする為、慎重に利用する必要がある  
-もし多くの階層を経由していくつかの props を渡すことを避けたいだけであれば、*コンポーネントコンポジション*は多くの場合、コンテクストよりシンプルな解決策である  
-[参考document](https://ja.reactjs.org/docs/composition-vs-inheritance.html)  
+##### しかし、コンテクストはコンポーネントの再利用をより難しくする為、慎重に利用する必要がある  
+
+`React.createContext`   
+この関数によって作成されるコンテキストオブジェクトは以下のようになっている  
+```js
+{
+  Provider: <>...<>,
+  Consumer: <>...<>,
+  ...
+}
+```
+- Providerコンポーネントの使用
+```js
+  return (
+    // Providerコンポーネントで包むことによって、Provider配下のコンテキストを決定する
+    <ResourceContext.Provider value={resource.name}>
+      <NavigationComponent />
+      <BodyComponent />
+    </ResourceContext.Provider>
+  );
+```
+  - propsとしてvalueを受け取る、このvalueを配下のコンポーネントに渡す。
+  - valueが変更されると配下のコンポーネントを再レンダリングする
