@@ -27,3 +27,5 @@ Reactでは親のコンポーネントが再レンダリングされた場合、
 ![スクリーンショット 2021-12-31 10 44 43](https://user-images.githubusercontent.com/78260526/147798225-b354cf09-bb32-4290-9eb7-d0d2b06e1fea.png)  
 それを解除するために`margin: 0`を指定することで、上下のmarginがなくなる  
 参考資料 [default marginを覚えておこう](http://msw316.jpn.org/hp_kouza/html215/dft_margin.html)  
+
+### CSSの変数命名
