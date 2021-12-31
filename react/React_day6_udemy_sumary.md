@@ -28,4 +28,13 @@ Reactでは親のコンポーネントが再レンダリングされた場合、
 それを解除するために`margin: 0`を指定することで、上下のmarginがなくなる  
 参考資料 [default marginを覚えておこう](http://msw316.jpn.org/hp_kouza/html215/dft_margin.html)  
 
-### 
+### Atomic Designについて
+Atomic designで大切なのは、そのコンポーネントの**役割**を考えること  
+例えば、 components/atoms/button/PrimaryButton.jsx の場合
+```js
+export const PrimaryButton = (props) => {
+  const { children } = props;
+  return <button>{children}</button>;
+};
+```
+表示するボタンの文字をchildrenで受け取って、再利用できるようにする  
