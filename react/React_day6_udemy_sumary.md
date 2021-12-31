@@ -29,6 +29,8 @@ Reactでは親のコンポーネントが再レンダリングされた場合、
 参考資料 [default marginを覚えておこう](http://msw316.jpn.org/hp_kouza/html215/dft_margin.html)  
 
 ### Atomic Designについて
+
+#### Atoms
 Atomic designで大切なのは、そのコンポーネントの**役割**を考えること  
 例えば、 components/atoms/button/PrimaryButton.jsx の場合
 ```js
@@ -38,3 +40,9 @@ export const PrimaryButton = (props) => {
 };
 ```
 表示するボタンの文字をchildrenで受け取って、再利用できるようにする  
+
+**styled-componentsの要素をまとめてBase化して使用できる**
+
+```js
+
+```
