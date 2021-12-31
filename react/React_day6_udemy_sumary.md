@@ -41,7 +41,21 @@ export const PrimaryButton = (props) => {
 ```
 表示するボタンの文字をchildrenで受け取って、再利用できるようにする  
 
-**styled-componentsの要素をまとめてBase化して使用できる**  
+
+#### molecules
+
+
+#### organisms
+
+
+#### templates
+
+
+#### pages
+
+
+### styled-componentsについて
+#### styled-componentsの要素をまとめてBase化して使用できる  
 components/atoms/button/BaseButton.jsx
 ```js
 import styled from "styled-components";
@@ -73,11 +87,7 @@ const SButton = styled(BaseButton)`
 `;
 ```
 
-#### molecules
-
-
-#### organisms
-styled-componentsでも子要素に対して、sassのようにネスとして記載できる  
+#### styled-componentsでも子要素に対して、sassのようにネスとして記載できる  
 ```js
 const SDl = styled.dl`
   text-align: left;
@@ -92,11 +102,6 @@ const SDl = styled.dl`
   }
 `
 ```
-
-#### templates
-
-
-#### pages
 
 
 ###  高さを指定する100vhと100%の違い
