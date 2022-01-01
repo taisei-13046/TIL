@@ -162,3 +162,4 @@ Promise.race([task1, task2]).then(function(value) {
   // 両方ともresolveされるが、task1の方が早く終わる
 });
 ```
+
