@@ -57,4 +57,15 @@ Trueと評価される値(truthy)の概念を持っている
 一般的に、booleanとして扱われる値を、それを本当のboolean(true|false)に明示的に変換することは、良いこと。  
 `!!`を使って値を本当のbooleanに簡単に変換できる  
 
+```js
+// 値を他のものに移す
+const hasName = !!name;
 
+// オブジェクトのメンバとして利用する
+const someObj = {
+  hasName: !!name
+}
+
+// 例： ReactJS JSX
+{!!someName && <div>{someName}</div>}
+```
