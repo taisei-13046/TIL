@@ -47,3 +47,14 @@ console.log(Number.isNaN(NaN)); // true
 ```
 等価演算子はNaN値では機能しない。  
 代わりに`Number.isNaN`を使用  
+
+#### Truthy
+JavaScriptは、特定の場所(例えば、if 条件文とbooleanの&& || オペレータ)で、  
+Trueと評価される値(truthy)の概念を持っている  
+
+![スクリーンショット 2022-01-01 19 52 08](https://user-images.githubusercontent.com/78260526/147848972-ac41c622-b258-44ea-a340-9c89a12f0868.png)  
+
+一般的に、booleanとして扱われる値を、それを本当のboolean(true|false)に明示的に変換することは、良いこと。  
+`!!`を使って値を本当のbooleanに簡単に変換できる  
+
+
