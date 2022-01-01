@@ -34,3 +34,16 @@ children: React.ReactNode
 ### Typescriptのdocument
 
 #### Number型
+数値計算が有効な数値で表現できない場合、JavaScriptは特別な`NaN`値を返す  
+```js
+console.log(Math.sqrt(-1)); // NaN
+
+
+// これはしないでください
+console.log(NaN === NaN); // false!!
+
+// こうしてください
+console.log(Number.isNaN(NaN)); // true
+```
+等価演算子はNaN値では機能しない。  
+代わりに`Number.isNaN`を使用  
