@@ -280,3 +280,37 @@ foo.bar = 456; // Okay
 fooReadonly.bar = 456; // ERROR: bar is readonly
 ```
 
+#### 型推論
+TypeScriptは、いくつかの簡単なルールに基づいて変数の型を推論(およびチェック)する  
+1. 変数の型は、定義によって推論される  
+2. 戻り値の型は、return文によって推測される
+3. 構造化(オブジェクトリテラルの作成)の下でも機能する  
+次のような場合、fooの型は`{a:number, b:number}`と推論される
+```ts
+let foo = {
+    a: 123,
+    b: 456
+};
+// foo.a = "hello"; // Would Error: cannot assign `string` to a `number`
+```
+
+#### 型の互換性
+型の互換性は、あるものを別のものに割り当てることができるかどうかを決定する  
+[型の互換性 doc](https://typescript-jp.gitbook.io/deep-dive/type-system/type-compatibility)  
+
+#### never型
+Never型=値を持たない型  
+特徴  
+- 値を持たない
+- どんな変数も入れることが出来ない(Never型は値を持たないから)
+- どんな型にも入れることができる(Never型は値を持たないので、空集合のようなもの)  
+
+never型の使い道配下の二つを満たす時
+- 実行される可能性のあるreturn文が存在しないと判断できる
+- この関数は最後まで到達することはないと判断できる
+
+voidとの違い  
+- Void型は関数が正常に終了した結果何も返さない。
+- Never型は、そもそも関数が正常に終了して値が帰ってくるわけない
+
+参考資料[TypeScriptのNever型とは？](https://qiita.com/macololidoll/items/1c948c1f1acb4db6459e)  
