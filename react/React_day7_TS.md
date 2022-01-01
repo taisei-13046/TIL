@@ -30,3 +30,7 @@ children: React.ReactNode
 #### .tsファイルでは明示的にJSXを使わないことを示すために使用するべき!!  
 
 参考資料 [.ts拡張子と.tsx拡張子](https://qiita.com/y-hira18/items/f67cfc45a70c7c25708a)
+
+### Typescriptのdocument
+
+#### Number型
