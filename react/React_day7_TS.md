@@ -69,3 +69,14 @@ const someObj = {
 // 例： ReactJS JSX
 {!!someName && <div>{someName}</div>}
 ```
+
+#### スプレッド構文(Spread Syntax)
+...fooの形で記述され、配列やオブジェクトの要素を文字通り展開する構文  
+```js
+const point2D = {x: 1, y: 2};
+/** point2Dのプロパティと、`z`のプロパティを持った新しいオブジェクトを作成します */
+const point3D = {...point2D, z: 3};
+```
+＊JavaScript エンジンには、引数の個数に上限がある。関数呼び出しでのスプレッド構文では、引数の個数がその上限を超えてしまう可能性に留意しなくてはいけない。  
+[MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax)  
+
