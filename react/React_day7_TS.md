@@ -163,3 +163,25 @@ Promise.race([task1, task2]).then(function(value) {
 });
 ```
 
+#### 宣言空間
+- 型宣言空間
+- 変数宣言空間
+
+型宣言空間には型アノテーションとして使用できるものが含まれている  
+(例)
+```ts
+class Foo {};
+interface Bar {};
+type Bas = {};
+```
+`interface Bar`を持っていても、変数宣言空間に宣言されないので変数として使うことはできない  
+```ts
+interface Bar {};
+var bar = Bar; // ERROR: "'Bar'が見つかりません"
+```
+
+変数宣言空間には、変数として使用できるものがある  
+```ts
+var foo = 123;
+var bar: foo; // ERROR: "'foo'が見つかりません"
+```
