@@ -80,3 +80,85 @@ const point3D = {...point2D, z: 3};
 ＊JavaScript エンジンには、引数の個数に上限がある。関数呼び出しでのスプレッド構文では、引数の個数がその上限を超えてしまう可能性に留意しなくてはいけない。  
 [MDN](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Operators/Spread_syntax)  
 
+#### TSとPromise
+TypeScriptが素晴らしい点は、それがPromiseチェーンを通じて流れる値を理解してくれること  
+```js
+Promise.resolve(123)
+    .then((res) => {
+         // res は `number` 型と推論される
+         return true;
+    })
+    .then((res) => {
+        // res は `boolean` 型と推論される
+
+    });
+```
+Promiseを返す可能性のある関数呼び出しも理解してくれる
+```js
+function iReturnPromiseAfter1Second(): Promise<string> {
+    return new Promise((resolve) => {
+        setTimeout(() => resolve("Hello world!"), 1000);
+    });
+}
+
+Promise.resolve(123)
+    .then((res) => {
+        // res は `number` 型と推論される
+        return iReturnPromiseAfter1Second(); // `Promise<string>`を返す
+    })
+    .then((res) => {
+        // res は `string` 型と推論される
+        console.log(res); // Hello world!
+    });
+```
+
+**並列制御フロー(Parallel control flow)**  
+複数の非同期処理を実行し、すべてのタスクが終わったタイミングで何らかの処理を行いたいケースがある  
+Promiseは静的な`Promise.all関数`を提供する  
+この関数は、n個のPromiseがすべて完了するまで待つことができる  
+n個のPromiseの配列を渡すと、n個の解決された値の配列を返す  
+```js
+// 何らかのデータをサーバから読み込むことを再現する処理
+function loadItem(id: number): Promise<{ id: number }> {
+    return new Promise((resolve) => {
+        console.log('loading item', id);
+        setTimeout(() => { // サーバーからのレスポンス遅延を再現
+            resolve({ id: id });
+        }, 1000);
+    });
+}
+
+// Promiseチェーン
+let item1, item2;
+loadItem(1)
+    .then((res) => {
+        item1 = res;
+        return loadItem(2);
+    })
+    .then((res) => {
+        item2 = res;
+        console.log('done');
+    }); // 全体で 2秒 かかる
+
+// 並列処理
+Promise.all([loadItem(1), loadItem(2)])
+    .then((res) => {
+        [item1, item2] = res;
+        console.log('done');
+    }); // 全体で 1秒 かかる
+```
+複数の非同期タスクを実行するが、これらのタスクの内1つだけが完了すれば良いケースもある  
+Promiseは、このユースケースに対して`Promise.race`というStatic関数を提供している  
+```js
+var task1 = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 1000, 'one');
+});
+var task2 = new Promise(function(resolve, reject) {
+    setTimeout(resolve, 2000, 'two');
+});
+
+Promise.race([task1, task2]).then(function(value) {
+  console.log(value); // "one"
+  // 両方ともresolveされるが、task1の方が早く終わる
+});
+```
