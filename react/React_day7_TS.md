@@ -185,3 +185,67 @@ var bar = Bar; // ERROR: "'Bar'が見つかりません"
 var foo = 123;
 var bar: foo; // ERROR: "'foo'が見つかりません"
 ```
+
+#### 型ガード
+Type Guardを使用すると、条件ブロック内のオブジェクトの型を制限することができる  
+`typeof`  
+条件付きブロックでこれらを使用すると、TypeScriptはその条件ブロック内で異なる変数の型を理解する  
+```ts
+function doSomething(x: number | string) {
+    if (typeof x === 'string') { // Within the block TypeScript knows that `x` must be a string
+        console.log(x.subtr(1)); // Error, 'subtr' does not exist on `string`
+        console.log(x.substr(1)); // OK
+    }
+    x.substr(1); // Error: There is no guarantee that `x` is a `string`
+}
+```
+`instanceof`  
+instanceof 演算子は、オブジェクトが自身のプロトタイプにコンストラクタの prototype プロパティを持っているかを確認する  
+戻り値はbool値  
+
+```ts
+function doStuff(arg: Foo | Bar) {
+    if (arg instanceof Foo) {
+        console.log(arg.foo); // OK
+        console.log(arg.bar); // Error!
+    }
+    if (arg instanceof Bar) {
+        console.log(arg.foo); // Error!
+        console.log(arg.bar); // OK
+    }
+
+    console.log(arg.common); // OK
+    console.log(arg.foo); // Error!
+    console.log(arg.bar); // Error!
+}
+```
+
+`in`
+```ts
+interface A {
+  x: number;
+}
+interface B {
+  y: string;
+}
+
+function doStuff(q: A | B) {
+  if ('x' in q) {
+    // q: A
+  }
+  else {
+    // q: B
+  }
+}
+```
+
+strictNullChecksを使用したnullとundefinedのチェック  
+TypeScriptは十分賢いので、次のように`== null` / `!= null`チェックをすることでnullとundefinedの両方を排除できる  
+```ts
+function foo(a?: number | null) {
+  if (a == null) return;
+
+  // a is number now.
+}
+```
+
