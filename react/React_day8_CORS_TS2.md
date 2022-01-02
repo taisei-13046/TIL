@@ -8,3 +8,12 @@ Access to XMLHttpRequest at  from origin 'http://localhost:3000' has been blocke
 No 'Access-Control-Allow-Origin' header is present on the requested resource.
 ```
 ReactでAPIを叩こうとしたところ、このCORSエラーが発生したため、CORSについて調べた。
+
+**Cross-Origin Resource Sharing の略、日本語訳すると「オリジン間リソース共有」**  
+オリジンとは  
+オリジンに似ている概念に ドメイン (domain) がある  
+domainとの違い  
+- `ドメイン (domain)`: yahoo.co.jp
+- `オリジン (origin)`: https://yahoo.co.jp:443
+ドメインとの違いは、プロトコルとポート番号を含んでいる点  
+
