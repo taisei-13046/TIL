@@ -70,3 +70,6 @@ const CardWrapper = styled.div<CardWrapperProps>`
   }
 `
 ```
+今回は`useState`でクリックされたかどうかの状態を管理した  
+そしてそれをstyled-componentsのpropsとして渡し、trueの場合borderを設定することで解決した。  
+これがベストプラクティスな気はしないが、一応できたにはできた。。。  
