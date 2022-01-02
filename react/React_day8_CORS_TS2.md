@@ -16,4 +16,9 @@ domainとの違い
 - `ドメイン (domain)`: yahoo.co.jp
 - `オリジン (origin)`: https://yahoo.co.jp:443
 ドメインとの違いは、プロトコルとポート番号を含んでいる点  
+`origin == protocol + domain + port number`  
 
+CORSとは  
+*あるオリジンで動いている Web アプリケーションに対して、別のオリジンのサーバーへのアクセスをオリジン間 HTTP リクエストによって許可できる仕組みのこと*  
+
+CORSの必要性
