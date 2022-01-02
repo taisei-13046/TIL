@@ -36,3 +36,37 @@ Web セキュリティの重要なポリシーの一つに `Same-Origin Policy (
 - [なんとなく CORS がわかる...はもう終わりにする。](https://qiita.com/att55/items/2154a8aad8bf1409db2b)  
 - [MDN CORS](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS)  
 - [CORSまとめ](https://qiita.com/tomoyukilabs/items/81698edd5812ff6acb34)
+
+
+### styled-componentにpropsを渡す
+やりたかったこと  
+clickしたcardのborderをつけたかった  
+&:hoverや&:activeはあるがクリックしたら永続的にborderをつけるcssがなかった  
+
+```ts
+	const [isClick, setIsClick] = useState<boolean>(false)
+
+	const onClickCard = () => {
+		setIsClick(!isClick)
+	}
+	return (
+		<CardWrapper isClick={isClick} >
+			<Card sx={{ minWidth: 275 }} onClick={onClickCard} >
+			  <CardContent>
+			  </CardContent>
+			</Card>
+		</CardWrapper>
+	)
+}
+
+type CardWrapperProps = {
+	isClick: boolean;
+}
+
+const CardWrapper = styled.div<CardWrapperProps>`
+  margin: 20px 100px 10px 50px;
+  border: ${props =>
+	props.isClick ? 'solid 3px #D1D3FF' : 'none'
+  }
+`
+```
