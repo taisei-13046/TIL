@@ -24,6 +24,7 @@ domainとの違い
 
 #### CORSの必要性
 Web セキュリティの重要なポリシーの一つに `Same-Origin Policy (同一オリジンポリシー)`がある  
+例えば、あるWebサイト https://guiltysite.com をブラウザで表示している時に、このWebページからXMLHttpRequest(以下、XHR)やFetch APIで別のWebサイト https://innocentsite.net からHTTP(S)でデータを読み込もうとすると、エラーになる  
 これは、オリジン間のリソース共有に制限をかけるもので、次のような脆弱性を防ぐことを目的としたもの  
 - XSS (Cross Site Scripting)
   - ユーザーが Web サイトにアクセスすることで不正なスクリプトが Client (Web ブラウザ) で実行されてしまう脆弱性
@@ -31,6 +32,7 @@ Web セキュリティの重要なポリシーの一つに `Same-Origin Policy (
   - Web アプリケーションのユーザーが、意図しない処理を Web アプリケーション (Web Server) 上で実行される脆弱性
 
 これはサーバ再度側の設定が必要な問題  
-参考資料 [なんとなく CORS がわかる...はもう終わりにする。](https://qiita.com/att55/items/2154a8aad8bf1409db2b)  
-[MDN CORS](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS)  
-
+参考資料 
+- [なんとなく CORS がわかる...はもう終わりにする。](https://qiita.com/att55/items/2154a8aad8bf1409db2b)  
+- [MDN CORS](https://developer.mozilla.org/ja/docs/Web/HTTP/CORS)  
+- [CORSまとめ](https://qiita.com/tomoyukilabs/items/81698edd5812ff6acb34)
