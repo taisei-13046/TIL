@@ -44,18 +44,18 @@ clickしたcardのborderをつけたかった
 &:hoverや&:activeはあるがクリックしたら永続的にborderをつけるcssがなかった  
 
 ```ts
-	const [isClick, setIsClick] = useState<boolean>(false)
+const [isClick, setIsClick] = useState<boolean>(false)
 
-	const onClickCard = () => {
-		setIsClick(!isClick)
-	}
-	return (
-		<CardWrapper isClick={isClick} >
-			<Card sx={{ minWidth: 275 }} onClick={onClickCard} >
-			  <CardContent>
-			  </CardContent>
-			</Card>
-		</CardWrapper>
+const onClickCard = () => {
+	setIsClick(!isClick)
+}
+return (
+	<CardWrapper isClick={isClick} >
+		<Card sx={{ minWidth: 275 }} onClick={onClickCard} >
+			<CardContent>
+			</CardContent>
+		</Card>
+	</CardWrapper>
 	)
 }
 
