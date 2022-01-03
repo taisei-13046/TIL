@@ -51,4 +51,19 @@ font-size はブラウザー間で標準で 16px に設定されている
 **フォントスタイル、フォントの太さ、テキスト変換、テキスト飾り**  
 - `font-style`: イタリック体テキストのオンとオフを切り替えるために使用
   - normal, italic, obliqueを指定
-- `font-weight`: 
+- `font-weight`: テキストの太さを設定
+  - normal, boldを指定
+- `text-transform`: フォントを変換するように設定
+  - none: 変換を禁止
+  - uppercase: 全てのテキストを大文字に
+  - lowercase: 全てのテキストを小文字に
+  - capitalize: 全ての単語の最初の文字を大文字に
+- `text-decoration`: フォントのテキスト飾りを設定/設定解除
+  - none: すでにあるテキスト飾りを解除する
+  - underline: テキストに下線部をひく
+  - overline: テキストに上線をつける
+  - line-through: テキスト上に取り消し線をつける
+  - 複数つけたい場合は `text-decoration: underline overline`
+
+
+
