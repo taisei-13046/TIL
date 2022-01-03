@@ -98,3 +98,44 @@ line-height を得るために font-size が乗算される
 リストを装飾するときは、 (段落や画像などの) 周囲の要素と同じ垂直方向の間隔 (バーティカルリズム (vertical rhythm) とも呼ばれる) と、  
 互いに同じ水平方向の間隔を維持するように装飾を調整する必要がある  
 
+#### リスト固有の装飾
+`list-style-type`: リストに使用する行頭記号の種類を設定
+```css
+ol {
+  list-style-type: upper-roman;
+}
+```
+
+`list-style-position`: 行頭記号をリスト項目の内側に表示するか、その外側の各項目の先頭より前に表示するかを設定
+```css
+ol {
+  list-style-type: upper-roman;
+  list-style-position: inside;
+}
+```
+
+`list-style-image`: 行頭記号に簡単な正方形や円ではなく、カスタム画像を使うことができる
+```css
+ul {
+  list-style-image: url(star.svg);
+}
+```
+
+#### リストの数え方の制御
+start: `<ol start="4">`  
+start 属性を使用すると、1 以外の数からリストを数え始める  
+
+reversed: `<ol start="4" reversed>`  
+reversed 属性はリストのカウントアップではなくカウントダウンを開始  
+
+value  
+```css
+<ol>
+  <li value="2">Toast pita, leave to cool, then slice down the edge.</li>
+  <li value="4">Fry the halloumi in a shallow, non-stick pan, until browned on both sides.</li>
+  <li value="6">Wash and chop the salad.</li>
+  <li value="8">Fill pita with salad, hummus, and fried halloumi.</li>
+</ol>
+```
+value 属性を使用すると、リスト項目を特定の数値に設定  
+
