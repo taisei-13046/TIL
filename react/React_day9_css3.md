@@ -47,3 +47,8 @@ font-size はブラウザー間で標準で 16px に設定されている
 
 参考資料 [CSSのフォントサイズの指定の仕方](https://qiita.com/kiyodori/items/722c8001190b0922dabb)  
 
+
+**フォントスタイル、フォントの太さ、テキスト変換、テキスト飾り**  
+- `font-style`: イタリック体テキストのオンとオフを切り替えるために使用
+  - normal, italic, obliqueを指定
+- `font-weight`: 
