@@ -162,3 +162,21 @@ value 属性を使用すると、リスト項目を特定の数値に設定
 リンクのスタイルは互いに重なっているため、この順序は重要  
 最初の規則の装飾は、それ以降のすべての規則に適用され、リンクがアクティブになっているときは、ホバーもしている  
 
+#### ボタンとしてのリンクの装飾
+```css
+a {
+  outline: none;
+  text-decoration: none;
+  display: inline-block;
+  width: 19.5%;
+  margin-right: 0.625%;
+  text-align: center;
+  line-height: 3;
+  color: black;
+}
+```
+- デフォルトの text-decoration と outline をオフにする
+- display を inline-block に設定
+  -  `<a>` 要素はデフォルトではインラインですが、ブロックのように、要素を自身のラインからこぼさずに、サイズを変更できるようにしたい
+
+
