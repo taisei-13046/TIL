@@ -51,6 +51,7 @@ aside {
 
 Qiita記事にもっとわかりやすいGridについての説明があったのでそれをまとめる  
 [CSS Grid Layout を極める！（基礎編）](https://qiita.com/kura07/items/e633b35e33e43240d363)  
+[CSS Grid Layout を極める！（場面別編）](https://qiita.com/kura07/items/486c19045aab8090d6d9)  
 
 Gridが作る構成物
 - **コンテナ**
@@ -92,4 +93,18 @@ Gridでレイアウトする手順
     }
     ```
     のように記述する。  
+    また、このように配置したい場合は、  
+    ![スクリーンショット 2022-01-04 11 38 54](https://user-images.githubusercontent.com/78260526/148002358-989043e7-0dd8-4931-99e6-422aaad55165.png)  
+    ```css
+    #item {
+        grid-row: 1 / 3;
+        grid-column: 3 / 4;
+    }
+    // または、
+    #item {
+        grid-row: 1 / span 2; /* ライン番号1から始めて、2つ先のラインまで伸ばす */
+        grid-column: 3 / span 1; /* ライン番号3から始めて、1つ先のラインまで伸ばす */
+    }
+    ```
+    のように記述する  
 
