@@ -24,8 +24,31 @@
 上のように定義すると、横幅が2:1:1の割合になる  
 
 `grid-gap: 20px;`を指定すると  
-![スクリーンショット 2022-01-04 10 50 09](https://user-images.githubusercontent.com/78260526/147999108-92493cb8-ef6c-4eaa-a0d9-ee9ec5d9e35d.png)
+![スクリーンショット 2022-01-04 10 50 09](https://user-images.githubusercontent.com/78260526/147999108-92493cb8-ef6c-4eaa-a0d9-ee9ec5d9e35d.png)  
 このように列間と行間が同時に設定される  
 列間のギャップには `grid-column-gap` プロパティ、  
 行間のギャップには `grid-row-gap` プロパティを使用する  
+
+#### ラインベースの配置
+グリッドは常にラインを持っていて、そのラインは 1 から始まり、文書の書字方向モード（Writing Mode）に関連している  
+```css
+header {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+
+article {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+aside {
+  grid-column: 1;
+  grid-row: 2;
+}
+```
+![スクリーンショット 2022-01-04 10 59 20](https://user-images.githubusercontent.com/78260526/147999696-ddc5f6c2-7b98-45c1-baa2-ef913deabc64.png)  
+
+Qiita記事にもっとわかりやすいGridについての説明があったのでそれをまとめる  
+[CSS Grid Layout を極める！（基礎編）](https://qiita.com/kura07/items/e633b35e33e43240d363)  
 
