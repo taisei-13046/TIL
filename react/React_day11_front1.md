@@ -5,7 +5,7 @@
 - Placeholder text capitalization
   - Placeholderは大文字から始める
 
-typographyの違いが全くわからなかったww
+typographyの違いが全くわからなかったww  
 typographyとは  
 **デザインにおける活字（テキスト）の構成および表現**  
 具体的には、フォントの種類、サイズ、文字組や行間等を特定のルールに則って上手く組み合わせることで、文章の読みやすさや美しさを意識したデザインを作る手法  
