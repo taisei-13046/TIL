@@ -55,4 +55,9 @@ font-familyは、あらゆる閲覧環境を想定し、できるだけ多くの
 
 ページ全体にcssを当てる場合は、cssを`html`に適用する  
 
+#### align-items
+flexboxアイテムを配置する際に、上部や下部、高さに合わせて自動調整が可能  
+![スクリーンショット 2022-01-06 20 30 27](https://user-images.githubusercontent.com/78260526/148376435-103f3f4d-7a06-4c8b-b1ed-b6c1b4fcff69.png)  
+
+
 
