@@ -64,6 +64,9 @@ SVG は Scalable Vector Graphics の略で、二次元グラフィックスを X
 それを`toString()`で変換することで表示できる  
 
 また、`moment`のパッケージをinstallしたところ、めちゃくちゃ簡単にDateをformat指定できた  
-[Reactで時間を表示。momentで日付操作](https://kazunaka.com/js-moment/?utm_source=rss&utm_medium=rss&utm_campaign=js-moment#outline__7)  
+参考  
+- [Reactで時間を表示。momentで日付操作](https://kazunaka.com/js-moment/?utm_source=rss&utm_medium=rss&utm_campaign=js-moment#outline__7)  
+- [momentのformat](https://momentjs.com/docs/#/displaying/format/)  
+
 
 
