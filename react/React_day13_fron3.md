@@ -53,3 +53,7 @@ SVG は Scalable Vector Graphics の略で、二次元グラフィックスを X
 ![スクリーンショット 2022-01-07 13 08 56](https://user-images.githubusercontent.com/78260526/148490132-7fee98b2-00aa-4227-b571-09d62b4e334b.png)  
 
 結果は上のようになる  
+ここで注目するのは、border同士の接地面が**斜め**になっていること  
+![スクリーンショット 2022-01-07 13 11 18](https://user-images.githubusercontent.com/78260526/148490321-b40347f9-3bcb-42be-aca6-165e83eb867b.png)  
+あとはどこを透明色にするか次第で三角形の向きが決まる  
+
