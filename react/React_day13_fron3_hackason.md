@@ -69,4 +69,14 @@ SVG は Scalable Vector Graphics の略で、二次元グラフィックスを X
 - [momentのformat](https://momentjs.com/docs/#/displaying/format/)  
 
 
-
+### useContext
+React TSでuseContext, createContextを使うときの型指定がややこしかった  
+useStateの関数を指定する時の型
+```js
+setCount: Dispatch<SetStateAction<number>>
+```
+では
+```js
+const CountContext = React.createContext()
+```
+と
