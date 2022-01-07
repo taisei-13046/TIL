@@ -79,4 +79,8 @@ setCount: Dispatch<SetStateAction<number>>
 ```js
 const CountContext = React.createContext()
 ```
-と
+と初期値の指定は必須ではなかったが  
+TypeScriptでは初期値を必ず設定してあげる必要がある  
+
+参考資料
+[useContextとuseStateを組み合わせ](https://qiita.com/Rascal823/items/0f53ffbb410505b707f8)  
