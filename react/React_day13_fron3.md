@@ -25,3 +25,31 @@ SVG は Scalable Vector Graphics の略で、二次元グラフィックスを X
 - 3つ: 上、左右、下
 - 4つ: 上、右、下、左
 
+## Molecules/card
+### なんであれで三角形ができてるの？
+[BORDERだけで三角形ができる仕組み](https://www.granfairs.com/blog/staff/make-triangle-with-css)  
+
+#### borderの特性を知る
+```css
+.triangle{
+  width: 100px;
+  height: 100px;
+  border-top: 10px solid #F0897F;
+}
+```
+上のCSSの場合、結果は
+![スクリーンショット 2022-01-07 13 08 14](https://user-images.githubusercontent.com/78260526/148490082-815a1d1c-40f0-4d44-a5a6-d26095806ab0.png)  
+このようになる  
+
+そして、右にborderを追加すると
+```css
+.triangle{
+  width: 100px;
+  height: 100px;
+  border-top: 10px solid #F0897F;
+  border-right: 10px solid #f6da69;
+}
+```
+![スクリーンショット 2022-01-07 13 08 56](https://user-images.githubusercontent.com/78260526/148490132-7fee98b2-00aa-4227-b571-09d62b4e334b.png)  
+
+結果は上のようになる  
