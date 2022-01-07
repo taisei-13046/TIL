@@ -58,4 +58,8 @@ SVG は Scalable Vector Graphics の略で、二次元グラフィックスを X
 あとはどこを透明色にするか次第で三角形の向きが決まる  
 
 
-## hackasonのコード
+## hackason
+### JSXでDate型を表示したい
+結論: Date型はobjectなので表示できない  
+それを`toString()`で変換することで表示できる  
+
