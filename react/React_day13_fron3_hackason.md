@@ -85,7 +85,7 @@ TypeScriptでは初期値を必ず設定してあげる必要がある
 参考資料
 [useContextとuseStateを組み合わせ](https://qiita.com/Rascal823/items/0f53ffbb410505b707f8)  
 
-contextを関数と値で分割したら、こんなに長くなったが果たして正しいのか？？
+contextを関数と値で分割したら、こんなに長くなったが果たして正しいのか？？  
 一つにまとめなかった理由: 何か一つのstateが変更されたらほか全てのコンポーネントが再レンダリングされてしまうから  
 ```js
   export const ApplyUseLanguageContext = createContext<string | undefined>(undefined);
