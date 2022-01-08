@@ -94,6 +94,10 @@ export const RecrutePostProvider = (props: { children: ReactNode }) => {
 ```
 こうなる  
 
+### 簡潔なまとめ
+上のだとちょっとみずらいので簡潔なパターンを掲示  
+
+
 **実際にContextを使うと依存関係が増えるためなるべく使わない設計にするべき**  
 
 
