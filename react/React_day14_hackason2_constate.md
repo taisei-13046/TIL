@@ -73,10 +73,10 @@ export const RecrutePostProvider = (props: { children: ReactNode }) => {
   return (
     <RecruteTitleProvider>
       <RecruteUseLanguageProvider>
-				<RecruteDateProvider>
-					{children}
-				</RecruteDateProvider>
-			</RecruteUseLanguageProvider>
+	<RecruteDateProvider>
+			{children}
+	</RecruteDateProvider>
+      </RecruteUseLanguageProvider>
     </RecruteTitleProvider>
   );
 };
