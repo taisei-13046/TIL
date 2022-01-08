@@ -94,6 +94,8 @@ export const RecrutePostProvider = (props: { children: ReactNode }) => {
 ```
 こうなる  
 
+**実際にContextを使うと依存関係が増えるためなるべく使わない設計にするべき**  
+
 
 参考資料
 - [React Context + State](https://bestofreactjs.com/repo/diegohaz-constate-react-awesome-react-hooks)
