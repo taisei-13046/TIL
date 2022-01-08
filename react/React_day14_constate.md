@@ -93,12 +93,46 @@ export const RecrutePostProvider = (props: { children: ReactNode }) => {
 };
 ```
 こうなる  
+しかし、**実際にContextを使うと依存関係が増えるためなるべく使わない設計にするべき**  
 
 ### 簡潔なまとめ
 上のだとちょっとみずらいので簡潔なパターンを掲示  
 
+```js
+export const [countProvider, useCountContext, useSetCountContext] = constate(() => {
+  const [count, setCount] =
+    useState<number>(0);
+  return { count, setCount };
+  },
+  value => value.count,
+  value => value.setCount
+);
+```
+- constateの第二引数以降に、第一引数の関数の返り値をセレクターで分割することで、内部でContext分割してくれる
+- この場合だとcountProviderは2つのProviderを内包するReactNodeになる
+- 残りの二つのHookはそれぞれのConsumerになる
 
-**実際にContextを使うと依存関係が増えるためなるべく使わない設計にするべき**  
+#### ReactNodeとは
+[Reactのコンポーネント周りの用語を整理する](https://blog.ojisan.io/react-component-words/)  
+```ts
+type ReactNode =
+  | ReactChild
+  | ReactFragment
+  | ReactPortal
+  | boolean
+  | null
+  | undefined
+```
+という定義になっている  
+ReactNodeが使われるのは、createElementの引数  
+```ts
+function createElement<P extends HTMLAttributes<T>, T extends HTMLElement>(
+  type: keyof ReactHTML,
+  props?: (ClassAttributes<T> & P) | null,
+  ...children: ReactNode[]
+): DetailedReactHTMLElement<P, T>
+```
+
 
 
 参考資料
