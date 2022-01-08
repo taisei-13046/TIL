@@ -44,3 +44,6 @@ const [CountProvider, useCountContext] = constate(() => {
   return count;
 });
 ```
+
+参考資料
+- [React Context + State](https://bestofreactjs.com/repo/diegohaz-constate-react-awesome-react-hooks)
