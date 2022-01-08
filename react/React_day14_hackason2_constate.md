@@ -92,7 +92,8 @@ export const RecrutePostProvider = (props: { children: ReactNode }) => {
   );
 };
 ```
-だいぶんスッキリした気がする  
+こうなる  
+
 
 参考資料
 - [React Context + State](https://bestofreactjs.com/repo/diegohaz-constate-react-awesome-react-hooks)
