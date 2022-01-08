@@ -33,3 +33,14 @@ $ npm install constate --save
 $ yarn add constate
 ```
 まずはinstallから  
+
+設置
+```js
+import { useState } from 'react';
+import constate from 'constate';
+
+const [CountProvider, useCountContext] = constate(() => {
+  const [count] = useState(0);
+  return count;
+});
+```
