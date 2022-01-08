@@ -112,7 +112,7 @@ export const [countProvider, useCountContext, useSetCountContext] = constate(() 
 - この場合だとcountProviderは2つのProviderを内包するReactNodeになる
 - 残りの二つのHookはそれぞれのConsumerになる
 
-#### ReactNodeとは
+## ReactNodeとは
 [Reactのコンポーネント周りの用語を整理する](https://blog.ojisan.io/react-component-words/)  
 ```ts
 type ReactNode =
@@ -132,7 +132,27 @@ function createElement<P extends HTMLAttributes<T>, T extends HTMLElement>(
   ...children: ReactNode[]
 ): DetailedReactHTMLElement<P, T>
 ```
+### ReactChild
+ReactNodeに含まれるReactChildは
+```ts
+type ReactChild = ReactElement | ReactText
+```
+- props.childrenには直接関係はない
+- ReactChild は ReactNode の型定義で使われているだけ
 
+### ReactText
+```ts
+type ReactText = string | number
+```
+
+- primitive なものを 2 つ組み合わせただけのもの
+これによって、以下のようにコンポーネントのchildrenにprimitiveなものも含むことができるようになる  
+
+```ts
+const Hoge = () => {
+  return <div>1</div>
+}
+```
 
 
 参考資料
