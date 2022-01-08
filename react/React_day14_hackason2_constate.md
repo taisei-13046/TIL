@@ -18,3 +18,17 @@
 	const applyStartDate = useContext(ApplyStartDateContext)
 ```
 である。
+
+### constateについて
+contextを分離させるために、頑張った結果が以下の写真だ  
+<img width="882" alt="スクリーンショット 2022-01-08 13 39 51" src="https://user-images.githubusercontent.com/78260526/148631642-92fa73af-513c-4ab3-ab81-ac616310072e.png">  
+実装としては正解らしい。。。が、みてられないくらい量が多い　　
+これを解決してくれるのが`constate`である。  
+
+使用方法
+```shell
+$ npm install constate --save
+# or
+$ yarn add constate
+```
+まずはinstallから  
