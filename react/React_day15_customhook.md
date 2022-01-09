@@ -90,7 +90,7 @@ const onClickFetchUser = () => {
 
 #### customHookを使用する
 
-<detail>
+<details>
   <sumary>customHook使用ver</summary>
   
   ```ts
@@ -156,4 +156,5 @@ const onClickFetchUser = () => {
   );
 }
   ```
-</detail>
+</details>
+**カスタムフックの使用によって超簡潔にまとまって、コンポネートからロジックを分離することに成功した**
