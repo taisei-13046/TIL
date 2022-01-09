@@ -89,8 +89,10 @@ const onClickFetchUser = () => {
   finallyでLoadingのstateをfalseにすることでLoadingを実現できる
 
 #### customHookを使用する
+
 <detail>
   <sumary>customHook使用ver</summary>
+  
   ```ts
   export const useAllUsers = () => {
   const [userProfile, setUserProfile] = useState<UserProfile[]>([]);
@@ -123,6 +125,7 @@ const onClickFetchUser = () => {
   return { getUsers, userProfile, loading, error };
 };
   ```
+  
   ```ts
   export default function App() {
   const { getUsers, userProfile, loading, error } = useAllUsers()
