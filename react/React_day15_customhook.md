@@ -159,3 +159,36 @@ const onClickFetchUser = () => {
 </details>
 
 **カスタムフックの使用によって超簡潔にまとまって、コンポネートからロジックを分離することに成功した**
+
+### 簡単なログイン実装
+1. ログイン画面でuserIDを入力する
+2. そのIDをもとにAPIで絞り込みをする
+3. 結果、userが見つかればHome画面に遷移する
+
+```ts
+export const useAuth = () => {
+  const navigate = useNavigate()
+  const [loading, setLoading] = useState(false)
+
+  const login = useCallback((id: string) => {
+    setLoading(true)
+
+    axios.get<User[]>(`https://jsonplaceholder.typicode.com/users/${id}`)
+    .then((res) => {
+      if (res.data) {
+        navigate("/home")
+      } else {
+        alert('user does not exists')
+      }
+    })
+    .catch(() => {
+      alert("can't login")
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  }, [])
+
+  return { login, loading }
+}
+```
