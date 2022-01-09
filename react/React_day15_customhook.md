@@ -87,3 +87,70 @@ const onClickFetchUser = () => {
 - `catch`の処理ではerrorのstateをtrueにする
 - 関数に入った段階でLoadingのstateをtrueにして  
   finallyでLoadingのstateをfalseにすることでLoadingを実現できる
+
+#### customHookを使用する
+<detail>
+  <sumary>customHook使用ver</summary>
+  ```ts
+  export const useAllUsers = () => {
+  const [userProfile, setUserProfile] = useState<UserProfile[]>([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
+
+  const getUsers = () => {
+    setLoading(true);
+    setError(false);
+
+    axios
+      .get<User[]>("https://jsonplaceholder.typicode.com/users")
+      .then((res) => {
+        const data = res.data.map((user) => ({
+          id: user.id,
+          name: `${user.name} (${user.username})`,
+          email: user.email,
+          address: `${user.address.city}${user.address.suite}${user.address.street}`
+        }));
+        setUserProfile(data);
+      })
+      .catch(() => {
+        setError(true);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
+  };
+
+  return { getUsers, userProfile, loading, error };
+};
+  ```
+  ```ts
+  export default function App() {
+  const { getUsers, userProfile, loading, error } = useAllUsers()
+
+  const onClickFetchUser = () => {
+    getUsers()
+  }
+
+  return (
+    <div className="App">
+      <button onClick={onClickFetchUser}>データ取得</button>
+      <br />
+      {error ? (
+        <>
+          <p style={{ color: "red" }}>データの取得に失敗しました</p>
+        </>
+      ) : loading ? (
+        <p>Loading....</p>
+      ) : (
+        <>
+          {userProfile.map((user) => (
+            <UserCard user={user} key={user.id} />
+          ))}
+          <UserCard user={user} />
+        </>
+      )}
+    </div>
+  );
+}
+  ```
+</detail>
