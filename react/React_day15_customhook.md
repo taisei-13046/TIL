@@ -192,3 +192,9 @@ export const useAuth = () => {
   return { login, loading }
 }
 ```
+
+### liタグの「・」を消したら自然とpaddingがついている！
+```css
+list-style:none
+padding: 0
+```
