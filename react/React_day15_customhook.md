@@ -66,4 +66,24 @@ export default function App() {
 </details>  
   
 #### ここでのポイント
-1. API取得までの間はLoadingを表示する
+**API取得までの間はLoadingを表示する**
+
+```ts
+const onClickFetchUser = () => {
+    setLoading(true)
+    setError(false)
+
+    axios.get<User[]>("https://jsonplaceholder.typicode.com/users")
+    .then((res) => {
+    })
+    .catch(() => {
+      setError(true)
+    })
+    .finally(() => {
+      setLoading(false)
+    })
+  };
+```
+- `catch`の処理ではerrorのstateをtrueにする
+- 関数に入った段階でLoadingのstateをtrueにして  
+  finallyでLoadingのstateをfalseにすることでLoadingを実現できる
