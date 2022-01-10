@@ -130,6 +130,38 @@ from .models import Account
 ```
 Django自体からimportする場合は1行空行を入れる
 
+## PEP8を読む
+### インデント
+- 1レベルインデントするごとに、スペースを4つ使う!!  
+- 行を継続する場合は、折り返された要素を縦に揃えるようにすべき
+```python
+# 正しい:
+
+# 開き括弧に揃える
+foo = long_function_name(var_one, var_two,
+                         var_three, var_four)
+
+# 引数とそれ以外を区別するため、スペースを4つ(インデントをさらに)加える
+def long_function_name(
+        var_one, var_two, var_three,
+        var_four):
+    print(var_one)
+
+# 突き出しインデントはインデントのレベルを深くする
+foo = long_function_name(
+    var_one, var_two,
+    var_three, var_four)
+```
+
+### タブか、スペースか?
+スペースが好ましいインデントの方法  
+タブを使うのは、既にタブでインデントされているコードと一貫性を保つためだけ  
+Python では、インデントにタブとスペースを混ぜることを禁止している
+
+### 1行の長さ
+すべての行の長さを、最大**79文字**までに制限する  
+(docstring やコメントのように) 構造に関する制約が少ないテキストのブロックについては、1行72文字までに制限すべき  
+
 
 
 参考資料
