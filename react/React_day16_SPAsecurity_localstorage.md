@@ -104,4 +104,17 @@ CORSがなかった時代は同一オリジンのみで通信ができていた�
 ### ハッカソン準備
 #### またmapをreturnしてなかった。。。  
 5分無駄にしたww  
-mapは
+mapは必ずreturnする形に統一しよ...  
+```ts
+{allPosts.map((item) => {
+        return (
+          <MatchingScheduleCrad
+            key={item.id}
+            username={item.authorName}
+            title={item.title}
+            isNavigator={item.isNavigator}
+          />
+        )
+      }
+```
+
