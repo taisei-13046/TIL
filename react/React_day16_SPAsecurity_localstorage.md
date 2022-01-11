@@ -118,3 +118,15 @@ mapは必ずreturnする形に統一しよ...
       }
 ```
 
+### git reflog
+[いざという時のためのgit reflog](https://qiita.com/yaotti/items/e37c707938847aee671b)  
+`reset --hard HEAD^*`で戻しすぎたという時、  
+git reflogを使うと(GCされていなければ)過去のあらゆるコミット履歴を見ることができ，git logやgit branchでは辿り着けない時点まで戻すことができる  
+```shell
+$ git reset --hard HEAD^^ # HEAD^と指定するつもりが間違えた!
+$ git reflog
+f5cb888 HEAD@{0}: head^^: updating HEAD
+b0b8073 HEAD@{1}: merge @{-1}: Merge made by the 'recursive' strategy.
+fe3972d HEAD@{2}: checkout: moving from fix/some-bug to master
+$ git reset --hard HEAD@{1} # reset --hard HEAD^^する前に戻れる
+```
