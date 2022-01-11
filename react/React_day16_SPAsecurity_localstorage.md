@@ -83,3 +83,17 @@ Webフレームワークで使うcookieライブラリは、種類を問わずht
 
 ## SPAセキュリティ
 [SPAセキュリティ入門～PHP Conference Japan 2021](https://www.slideshare.net/ockeghem/phpconf2021spasecurity)  
+
+### SPAとは
+**ブラウザによるページ遷移を行わずにコンテンツの切り替えなどを行うことで、ユーザー体験（UX） ユーザーがあるサービスを通じて得られる体験のこと**  
+<img width="617" alt="スクリーンショット 2022-01-11 13 30 44" src="https://user-images.githubusercontent.com/78260526/148881391-169ed958-9f3f-4da5-8501-86633a168dbc.png">
+<img width="590" alt="スクリーンショット 2022-01-11 13 31 13" src="https://user-images.githubusercontent.com/78260526/148881425-72b320e7-07ec-493f-833b-aae75ef54ce3.png">
+
+#### SPAとCORS
+CORSがなかった時代は同一オリジンのみで通信ができていた。  
+これは確かに安全ではあるが超不便だった   
+
+同一オリジンとは、スキーム(https) ホスト(www.example.com) ポート(443)が全て同じである状態  
+
+現在フレームワークによって、CORSに簡単に対応できるパッケージが多く用意されている  
+細かく設定しなくても
