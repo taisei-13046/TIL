@@ -80,3 +80,6 @@ Webフレームワークで使うcookieライブラリは、種類を問わずht
 
 >ユーザーのアカウント情報を取り出して検証を終えたら、後はそこから関連する秘密情報を自由に取り出して利用します。
 
+
+## SPAセキュリティ
+[SPAセキュリティ入門～PHP Conference Japan 2021](https://www.slideshare.net/ockeghem/phpconf2021spasecurity)  
