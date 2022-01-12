@@ -49,3 +49,11 @@ type SetStateAction<S> = S | ((prevState: S) => S);
 
 参考資料  
 [【React】TypeScriptで用意されている型一覧](http://www.code-magagine.com/?p=13261)  
+
+
+### `Type 'number' is not assignable to type 'never'.  TS2769`のエラーが起きた
+
+#### never型ってなんだっけ？？
+>プログラミング言語の設計には、bottom型の概念があります。それは、データフロー解析を行うと現れるものです。TypeScriptはデータフロー解析(😎)を実行するので、決して起こりえないようなものを確実に表現する必要があります。
+never型は、このbottom型を表すためにTypeScriptで使用されます。
+つまり、**Never型は値を持たない型**  
