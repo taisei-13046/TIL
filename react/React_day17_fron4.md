@@ -56,4 +56,13 @@ type SetStateAction<S> = S | ((prevState: S) => S);
 #### never型ってなんだっけ？？
 >プログラミング言語の設計には、bottom型の概念があります。それは、データフロー解析を行うと現れるものです。TypeScriptはデータフロー解析(😎)を実行するので、決して起こりえないようなものを確実に表現する必要があります。
 never型は、このbottom型を表すためにTypeScriptで使用されます。
+
 つまり、**Never型は値を持たない型**  
+
+自然発生するケース：
+- 絶対にreturnされない関数(例えば、関数本体に while(true){}がある場合)
+- 常にthrowする関数(例えば function foo(){throw new Error('Not Implemented')}の場合、fooの戻り値の型はneverです)
+
+参考資料   
+[never](https://typescript-jp.gitbook.io/deep-dive/type-system/never)  
+
