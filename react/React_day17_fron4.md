@@ -46,3 +46,6 @@ type SetStateAction<S> = S | ((prevState: S) => S);
   }
 ```
 このように関数を渡すことも可能です。
+
+参考資料  
+[【React】TypeScriptで用意されている型一覧](http://www.code-magagine.com/?p=13261)  
