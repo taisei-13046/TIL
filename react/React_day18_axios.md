@@ -107,3 +107,5 @@ const get = id => {
 ### curlコマンドでCRUD操作をする
 APIは完成したが、Reactで操作するにはまだできなかったため、コマンドでpostしたかった。  
 そのため、curlコマンドを使用する  
+参考資料は [IBMのREST コマンドの実行](https://www.ibm.com/docs/ja/urbancode-deploy/6.2.4?topic=reference-running-rest-commands)  
+
