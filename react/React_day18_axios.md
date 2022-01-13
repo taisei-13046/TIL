@@ -102,3 +102,8 @@ const get = id => {
 
 参考資料  
 [React Hooks CRUD example with Axios and Web API](https://www.bezkoder.com/react-hooks-crud-axios-api/)  
+
+
+### curlコマンドでCRUD操作をする
+APIは完成したが、Reactで操作するにはまだできなかったため、コマンドでpostしたかった。  
+そのため、curlコマンドを使用する  
