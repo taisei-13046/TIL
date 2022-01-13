@@ -132,3 +132,5 @@ Content-Length: 371
 Server: Jetty(winstone-2.8)
 ```
 -iだとResponse Header, Body 両方を出力  
+
+明日めっちゃcurlについて調べよう！！！
