@@ -107,5 +107,28 @@ const get = id => {
 ### curlコマンドでCRUD操作をする
 APIは完成したが、Reactで操作するにはまだできなかったため、コマンドでpostしたかった。  
 そのため、curlコマンドを使用する  
-参考資料は [IBMのREST コマンドの実行](https://www.ibm.com/docs/ja/urbancode-deploy/6.2.4?topic=reference-running-rest-commands)  
+参考資料は [curl コマンド 使い方メモ](https://qiita.com/yasuhiroki/items/a569d3371a66e365316f)  
 
+### GET 
+ただGETリクエストを投げたいだけならば、何もオプションはいらない  
+```shell
+$ curl localhost:8080/api/json
+```
+
+#### `-o, -O`オプション
+-o オプションでファイルに出力できる。  
+-O だと、リクエスト先の名前でファイルを保存する  
+
+#### HTTP Headerを確認する `-I -i -v`
+-IでHeaderのみを出力する  
+```shell
+$ curl -I -s 'localhost:8080/api/json?'
+HTTP/1.1 200 OK
+X-Content-Type-Options: nosniff
+X-Jenkins: 1.619
+X-Jenkins-Session: b34411df
+Content-Type: application/json;charset=UTF-8
+Content-Length: 371
+Server: Jetty(winstone-2.8)
+```
+-iだとResponse Header, Body 両方を出力  
