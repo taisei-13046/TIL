@@ -99,3 +99,6 @@ const get = id => {
 ```
 とする
 すると、APIのエンドポイントを記述するだけでよく、axioの設定を分離できる  
+
+参考資料  
+[React Hooks CRUD example with Axios and Web API](https://www.bezkoder.com/react-hooks-crud-axios-api/)  
