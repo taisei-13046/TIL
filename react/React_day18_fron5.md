@@ -73,3 +73,28 @@ Response Schema
 }
 ```
 
+### axiosのcommonファイルを作成する
+src/http-common.ts
+```ts
+import axios from "axios";
+
+export default axios.create({
+  baseURL: "http://localhost:8080/api",
+  headers: {
+    "Content-type": "application/json"
+  }
+});
+```
+これを使用するときには
+```ts
+import http from "../http-common";
+
+const getAll = () => {
+  return http.get("/tutorials");
+};
+
+const get = id => {
+  return http.get(`/tutorials/${id}`);
+};
+```
+とする
