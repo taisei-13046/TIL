@@ -25,3 +25,51 @@ margin-left: 16px
 「400 Bad Request」（「400エラー」とも）は一般的なクライアントエラーで、エラーが他のステータスコードカテゴリのいずれにも該当しないときに返される  
 ここで理解すべき重要なポイントは、400 Bad Requestエラーは、**サーバーによって処理される前に、クライアントから送信されたリクエストに関係しているということ**  
 
+## [axios](https://github.com/axios/axios)のsource codeを読んでみる
+と思ったけどむずすぎて無理やったw  
+constateが限界だなw
+
+### Features
+- Make **XMLHttpRequests** from the browser
+- Make http requests from **node.js**
+- Supports the **Promise** API
+- Intercept request and response
+- Transform request and response data
+- Cancel requests
+- Automatic transforms for JSON data
+- Client side support for protecting against XSRF
+
+#### XMLHttpRequestとは
+XMLHttpRequestはブラウザ上でサーバーとHTTP通信を行うためのAPI  
+XMLHttpRequest (XHR) オブジェクトは、サーバーと対話するために使用する  
+ページ全体を更新する必要なしに、データを受け取ることができる  
+名前にXMLが付いていますがXMLに限ったものではなく，HTTPリクエストを投げてテキスト形式かDOMノードでレスポンスを受け取る機能を持っている  
+
+Response Schema
+
+```ts
+{
+  // `data` is the response that was provided by the server
+  data: {},
+
+  // `status` is the HTTP status code from the server response
+  status: 200,
+
+  // `statusText` is the HTTP status message from the server response
+  statusText: 'OK',
+
+  // `headers` the HTTP headers that the server responded with
+  // All header names are lower cased and can be accessed using the bracket notation.
+  // Example: `response.headers['content-type']`
+  headers: {},
+
+  // `config` is the config that was provided to `axios` for the request
+  config: {},
+
+  // `request` is the request that generated this response
+  // It is the last ClientRequest instance in node.js (in redirects)
+  // and an XMLHttpRequest instance in the browser
+  request: {}
+}
+```
+
