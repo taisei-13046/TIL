@@ -3,7 +3,7 @@ curlコマンドについて調べた
 
 ### curlコマンドでPOSTリクエスト
 
-**POSTリクエストを送るには、`-X POST` を付与する ** 
+**POSTリクエストを送るには、`-X POST` を付与する** 
 
 ```shell
 $ curl -w '\n' 'http://localhost:8080/createItem' --data 'name=sample' -X POST
