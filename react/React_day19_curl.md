@@ -119,3 +119,44 @@ export interface AxiosRequestConfig<D = any> {
 これに対しての詳しい説明がdocumentに書かれている  
 [axios Request Config](https://axios-http.com/docs/req_config)  
 
+#### AxiosResponseについて
+AxiosResponseはresponseの型である  
+```ts
+export interface AxiosResponse<T = any, D = any>  {
+  data: T;
+  status: number;
+  statusText: string;
+  headers: AxiosResponseHeaders;
+  config: AxiosRequestConfig<D>;
+  request?: any;
+}
+```
+型の定義はこのようになっている  
+
+なので、実際に型当てはめて見ると、
+```ts
+axios.get('/user?ID=12345')
+  .then((response: AxiosResponse) => {
+    // handle success
+    console.log(response);
+  })
+  .catch((error: AxiosError) => {
+    // handle error
+    console.log(error);
+  })
+```
+ということになるのかなと  
+
+ちなみにErrorにも型があって、
+```ts
+export interface AxiosError<T = any, D = any> extends Error {
+  config: AxiosRequestConfig<D>;
+  code?: string;
+  request?: any;
+  response?: AxiosResponse<T, D>;
+  isAxiosError: boolean;
+  toJSON: () => object;
+}
+```
+このような型になっている  
+
