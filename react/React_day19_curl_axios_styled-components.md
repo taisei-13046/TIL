@@ -42,10 +42,6 @@ $ curl http://localhost:3000/api/v1/articles/7 -XDELETE
 - [【curl】超入門(GET/POST/PUT/DELETEでリクエスト)[LINUX]](https://qiita.com/takuyanin/items/949201e3eb100d4384e1#http%E3%83%A1%E3%82%BD%E3%83%83%E3%83%89)
 
 
-## PG Dashboadのコードを頑張って読む
-まず、コードの量が多すぎて何が何だかさっぱりだったのが正直なところ。  
-その中でも、自分の知識になりそうなところをピックアップしていきたい  
-
 ### axiosのインスタンスを作成していた
 最近、axiosをそのまま使うのではなくて、instanceをcreateしてから使うようにしていたが、その方法が取られていたので、  
 自分のやり方は間違ってはいなかったのだと感じた  
@@ -161,8 +157,7 @@ export interface AxiosError<T = any, D = any> extends Error {
 このような型になっている  
 
 
-### styled-componentsについて
-PGDashboadでもstyled-componentsが使われていたので、その設計を改めてまとめる  
+### styled-componentsについて 
 [styled-componentsを使ったCSS設計](https://qiita.com/taneba/items/4547830b461d11a69a20)  
 
 #### styled-componentsで最低限考えるべき設計
