@@ -160,3 +160,32 @@ export interface AxiosError<T = any, D = any> extends Error {
 ```
 このような型になっている  
 
+
+### styled-componentsについて
+PGDashboadでもstyled-componentsが使われていたので、その設計を改めてまとめる  
+[styled-componentsを使ったCSS設計](https://qiita.com/taneba/items/4547830b461d11a69a20)  
+
+#### styled-componentsで最低限考えるべき設計
+- Styled-componentsの作者の提案する構成は、ページやコンポーネント固有のものと複数のコンポーネントから使用される共通コンポーネントに大きくディレクトリを分けるアプローチ  
+- styled-componentsは小さなUIからレゴブロックの用に構築していくという設計哲学上、atomicデザインと親和性が高い  
+- ファイルを見た時にjsxの構造がわかるよう、jsx -> styled-componentsという順番で書くのが良い  
+
+#### 命名ルール
+- コンポーネントのラッパー：Wrapper, Box, Containerなど
+- 個-集合の関係にあるコンポーネント：Item-ItemList、Item-Items、Item-ItemGroupなど
+- レイアウト用途のもの：Flex, Fixed等
+
+#### 定数を管理する
+```ts
+// const/Size.js
+export default {
+    FONT: { SMALL: 10, BASE: 12, LARGE: 16 },
+    HEADER_HEIGHT: 40
+}
+
+// styld-components
+const H2 = styled.h2`
+    font-size: ${Size.FONT.LARGE}px;
+`
+```
+このように、pxやcolorなどは定数で管理するのが良い  
