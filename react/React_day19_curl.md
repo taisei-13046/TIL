@@ -70,11 +70,11 @@ import axios, { AxiosInstance, AxiosRequestConfig } from 'axios'
 この型は、
 
 ```ts
-const options: AxiosRequestConfig = {
+const config: AxiosRequestConfig = {
   url: `${url}/users`,
   method: "GET",
 };
-axios(options);
+axios(config);
 ```
 このようにoptionsに割り当てる方である。  
 型の定義を見てみると,  
@@ -116,3 +116,6 @@ export interface AxiosRequestConfig<D = any> {
 }
 ```
 このようになっている  
+これに対しての詳しい説明がdocumentに書かれている  
+[axios Request Config](https://axios-http.com/docs/req_config)  
+
