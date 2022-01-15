@@ -44,3 +44,10 @@ webkitとはベンダープレフィックスと呼ばれCSS3で実装予定の�
   - [box-orient](https://developer.mozilla.org/ja/docs/Web/CSS/box-orient)
 - `line-clamp`: ブロックコンテナーのコンテンツを指定した行数に制限する
   - [line-clamp](https://developer.mozilla.org/ja/docs/Web/CSS/-webkit-line-clamp)
+
+
+## Storybook * Reactのチュートリアル
+[React 向け Storybook のチュートリアル](https://storybook.js.org/tutorials/intro-to-storybook/react/ja/get-started/)  
+Storybookの使用についての理解がとても曖昧なので、チュートリアルをやってみる  
+特にReactでStoryBookを使ったことがない  
+
