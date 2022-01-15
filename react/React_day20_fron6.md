@@ -65,3 +65,56 @@ storybookの追加は以下のコマンドを使用
 npx -p @storybook/cli sb init
 ```
 
+## 2. 単純なコンポーネント
+今回はTaskのコンポーネントを作成する  
+作成するファイルは`src/components/Task.js`と`src/components/Task.stories.js`  
+
+Task に対する 3 つのテスト用の状態をストーリーファイルに書く
+```js
+// src/components/Task.stories.js
+
+import React from 'react';
+
+import Task from './Task';
+
+export default {
+  component: Task,
+  title: 'Task',
+};
+
+const Template = args => <Task {...args} />;
+
+export const Default = Template.bind({});
+Default.args = {
+  task: {
+    id: '1',
+    title: 'Test Task',
+    state: 'TASK_INBOX',
+    updatedAt: new Date(2018, 0, 1, 9, 0),
+  },
+};
+
+export const Pinned = Template.bind({});
+Pinned.args = {
+  task: {
+    ...Default.args.task,
+    state: 'TASK_PINNED',
+  },
+};
+
+export const Archived = Template.bind({});
+Archived.args = {
+  task: {
+    ...Default.args.task,
+    state: 'TASK_ARCHIVED',
+  },
+};
+```
+
+Storybook には基本となる 2 つの階層がある  
+それは、コンポーネントとその子供となるストーリー(各ストーリーはコンポーネントに連なるもの)  
+
+Storybook にコンポーネントを認識させるには、以下の内容を含む default export を記述する  
+- **component** -- コンポーネント自体
+- **title** -- Storybook のサイドバーにあるコンポーネントを参照する方法
+
