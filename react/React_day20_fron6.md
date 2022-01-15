@@ -38,3 +38,9 @@ webkitとはベンダープレフィックスと呼ばれCSS3で実装予定の�
 - -moz- : firefox(mozilla社)
 - -webkit- : Chrome, Safari
 
+つまり、Chrome, Sfariで先行して使えるようにしたcssのこと
+
+- `box-orient`: 要素がその中身をレイアウトする方向が、水平か垂直かを指定する
+  - [box-orient](https://developer.mozilla.org/ja/docs/Web/CSS/box-orient)
+- `line-clamp`: ブロックコンテナーのコンテンツを指定した行数に制限する
+  - [line-clamp](https://developer.mozilla.org/ja/docs/Web/CSS/-webkit-line-clamp)
