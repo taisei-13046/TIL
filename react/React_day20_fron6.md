@@ -32,7 +32,8 @@ widthを指定しないといけないのはなんか気持ち悪いな〜とは
 気になった。 `-webkit`ってなんだ。  
 [[CSS] -webkit-ってなに？](https://code-schools.com/css-webkit/)  
 webkitとはベンダープレフィックスと呼ばれCSS3で実装予定の機能をブラウザ各社が先行して実装した機能を各ブラウザで使えるようにしたもの  
-各ブラウザベンダーの対応は以下の通り。
+各ブラウザベンダーの対応は以下の通り。  
+
 - -o- : opera
 - -ms- : IE(Microsoft)
 - -moz- : firefox(mozilla社)
@@ -50,4 +51,17 @@ webkitとはベンダープレフィックスと呼ばれCSS3で実装予定の�
 [React 向け Storybook のチュートリアル](https://storybook.js.org/tutorials/intro-to-storybook/react/ja/get-started/)  
 Storybookの使用についての理解がとても曖昧なので、チュートリアルをやってみる  
 特にReactでStoryBookを使ったことがない  
+
+初めに.envファイルを作成して
+```
+SKIP_PREFLIGHT_CHECK=true
+```
+
+の記述をする  
+この記述がないと、create-react-appとstorybookの間でerrorが起きてしまうよう  
+
+storybookの追加は以下のコマンドを使用  
+```
+npx -p @storybook/cli sb init
+```
 
