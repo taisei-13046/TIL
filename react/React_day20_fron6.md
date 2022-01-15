@@ -118,3 +118,63 @@ Storybook にコンポーネントを認識させるには、以下の内容を�
 - **component** -- コンポーネント自体
 - **title** -- Storybook のサイドバーにあるコンポーネントを参照する方法
 
+```js
+export default {
+  component: Task,
+  title: 'Task',
+};
+
+const Template = args => <Task {...args} />;
+```
+
+ストーリーを定義するには、テスト用の状態ごとにストーリーを生成する関数をエクスポートする  
+ストーリーとは、特定の状態で描画された要素 (例えば、プロパティを指定したコンポーネントなど) を返す関数で、React の状態を持たない関数コンポーネントのようなもの  
+コンポーネントにストーリーが複数連なっているので、各ストーリーを単一の Template 変数に割り当てるのが便利  
+
+```js
+export const Default = Template.bind({});
+Default.args = {
+  task: {
+    id: '1',
+    title: 'Test Task',
+    state: 'TASK_INBOX',
+    updatedAt: new Date(2018, 0, 1, 9, 0),
+  },
+};
+
+export const Pinned = Template.bind({});
+Pinned.args = {
+  task: {
+    ...Default.args.task,
+    state: 'TASK_PINNED',
+  },
+};
+
+export const Archived = Template.bind({});
+Archived.args = {
+  task: {
+    ...Default.args.task,
+    state: 'TASK_ARCHIVED',
+  },
+};
+```
+
+- Template.bind({}) は関数のコピーを作成する JavaScript の標準的な テクニックで、同じ実装を使いながら、エクスポートされたそれぞれのストーリーに独自のプロパティを設定することができる  
+- Arguments (略して args) を使用することで、コントロールアドオンを通して、Storybook を再起動することなく、コンポーネントを動的に編集することができるようになる
+
+### 設定する
+作成したストーリーを認識させ、前の章で変更した CSS ファイルを使用できるようにするため、Storybook の設定をいくつか変更する必要がある  
+```js
+// .storybook/main.js
+
+module.exports = {
+  //👇 Location of our stories
+  stories: ['../src/components/**/*.stories.js'],
+  addons: [
+    '@storybook/addon-links',
+    '@storybook/addon-essentials',
+    '@storybook/preset-create-react-app',
+  ],
+};
+```
+stories.jsのパスを与える  
