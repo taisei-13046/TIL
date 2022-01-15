@@ -19,3 +19,13 @@ text-overflow: ellipsis;
 - `text-overflow`: 非表示のあふれた内容をどのようにユーザーに知らせるのかを設定する
   - 切り取られるか、省略記号 ('…') を表示するか、独自の文字列を表示するか
   - [text-overflow](https://developer.mozilla.org/ja/docs/Web/CSS/text-overflow)
+
+widthを指定しないといけないのはなんか気持ち悪いな〜とは思ってる  
+
+では、2行以上になった場合はどうするか。  
+```css
+-webkit-box-orient: vertical;
+-webkit-line-clamp: 2;
+```
+で解決する  
+
