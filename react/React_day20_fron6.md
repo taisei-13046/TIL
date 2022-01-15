@@ -29,3 +29,12 @@ widthを指定しないといけないのはなんか気持ち悪いな〜とは
 ```
 で解決する  
 
+気になった。 `-webkit`ってなんだ。  
+[[CSS] -webkit-ってなに？](https://code-schools.com/css-webkit/)  
+webkitとはベンダープレフィックスと呼ばれCSS3で実装予定の機能をブラウザ各社が先行して実装した機能を各ブラウザで使えるようにしたもの  
+各ブラウザベンダーの対応は以下の通り。
+- -o- : opera
+- -ms- : IE(Microsoft)
+- -moz- : firefox(mozilla社)
+- -webkit- : Chrome, Safari
+
