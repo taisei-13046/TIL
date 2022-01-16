@@ -32,4 +32,6 @@ const data = JSON.stringify({
 })
 ```
 `JSON.stringify()`でJSON化してからPOSTしたらちゃんと通った。  
-あと、
+あと、Number型で送る内容をstring型で送っていたのも問題だった。  
+
+
