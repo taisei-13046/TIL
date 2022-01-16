@@ -35,3 +35,6 @@ const data = JSON.stringify({
 あと、Number型で送る内容をstring型で送っていたのも問題だった。  
 
 
+## Storybook * React
+### 複合的なコンポーネントを組み立てる
+
