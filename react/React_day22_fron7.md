@@ -47,7 +47,6 @@ export default FONTSIZE;
 ここで気になったのが
 - `type FONTSIZE = typeof FONTSIZE[keyof typeof FONTSIZE];`が何をしているのか
 - `as const`とは
-- export default でtypeも値もexportしてる
 
 ### `type FONTSIZE = typeof FONTSIZE[keyof typeof FONTSIZE];`が何をしているのか
 [[Typescript] typeof "object value" [keyof typeof "object value"] の動作を丁寧に解説してみる](https://qiita.com/saba_can00/items/bdefb28a1873658cf5d9)  
@@ -102,5 +101,27 @@ type P3 = Person[keyof Person]// string | number
   - `as const`は全てのプロパティが対象になる
   - const assertionはすべてのプロパティを固定する
 
+そして、定義した変数を
+```ts
+import COLOR from "./properties/color";
+import FONTSIZE from "./properties/font-size";
+
+const SV = {
+  COLOR: COLOR,
+  FONTSIZE: FONTSIZE,
+};
+export default SV;
+
+export type TCOLOR = COLOR;
+export type TFONTSIZE = FONTSIZE;
+```
+src/style_vars/index.tsでまとめてexportする  
+すると使用する際には、
+```ts
+import SV from "../../../style_vars";
+
+font-size: SV.FONTSIZE.X
+```
+などのような記述をすることができる  
 
 
