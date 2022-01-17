@@ -124,4 +124,7 @@ font-size: SV.FONTSIZE.X
 ```
 などのような記述をすることができる  
 
+### Storybookを使用しながら部品を作っていく
+Storybookを使いながら、React開発を進めていくには、コンポーネントと同階層にstories.tsxファイルを作る必要がある  
+
 
