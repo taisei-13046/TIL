@@ -76,4 +76,14 @@ type K2 = keyof Person[]; // "length" | "push" | "pop" | "concat" | ...
 ### 3. ある型のプロパティの型を表現できるT[K]
 `T[K]`はindexed access types、またはlookup typesと呼ばれ、オブジェクトのプロパティにアクセスするような記法でプロパティの型を取得できる  
 
+```ts
+interface Person {
+  name: string;
+  age: number;
+  location: string;
+}
 
+type P1 = Person["name"] // string
+type P2 = Person["name" | "age"] // string | number
+type P3 = Person[keyof Person]// string | number
+```
