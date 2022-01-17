@@ -44,7 +44,12 @@ export default FONTSIZE;
 ```
 このようにexportする  
 
-ここで気になったのが`type FONTSIZE = typeof FONTSIZE[keyof typeof FONTSIZE];`が何をしているのかだが、  
+ここで気になったのが
+- `type FONTSIZE = typeof FONTSIZE[keyof typeof FONTSIZE];`が何をしているのか
+- `as const`とは
+- export default でtypeも値もexportしてる
+
+### `type FONTSIZE = typeof FONTSIZE[keyof typeof FONTSIZE];`が何をしているのか
 [[Typescript] typeof "object value" [keyof typeof "object value"] の動作を丁寧に解説してみる](https://qiita.com/saba_can00/items/bdefb28a1873658cf5d9)  
 この１行は、
 - オブジェクトの型を取得する typeof operator
@@ -87,3 +92,15 @@ type P1 = Person["name"] // string
 type P2 = Person["name" | "age"] // string | number
 type P3 = Person[keyof Person]// string | number
 ```
+
+### `as const`とは？？
+[constアサーション「as const」 (const assertion)](https://typescriptbook.jp/reference/values-types-variables/const-assertion)  
+オブジェクトリテラルの末尾にas constを記述すればプロパティが**readonly**でリテラルタイプで指定した物と同等の扱いになる  
+
+#### readonlyとconst assertionの違い
+- readonlyはプロパティごとにつけられる
+  - `as const`は全てのプロパティが対象になる
+  - const assertionはすべてのプロパティを固定する
+
+
+
