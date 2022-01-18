@@ -111,4 +111,9 @@ export const Button = ({/* 省略 */}: ButtonProps) => {
 };
 ```
 - `  const mode = primary? "storybook-button--primary": "storybook-button--secondary";`
-  - 三項演算子
+  - 三項演算子でstyleに渡す前に確定させておく
+
+流れはこのような感じ。  
+では、storiesの方はどうなっているのか？  
+
+
