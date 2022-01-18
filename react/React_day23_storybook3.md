@@ -196,3 +196,21 @@ const StyledText = styled(Text)`
 const SButton = styled(Button)``
 ```
 などの記述はしていたが、自分で作ったTextコンポーネントをstyled-componentsに当てることがなかったので発見  
+
+### 3. storiesファイルを作成する
+```ts
+import React from "react";
+import { ComponentMeta, ComponentStory } from "@storybook/react";
+
+import TextExample from "./index";
+
+const Template: ComponentStory<typeof TextExample> = () => <TextExample />;
+
+export default {
+  title: "Atoms/TextExample",
+  component: TextExample,
+} as ComponentMeta<typeof TextExample>;
+
+export const Default = Template.bind({});
+```
+早速、`ComponentMeta, ComponentStory`を使ってみた  
