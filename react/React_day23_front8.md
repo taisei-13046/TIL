@@ -1,3 +1,3 @@
 ## やったこと
-フロントの最終課題とhackasonの準備
+React Storybookのpractice  
 
