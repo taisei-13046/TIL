@@ -147,4 +147,19 @@ Primary.args = {
 このように記述してexportすることでストーリーを表示することができる  
 
 ## 実際にstyled-componentsを使ってコンポーネントを作ってみる
-`src/components/atoms/Text/`に`index.tsx`と`story.tsx`を作る  
+`src/components/atoms/Text/`に`index.tsx`と`Text.stories.tsx`を作る  
+フォルダ構成は以下のよう
+```
+src - components
+      - atoms
+        - Text
+          - index.tsx
+          - Text.stories.tsx
+    - style_vars
+      - mixins
+        - text.ts
+      - properties
+        - index.ts
+```
+
+
