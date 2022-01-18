@@ -112,5 +112,20 @@ export declare type ComponentStory<
 **これらの新しい型の登場によって、 Storybook のためだけにコンポーネントの props を export する必要がなくなった**  
 
 ### そもそも`Meta, Story`って何？？
+**Metaについて**  
+storiesファイルでは、Storybookのメタデータをdefault exportする必要がある  
+```ts
+const meta: Meta<Props> = {
+  title: 'Component', // カタログのタイトルになる部分。 スラ(/)で区切ると階層ができる。
+  component: Component, // ストーリーブック化するComponent
+};
 
- 
+export default meta;
+```
+**Storyについて**  
+ストーリーを作成するには、名前つきexportを用いる。  
+変数名がそのままStorybookに表示される。
+```ts
+export const Default: Story = () => <Component />;
+```
+
