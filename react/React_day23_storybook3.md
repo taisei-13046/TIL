@@ -162,6 +162,8 @@ Small.args = {
 
 上から読み解いていく  
 ```ts
+import { ComponentStory, ComponentMeta } from '@storybook/react';
+
 export default {
   title: 'Example/Button',
   component: Button,
@@ -184,4 +186,18 @@ argTypes: {
   backgroundColor: { control: 'color' },
 },
 ```
+わかりやすかった資料  
+[StorybookのControlsを試してみた](https://blog.web.nifty.com/engineer/3540)  
+`backgroundColor: { control: 'color' },`を指定すると色を好きな色に変更ができるようになる  
 
+### `ComponentStory, ComponentMeta`この型って何?
+```ts
+export declare type ComponentMeta<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = Meta<ComponentProps<T>>;
+
+export declare type ComponentStory<
+  T extends keyof JSX.IntrinsicElements | JSXElementConstructor<any>
+> = Story<ComponentProps<T>>;
+```
+型の定義は上のようになっている  
