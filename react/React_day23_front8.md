@@ -65,3 +65,13 @@ export const Button = ({
 };
 ```
 
+上部でPropsとして渡される引数の型を宣言している  
+```ts
+interface ButtonProps {
+  primary?: boolean;
+  backgroundColor?: string;
+  size?: 'small' | 'medium' | 'large';
+  label: string;
+  onClick?: () => void;
+}
+```
