@@ -144,4 +144,4 @@ Primary.args = {
   label: 'Button',
 };
 ```
-このように記述してexportすることで
+このように記述してexportすることでストーリーを表示することができる  
