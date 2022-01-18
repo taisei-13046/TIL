@@ -88,4 +88,27 @@ export const Button = ({
 };
 ```
 - default引数を`=`で指定している
-- `...props`は`onClick`を受け取っている
+- `...props`は`onClick`を受け取っているが、直接書かないのはなんでだろう？
+  - 後で書くときに記述が減るからかなと推測した
+
+```ts
+export const Button = ({/* 省略 */}: ButtonProps) => {
+  const mode = primary
+    ? "storybook-button--primary"
+    : "storybook-button--secondary";
+  return (
+    <button
+      type="button"
+      className={["storybook-button", `storybook-button--${size}`, mode].join(
+        " "
+      )}
+      style={{ backgroundColor }}
+      {...props}
+    >
+      {label}
+    </button>
+  );
+};
+```
+- `  const mode = primary? "storybook-button--primary": "storybook-button--secondary";`
+  - 三項演算子
