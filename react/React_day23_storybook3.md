@@ -136,3 +136,12 @@ export const Default: Story = () => <Component />;
 
 これらをそれぞれ`ComponentStory, ComponentMeta`を使うと簡略化することができる  
 
+```ts
+export const Primary = Template.bind({});
+// More on args: https://storybook.js.org/docs/react/writing-stories/args
+Primary.args = {
+  primary: true,
+  label: 'Button',
+};
+```
+このように記述してexportすることで
