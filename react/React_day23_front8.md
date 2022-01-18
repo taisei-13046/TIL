@@ -75,3 +75,16 @@ interface ButtonProps {
   onClick?: () => void;
 }
 ```
+
+上で定義したPropsの型を渡して引数を受け取っている
+```ts
+export const Button = ({
+  primary = false,
+  size = "medium",
+  backgroundColor,
+  label,
+  ...props
+}: ButtonProps) => {
+};
+```
+- default引数を`=`で指定している
