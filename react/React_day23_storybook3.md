@@ -164,3 +164,35 @@ src - components
 ```
 
 ### 2. Textのコンポーネントを作成する
+```ts
+import React from "react";
+import styled from "styled-components";
+
+import SV from "../../../style_vars";
+
+export const TextExample = () => {
+  return <StyledText text="sample-text" textStyle={SV.TEXT.H1} />
+};
+
+export default TextExample;
+
+type TextProps = {
+  className?: string;
+  text: string;
+  textStyle: string;
+};
+
+const Text = (props: TextProps) => {
+  return <div className={props.className}>{props.text}</div>;
+};
+
+const StyledText = styled(Text)`
+  ${(props) => props.textStyle}
+  margin-bottom: 12px;
+`;
+```
+今まで、muiのコンポーネントなどを
+```ts
+const SButton = styled(Button)``
+```
+などの記述はしていたが、自分で作ったTextコンポーネントをstyled-componentsに当てることがなかったので発見  
