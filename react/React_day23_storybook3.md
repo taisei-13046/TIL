@@ -159,7 +159,8 @@ src - components
       - mixins
         - text.ts
       - properties
-        - index.ts
+        - font-size.ts
+      - index.ts
 ```
 
-
+### 2. Textのコンポーネントを作成する
