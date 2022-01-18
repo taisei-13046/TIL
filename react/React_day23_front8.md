@@ -88,3 +88,4 @@ export const Button = ({
 };
 ```
 - default引数を`=`で指定している
+- `...props`は`onClick`を受け取っている
