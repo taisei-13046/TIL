@@ -201,3 +201,9 @@ export declare type ComponentStory<
 > = Story<ComponentProps<T>>;
 ```
 型の定義は上のようになっている  
+**ComponentMeta は Meta のエイリアス、ComponentStory は Story のエイリアスである**  
+**ComponentMeta, ComponentStory を使う場合は型引数が必須となり、この時渡せるのは story のベースとなるコンポーネントの型のみ**  
+**これらの新しい型の登場によって、 Storybook のためだけにコンポーネントの props を export する必要がなくなった**  
+
+
+ 
