@@ -78,6 +78,9 @@ export default {
     backgroundColor: { control: 'color' },
   },
 } as ComponentMeta<typeof Button>
+
+// More on component templates: https://storybook.js.org/docs/react/writing-stories/introduction#using-args
+const Template: ComponentStory<typeof Button> = (args) => <Button {...args} />;
 ```
 まず、`title`と`component`は必須で指定する必要がある  
 ### argTypesって何？
@@ -128,4 +131,8 @@ export default meta;
 ```ts
 export const Default: Story = () => <Component />;
 ```
+参考  
+[ComponentをStorybookで管理する方法](https://qiita.com/cheez921/items/0a843aa1dcf897ff025a)  
+
+これらをそれぞれ`ComponentStory, ComponentMeta`を使うと簡略化することができる  
 
