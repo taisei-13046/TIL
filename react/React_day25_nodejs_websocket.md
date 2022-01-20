@@ -150,5 +150,21 @@ TSの型ガードをする必要があった。
 [型ガード](https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard)  
 
 
+### [React + TypeScript: useRefの3つの型指定と初期値の使い方](https://qiita.com/FumioNonaka/items/feb2fd5b362f2558acfa)  
+```ts
+const nullRef = useRef<number>(null);
+const nonNullRef = useRef<number>(null!);
+const nullableRef = useRef<number | null>(null);
+```
+#### 1. nullで初期化したとき
+useRefフックの初期値にnullを与えると、戻り値のrefオブジェクトは読み取り専用になる  
+つまり、currentプロパティは書き替えられない  
+
+#### 2. 初期値nullに非nullアサーション演算子!を添える
+初期値のnullに非nullアサーション演算子(non-null assertion operator)!を添えてnull!とすると、今度はrefオブジェクトのcurrentプロパティが書き替えられる  
+代入できるのは指定した型のみで、nullは入れられない
+初期値のnullに非nullアサーション演算子(non-null assertion operator)!を添えてnull!とすると、今度はrefオブジェクトのcurrentプロパティが書き替えられる    
+
+
 
 
