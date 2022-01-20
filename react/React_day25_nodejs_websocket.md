@@ -96,3 +96,4 @@ io.on('connection', socket => {
 
 そのroomIdを使用して`socket.join(roomId);`することで、`roomId`に接続することができる  
 
+その他、`io.in(roomId).emit`でdataを
