@@ -99,4 +99,32 @@ io.on('connection', socket => {
 その他、`io.in(roomId).emit`でdataを送信できる  
 `socket.leave(roomId);`ではroomIdから退出する  
 
+## useRefでundefinedのエラーが起きまくった。。。
+### useRefとは
+```ts
+const refContainer = useRef(initialValue);
+```
+useRef は、.current プロパティが渡された引数 (initialValue) に初期化されているミュータブルな ref オブジェクトを返す  
+返されるオブジェクトはコンポーネントの存在期間全体にわたって存在し続ける  
+本質的に useRef とは、書き換え可能な値を .current プロパティ内に保持することができる「箱」のようなもの  
+documentの例  
+```jsx
+function TextInputWithFocusButton() {
+  const inputEl = useRef(null);
+  const onButtonClick = () => {
+    // `current` points to the mounted text input element
+    inputEl.current.focus();
+  };
+  return (
+    <>
+      <input ref={inputEl} type="text" />
+      <button onClick={onButtonClick}>Focus the input</button>
+    </>
+  );
+}
+```
+<div ref={myRef} /> のようにして React に ref オブジェクトを渡した場合、React は DOM ノードに変更があるたびに .current プロパティをその DOM ノードに設定する  
+
+
+
 
