@@ -56,3 +56,43 @@ const io = require("socket.io")(server, {
 ```
 corsの設定を踏まえた上でsocket.ioをimportする  
 
+```node
+io.on("connection", (socket) => {
+  console.log(`Client ${socket.id} connected`);
+
+  const { roomId } = socket.handsake.query;
+  socket.join(roomId);
+
+  socket.on(NEW_CHAT_MESSAGE_EVENT, (data) => {
+    io.in(roomId).emit(NEW_CHAT_MESSAGE_EVENT, data);
+  });
+
+  socket.on("disconnect", () => {
+    console.log(`Client ${socket.id} disconnencted`);
+    socket.leave(roomId);
+  });
+});
+```
+リクエストの処理を記述していく  
+
+```node
+io.on("connection", (socket) => {
+});
+```
+[Socket.io のよく使う関数とか](https://qiita.com/uranesu/items/8ee0dbe4e472f9fffa49)  
+
+今回は深掘りするとどこまでもできてしまいそうなので、浅く理解する  
+`io.on`をするとイベントハンドラを登録することができる  
+```node
+/*connection(webSocket確立時)イベント時
+クライアントが接続するたびにイベントハンドラを登録*/
+io.on('connection', socket => {
+    socket.on('event', () => {
+    });
+});
+```
+
+`const { roomId } = socket.handshake.query;`でroomIdを取得  
+
+そのroomIdを使用して`socket.join(roomId);`することで、`roomId`に接続することができる  
+
