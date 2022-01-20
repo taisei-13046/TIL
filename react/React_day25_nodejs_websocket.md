@@ -135,6 +135,19 @@ Qiita記事 [React hooksを基礎から理解する (useRef編)](https://qiita.c
 ### そして本題。useRefの型定義でエラーが起きている
 <img width="567" alt="スクリーンショット 2022-01-20 13 45 21" src="https://user-images.githubusercontent.com/78260526/150275168-8ffc926f-d77f-485d-b9a3-9aab37c6d1d1.png">  
 
+解決方法は二つ。  
+まずはuserRefに型指定が必要だった。  
+```ts
+const socketRef = useRef<Socket<DefaultEventsMap> | null>();
+```
+二つ目、
+```ts
+if (socketRef.current !== undefined && socketRef.current !== null) {
+       socketRef.current.disconnect();
+}
+```
+TSの型ガードをする必要があった。  
+[型ガード](https://typescript-jp.gitbook.io/deep-dive/type-system/typeguard)  
 
 
 
