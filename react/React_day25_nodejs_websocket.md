@@ -162,9 +162,18 @@ useRefフックの初期値にnullを与えると、戻り値のrefオブジェ�
 
 #### 2. 初期値nullに非nullアサーション演算子!を添える
 初期値のnullに非nullアサーション演算子(non-null assertion operator)!を添えてnull!とすると、今度はrefオブジェクトのcurrentプロパティが書き替えられる  
-代入できるのは指定した型のみで、nullは入れられない
-初期値のnullに非nullアサーション演算子(non-null assertion operator)!を添えてnull!とすると、今度はrefオブジェクトのcurrentプロパティが書き替えられる    
+代入できるのは指定した型のみで、nullは入れられない  
 
+### 3. 型指定にnullを含める
+useRefフックに書き替え可能の初期値nullを渡したうえで、あえてnullも代入値に含めたいときは、型指定にユニオン型(union type)|で加える  
+```ts
+// 読み取り専用。
+const nullRef = useRef<number>(null);
+// 指定した型の値で書き替えられる。nullは不可。
+const nonNullRef = useRef<number>(null!);
+// 型指定にnullを含める。
+const nullableRef = useRef<number | null>(null);
+```
 
 
 
