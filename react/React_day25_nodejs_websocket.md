@@ -123,7 +123,18 @@ function TextInputWithFocusButton() {
   );
 }
 ```
-<div ref={myRef} /> のようにして React に ref オブジェクトを渡した場合、React は DOM ノードに変更があるたびに .current プロパティをその DOM ノードに設定する  
+`<div ref={myRef} />` のようにして React に ref オブジェクトを渡した場合、React は DOM ノードに変更があるたびに .current プロパティをその DOM ノードに設定する  
+useRef() を使うことと自分で {current: ...} というオブジェクトを作成することとの唯一の違いとは、useRef は毎回のレンダーで同じ ref オブジェクトを返す、ということ  
+useRef は中身が変更になってもそのことを通知しない  
+.current プロパティを書き換えても再レンダーは発生しない  
+公式doc [useRef](https://ja.reactjs.org/docs/hooks-reference.html#useref)  
+Qiita記事 [React hooksを基礎から理解する (useRef編)](https://qiita.com/seira/items/0e6a2d835f1afb50544d)  
+
+再レンダリングはしたくないけど、内部に保持している値だけを更新したい場合はuseRefを使うのが良い  
+
+### そして本題。useRefの型定義でエラーが起きている
+<img width="567" alt="スクリーンショット 2022-01-20 13 45 21" src="https://user-images.githubusercontent.com/78260526/150275168-8ffc926f-d77f-485d-b9a3-9aab37c6d1d1.png">  
+
 
 
 
