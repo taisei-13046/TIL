@@ -29,7 +29,7 @@ export const useChat = (roomId: number) => {
       query: { roomId },
     });
 
-    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message: any) => {
+    socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message) => {
       if (socketRef.current !== undefined && socketRef.current !== null) {
         const incomingMessage = {
           ...message,
@@ -46,7 +46,7 @@ export const useChat = (roomId: number) => {
     };
   }, [roomId]);
 
-  const sendMessage = useCallback((messageBody: any) => {
+  const sendMessage = useCallback((messageBody) => {
     if (socketRef.current !== undefined && socketRef.current !== null) {
       socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
         body: messageBody,
@@ -67,8 +67,9 @@ socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
 });
 ```
 
-### 2. messageデータを受け取って、さらに最新のメッセージを追加して返す
+### 2. messageデータを受け取って、さらに最新のメッセージを追加して返すイベントハンドラを登録
 ```ts
+socketRef.current.on(NEW_CHAT_MESSAGE_EVENT, (message: any) => {
   if (socketRef.current !== undefined && socketRef.current !== null) {
     const incomingMessage = {
       ...message,
@@ -79,7 +80,7 @@ socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
 });
 ```
 
-### 3. useEffectのコールバック関数でdisconnect処理
+### 3. useEffectのクリーンアップ関数でdisconnect処理
 ```ts
 return () => {
   if (socketRef.current !== undefined && socketRef.current !== null) {
@@ -87,3 +88,20 @@ return () => {
   }
 };
 ```
+useEffect()では、副作用関数がクリーンアップ関数を返すことで、マウント時に実行した処理をアンマウント時に解除する  
+またその副作用関数は、毎回のレンダリング時に実行され、新しい副作用関数を実行する前に、ひとつ前の副作用処理をクリーンアップする  [
+
+### 4. それらを実行する関数と値を返す
+```ts
+const sendMessage = useCallback((messageBody: any) => {
+  if (socketRef.current !== undefined && socketRef.current !== null) {
+    socketRef.current.emit(NEW_CHAT_MESSAGE_EVENT, {
+      body: messageBody,
+      senderId: socketRef.current.id,
+    });
+  }
+}, []);
+
+return { messages, sendMessage };
+```
+
