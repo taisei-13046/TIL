@@ -58,4 +58,32 @@ export const useChat = (roomId: number) => {
   return { messages, sendMessage };
 };
 ```
+では上から見ていく  
 
+### 1. queryをセットして、エンドポイントにアクセスする
+```ts
+socketRef.current = socketIOClient(SOCKET_SERVER_URL, {
+  query: { roomId },
+});
+```
+
+### 2. messageデータを受け取って、さらに最新のメッセージを追加して返す
+```ts
+  if (socketRef.current !== undefined && socketRef.current !== null) {
+    const incomingMessage = {
+      ...message,
+      owndByCurrentUser: message.senderId === socketRef.current.id,
+    };
+    setMessages((messages) => [...messages, incomingMessage]);
+  }
+});
+```
+
+### 3. useEffectのコールバック関数でdisconnect処理
+```ts
+return () => {
+  if (socketRef.current !== undefined && socketRef.current !== null) {
+    socketRef.current.disconnect();
+  }
+};
+```
