@@ -20,3 +20,7 @@
 
 ### 3. マッチングが成立した後は、チャットで連絡を取り合う
 <img width="1433" alt="スクリーンショット 2022-01-22 20 05 56" src="https://user-images.githubusercontent.com/78260526/150635980-90f67599-a2ad-4aec-a7bc-b04c9cd4fcc2.png">  
+
+#### チャットはwebソケットでリアルタイム通信が可能
+https://user-images.githubusercontent.com/78260526/150636026-cb0decb4-0a44-4afa-be8c-10dd9f26ab94.mov
+
