@@ -44,3 +44,4 @@ API仕様書の大切さだったりullに`/`があるかないかだけで通�
 またリベンジする必要が生まれましたね。  
 次は優勝します。
 
+[制作物スライド](https://docs.google.com/presentation/d/1bRUSQLREUn3M8Lo2YQrRPIjhEQy4bV4yTBmMLTP03Ag/edit?usp=sharing)  
