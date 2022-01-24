@@ -60,3 +60,6 @@ npm install eslint@7.26.0 eslint-config-prettier@8.3.0 --save-dev
 
 [git commit時に Prettier と ESLint が実行されるようにする](https://qiita.com/soarflat/items/06377f3b96964964a65d#git-commit%E6%99%82%E3%81%AB-prettier-%E3%81%A8-eslint-%E3%81%8C%E5%AE%9F%E8%A1%8C%E3%81%95%E3%82%8C%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B)  
 
+
+## Reduxのディレクトリ構成
+### Ducksパターン
