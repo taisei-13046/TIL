@@ -133,3 +133,37 @@ export function getWidget () {
   return dispatch => get('/widget').then(widget => dispatch(updateWidget(widget)))
 }
 ```
+
+### re-ducksパターン
+ducksパターンによってディレクトリが分散する問題は解決されたが、一つのmoduleファイルが肥大化していって可読性が下がる  
+Re-ducksパターンが解決すること： ducksパターンにおける module の肥大化
+```markdown
+ducks
+├ articles
+│   ├ index.js
+│   ├ types.js
+│   ├ actions.js
+│   ├ reducers.js
+│   ├ operations.js
+│   └ selecors.js
+│
+├ comments
+│   ├ index.js
+│   ├ types.js
+│   ├ actions.js
+│   ├ reducers.js
+│   ├ operations.js
+│   └ selecors.js
+│
+└ users
+    ├ index.js
+    ├ types.js
+    ├ actions.js
+    ├ reducers.js
+    ├ operations.js
+    └ selecors.js
+```
+Re-ducksパターンでは機能ごとにディレクトリを分け、その中で関数の種類ごとにファイルを分ける  
+つまりducksパターンの「機能ごとの分類」と、一般的なReduxの「関数の種類ごとの分類」をいい塩梅で組み合わせている  
+- ディレクトリ分けの基準になる「機能」は、見た目で分類するよりもデータで分類した方が無理がない
+- 
