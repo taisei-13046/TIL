@@ -1,7 +1,7 @@
 ## やったこと
 Reactの環境開発について学んだ  
 
-### huskyについて
+## huskyについて
 huskyとは  
 **gitコマンドをhookにして、指定したコマンドを走られることができるもの**  
 - npmパッケージ
@@ -34,4 +34,10 @@ CI環境の導入
 - [[React] husky, lint-staged](https://dev-yakuza.posstree.com/react/husky-lint-staged/)
 - [lint-staged公式](https://github.com/okonet/lint-staged)
 - [husky & lint-staged で CI を実行する](https://b-hood.site/articles/husky/#section-1)
+
+
+## ESLintについて
+ESLintの設定方法  
+1. 設定用のファイルとしてプロジェクトのルートディレクトリーに .eslintrc.yml もしくは .eslintrc.json を作成 
+  ESLint は `.eslintrc.*` もしくは `package.json` 内の `eslintConfig` 設定を読んでくれる
 
