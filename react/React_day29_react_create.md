@@ -38,6 +38,7 @@ CI環境の導入
 
 ## ESLintについて
 ESLintの設定方法  
-1. 設定用のファイルとしてプロジェクトのルートディレクトリーに .eslintrc.yml もしくは .eslintrc.json を作成 
-  ESLint は `.eslintrc.*` もしくは `package.json` 内の `eslintConfig` 設定を読んでくれる
+- 設定用のファイルとしてプロジェクトのルートディレクトリーに .eslintrc.yml もしくは .eslintrc.json を作成   
+  - ESLint は `.eslintrc.*` もしくは `package.json` 内の `eslintConfig` 設定を読んでくれる  
+- `.eslintrc.js` / `.eslintrc.cjs` は設定を動的に生成したいときに使用
 
