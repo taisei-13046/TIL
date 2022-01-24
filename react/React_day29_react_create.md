@@ -62,4 +62,6 @@ npm install eslint@7.26.0 eslint-config-prettier@8.3.0 --save-dev
 
 
 ## Reduxのディレクトリ構成
+採用するのはre-ducksパターンだが、そのもとになるducksパターンを抑える
 ### Ducksパターン
+Ducks パターンが解決すること： actionType、action、reducerが散らばり  
