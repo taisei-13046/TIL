@@ -42,3 +42,12 @@ ESLintの設定方法
   - ESLint は `.eslintrc.*` もしくは `package.json` 内の `eslintConfig` 設定を読んでくれる  
 - `.eslintrc.js` / `.eslintrc.cjs` は設定を動的に生成したいときに使用
 
+### ESLint と Prettier を VS Code に導入し、設定する方法
+ESLint 単体でもコード整形は可能ですが、Prettier の方がコード整形が優れているため、併用  
+具体的には以下の点が優れている。
+- ESLint では整形できないコードを整形できる
+- ESLint と比べて手軽で確実に整形できる
+
+Prettier を利用すべきだが、Prettier はコードフォーマッタのため、ESLint のような構文チェック機能はない  
+そのため、コードの整形は Prettier が行い、コードの構文チェックは ESLint が行うように併用する  
+
