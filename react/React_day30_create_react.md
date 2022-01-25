@@ -163,6 +163,15 @@ module: {
 
 [入門者/初心者にもわかるwebpack5の基礎(Loader編)](https://reffect.co.jp/html/webpack-loader-setting-for-beginner#i)  
 
+#### css-loader 
+webpack で CSS を扱うには、CSS を変換するローダー（css-loader）が必要  
+更に、変換した CSS を DOM に挿入するローダー（style-loader）または CSS を別ファイルとして出力するプラグイン（MiniCssExtractPlugin）も必要  
+開発モード（webpack-dev-server を含む）の場合、style-loader を使用すれば CSS を DOM に挿入することで、より高速に動作する  
+
+
+
+
+
 ### Plugins
 
 #### webpackでESLintが使える環境を構築してみる
