@@ -42,4 +42,29 @@ JSのコンパイラ
 <img src="https://user-images.githubusercontent.com/78260526/150894471-528c2d7c-942d-424d-a785-c9e644142f0d.png" width="500px" />
 <img src="https://user-images.githubusercontent.com/78260526/150894346-e452dc5b-1735-4e31-b5dd-422e94bb2841.png" width="500px" />
 
+#### webpackとは？
+JSだけでなく、img, cssなどもモジュール化する  
+依存関係も解決する  
+
+#### webpackの誕生
+CommonJSをブラウザ用に変換する「modules-webmake」があった  
+これに対してCode Splitting機能を追加する提案をしたが受け入れられなかったので、勝手にforkして開発したのがwebpack  
+
+#### webpackのコンセプト
+- **Entry**
+  - 起点となるファイルを指定
+- Output
+  - 処理が完了したファイルを出力する
+- Loaders
+  - 指定ファイルに任意の処理を加える、1つのタスク
+- Plugins
+  - webpackのさまざまなイベントをhookし、データを操作したり処理を実行する
+- Mode
+  - node, development, productionを指定してmodeに応じてパフォーマンス最適化や圧縮などを行う
+- Browser Compatibility
+  - ブラウザの後方互換性
+
+
+
+
 
