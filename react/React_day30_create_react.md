@@ -25,3 +25,22 @@ JSのコンパイラ
 
 使用できるJSはブラウザによって異なるためBabelが必要になる  
 これによって新しいJSを各ブラウザで使用できる  
+
+#### Babelの機能
+- 構文変換
+- ソースコードの変換(codemods)
+- ターゲットブラウザにない環境のPolyfillの提供
+
+#### コードをどのように変換するのか？
+1. **Parsing**: @babel/parser
+  - ソースコードを**Abstract Syntax Tree(AST)**に変換する
+2. **Transformation**
+  - ASTを変換するBabelのプラグインがこの役割を担っている
+3. **Code Generat**: @babel/generator
+  - ASTをソースコードに変換する
+
+<img src="https://user-images.githubusercontent.com/78260526/150894279-e5162a90-d596-407c-802a-4baac1e89eef.png" width="500px" />
+
+
+
+
