@@ -71,6 +71,7 @@ CommonJSをブラウザ用に変換する「modules-webmake」があった
 
 <img src="https://user-images.githubusercontent.com/78260526/150897369-429ed798-59c3-46ed-ace1-098d7e09a1de.png" width="500px" />
 
+参考動画 [現代フロントエンドに欠かせないwebpackとBabelを理解しよう！ (__sakito__) - builderscon tokyo 2019](https://www.youtube.com/watch?v=gWzf-BEhTWk)  
 
 
 
