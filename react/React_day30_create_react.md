@@ -104,6 +104,28 @@ entryを設定していない場合、webpackは
 [webpackの基本だけどハマりやすいentryの設定と[name]](https://qiita.com/sansaisoba/items/921438a19cbf5a31ec53)  
 
 
+### Output
+```js
+module.exports = {
+  output: {
+    filename: 'bundle.js',
+  },
+};
+```
 
+複数のEntrypointの場合
+```js
+module.exports = {
+  entry: {
+    app: './src/app.js',
+    search: './src/search.js',
+  },
+  output: {
+    filename: '[name].js',
+    path: __dirname + '/dist',
+  },
+};
 
+// writes to disk: ./dist/app.js, ./dist/search.js
+```
 
