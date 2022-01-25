@@ -73,5 +73,37 @@ CommonJSをブラウザ用に変換する「modules-webmake」があった
 
 参考動画 [現代フロントエンドに欠かせないwebpackとBabelを理解しよう！ (__sakito__) - builderscon tokyo 2019](https://www.youtube.com/watch?v=gWzf-BEhTWk)  
 
+## さぁ何はともあれwebpackの公式を読もう
+### Concepts
+- Entry
+- Output
+- Loaders
+- Plugins
+- Mode
+- Browser Compatibility
+
+### Entry Points
+#### Single Entry (Shorthand) Syntax:   
+`Usage: entry: string | [string]`  
+```js
+module.exports = {
+  entry: './path/to/my/entry/file.js',
+};
+```
+entryを設定していない場合、webpackは  
+./src/index.jsを./dist/main.jsに出力する  
+という挙動になる  
+
+細かく書くと、
+
+1. ./src/index.jsをエントリーポイントとし
+2. index.js内でimport、requireされ使われているファイルをバンドルして
+3. ./dist/main.jsに出力する
+という動き
+
+[webpackの基本だけどハマりやすいentryの設定と[name]](https://qiita.com/sansaisoba/items/921438a19cbf5a31ec53)  
+
+
+
 
 
