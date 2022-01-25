@@ -53,16 +53,21 @@ CommonJSをブラウザ用に変換する「modules-webmake」があった
 #### webpackのコンセプト
 - **Entry**
   - 起点となるファイルを指定
-- Output
+- **Output**
   - 処理が完了したファイルを出力する
-- Loaders
+- **Loaders**
   - 指定ファイルに任意の処理を加える、1つのタスク
-- Plugins
+- **Plugins**
   - webpackのさまざまなイベントをhookし、データを操作したり処理を実行する
-- Mode
-  - node, development, productionを指定してmodeに応じてパフォーマンス最適化や圧縮などを行う
-- Browser Compatibility
+- **Mode**
+  - none, development, productionを指定してmodeに応じてパフォーマンス最適化や圧縮などを行う
+- **Browser Compatibility**
   - ブラウザの後方互換性
+
+#### 実行
+1. ./bin/webpack.jsを実行
+2. その中で./bin/webpack-cliを実行
+3. webpack.comfig.jsを読み込む
 
 
 
