@@ -69,6 +69,7 @@ CommonJSをブラウザ用に変換する「modules-webmake」があった
 2. その中で./bin/webpack-cliを実行
 3. webpack.comfig.jsを読み込む
 
+<img src="https://user-images.githubusercontent.com/78260526/150897369-429ed798-59c3-46ed-ace1-098d7e09a1de.png" width="500px" />
 
 
 
