@@ -165,5 +165,26 @@ module: {
 
 ### Plugins
 
+#### webpackでESLintが使える環境を構築してみる
+```
+$ npm install --save-dev eslint eslint-webpack-plugin
+```
+「eslint-webpack-plugin」のパッケージをインストール  
 
+```js
+const ESLintPlugin = require('eslint-webpack-plugin');
 
+module.exports = {
+  // ...
+  plugins: [new ESLintPlugin(options)],
+  // ...
+};
+```
+そしてwebpackの設定に追加する  
+
+#### context
+タイプ： String  
+Default: compiler.context  
+ファイルのルートを示す文字列。  
+
+#### 
