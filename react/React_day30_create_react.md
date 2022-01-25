@@ -129,6 +129,13 @@ module.exports = {
 // writes to disk: ./dist/app.js, ./dist/search.js
 ```
 
+### mode
+mode プロパティのパラメーターを development、production、または none に設定することにより各環境に対応する最適化を有効にする  
+- development：開発時向けのオプション（ソースコードが読みやすい状態で出力）
+- production：本番環境（公開時）向けのオプション（ソースコードを圧縮及び最適化）
+- none: 最適化を行わない
+
+
 ### Loaders
 説明をdeepLにかけてみた  
 > ローダーとは、モジュールのソースコードに適用される変換のことです。これを使うと、ファイルをインポートしたり「ロード」したりするときに、前処理をすることができます。このように、ローダーは他のビルドツールにおける「タスク」のようなもので、フロントエンドのビルドステップを処理するための強力な方法を提供します。ローダーは、異なる言語（TypeScriptなど）のファイルをJavaScriptに変換したり、インライン画像をデータURLとして読み込んだりすることができます。ローダーは、JavaScriptモジュールからCSSファイルを直接インポートするようなことも可能です!
@@ -138,6 +145,21 @@ webpackはJavaScriptファイルのみそのままの状態で取り扱うこと
 しかしJavaScriptファイル以外の他の言語で書かれたプログラムをwebpackで扱うことができない。  
 JavaScript以外のファイルでもwebpackでも扱えるようにする場合にはLoader(ローダー)を利用する必要がある。  
 Loaderは一つではなくそれぞれの言語や行いたい処理に対応するLoaderが存在する。  
+
+#### typescriptとts-loader
+[ts-loader公式](https://github.com/TypeStrong/ts-loader#getting-started)  
+```ts
+module: {
+  rules: [
+    {
+      test: /\.ts$/,            // 拡張子 .ts のファイルを
+      use: 'ts-loader',         // ts-loaderでトランスパイルする
+      exclude: /node_modules/,  // ただし外部ライブラリは除く
+    },
+  ],
+},
+```
+ローダーの設定は module プロパティの `rules` プロパティで `test` と `use` の2つのプロパティを使って設定する  
 
 
 
