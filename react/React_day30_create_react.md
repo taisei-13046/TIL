@@ -182,12 +182,12 @@ module.exports = {
 ```
 そしてwebpackの設定に追加する  
 
-#### context
+### context
 タイプ： String  
 Default: compiler.context  
 ファイルのルートを示す文字列。  
 
-#### devtool ソースマップ
+### devtool ソースマップ
 devtool オプションを使うと出力されるソースマップを設定することができる  
 devtool オプションにソースマップのタイプを指定してビルドすると、出力ファイルと同じディレクトリに出力ファイルと同じ名前で拡張子が「.js.map」のソースマップファイルが作成される  
 ビルドするとdistフォルダにmain.js.mapが作成される  
@@ -198,5 +198,25 @@ dist
 ├── main.js
 └── main.js.map //ソースマップファイル
 ```
+
+### resolve
+webpack には import を使ってモジュールをインポートする際に、指定されたモジュールを検索して該当するファイルを探す仕組みがある  
+resolve オプションはモジュール解決（モジュールの import を解決する仕組み）の設定を変更する  
+#### resolve.modules
+モジュールを解決するときに検索するディレクトリを webpack に指示する  
+```js
+module.exports = {
+  //...
+  resolve: {
+    modules: ['node_modules']
+  }
+};
+```
+
+#### resolve.extentions
+このオプションで指定されている拡張子のファイルは import の際に拡張子を省略することができる  
+
+
+
 
 
