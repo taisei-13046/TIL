@@ -215,6 +215,11 @@ module.exports = {
 
 #### resolve.extentions
 このオプションで指定されている拡張子のファイルは import の際に拡張子を省略することができる  
+```js
+      extensions: [".ts", ".tsx", ".js"],
+```
+この設定をするとこれらのimport時に拡張子を省略できる  
+
 
 
 
