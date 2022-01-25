@@ -161,8 +161,9 @@ module: {
 ```
 ローダーの設定は module プロパティの `rules` プロパティで `test` と `use` の2つのプロパティを使って設定する  
 
-
-
 [入門者/初心者にもわかるwebpack5の基礎(Loader編)](https://reffect.co.jp/html/webpack-loader-setting-for-beginner#i)  
+
+### Plugins
+
 
 
