@@ -187,4 +187,16 @@ module.exports = {
 Default: compiler.context  
 ファイルのルートを示す文字列。  
 
-#### 
+#### devtool ソースマップ
+devtool オプションを使うと出力されるソースマップを設定することができる  
+devtool オプションにソースマップのタイプを指定してビルドすると、出力ファイルと同じディレクトリに出力ファイルと同じ名前で拡張子が「.js.map」のソースマップファイルが作成される  
+ビルドするとdistフォルダにmain.js.mapが作成される  
+
+```js
+dist
+├── index.html
+├── main.js
+└── main.js.map //ソースマップファイル
+```
+
+
