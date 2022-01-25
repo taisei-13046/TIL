@@ -39,8 +39,7 @@ JSのコンパイラ
 3. **Code Generat**: @babel/generator
   - ASTをソースコードに変換する
 
-<img src="https://user-images.githubusercontent.com/78260526/150894279-e5162a90-d596-407c-802a-4baac1e89eef.png" width="500px" />
-
-
+<img src="https://user-images.githubusercontent.com/78260526/150894471-528c2d7c-942d-424d-a785-c9e644142f0d.png" width="500px" />
+<img src="https://user-images.githubusercontent.com/78260526/150894346-e452dc5b-1735-4e31-b5dd-422e94bb2841.png" width="500px" />
 
 
