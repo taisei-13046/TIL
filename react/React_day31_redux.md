@@ -86,9 +86,10 @@ function configureStore<S = any, A extends Action = AnyAction>(
   ```ts
   devTools: process.env.NODE_ENV !== 'production',
   ```
-  
-
-
+- `preloadedState`
+  - ReduxのcreateStore関数に渡す、オプションの初期状態の値
+- `enhancers`
+  - Redux自体に機能を追加するための正式なメカニズム 
 
 #### combineReducers(reducers)
 combineReducersの処理の本筋部分だけを取り出すと
