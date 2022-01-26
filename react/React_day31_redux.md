@@ -1,5 +1,6 @@
 ## やったこと
-Redux Toolkitについて
+Redux Toolkitについて  
+Quick Startに出てくる関数を一つずつ読み解いていった   
 
 ## Quick Start
 Install Redux Toolkit and React-Redux
@@ -323,6 +324,29 @@ interface PayloadAction<P, T extends string, M, E> {
 - action.payload - Actionに必要なデータ
 - action.meta - action.payloadに含まれない副次的なデータ
 - action.error - trueである時エラーであり、action.payloadがエラーオブジェクトである
+
+[たぶんこれが一番分かりやすいと思います React + Redux のフロー図解](https://qiita.com/mpyw/items/a816c6380219b1d5a3bf)  
+Actionは基本的に以下のようなフォーマットを持つオブジェクトになる。  
+```ts
+{
+    type: "アクションの種類を一意に識別できる文字列またはシンボル",
+    payload: "アクションの実行に必要な任意のデータ",
+}
+```
+
+### 4. Add Slice Reducers to the Store
+```ts
+import { configureStore } from '@reduxjs/toolkit'
+import counterReducer from '../features/counter/counterSlice'
+
+export default configureStore({
+  reducer: {
+    counter: counterReducer,
+  },
+})
+```
+
+### 5. Use Redux State and Actions in React Components
 
 
 
