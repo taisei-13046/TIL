@@ -256,6 +256,34 @@ Reduxでは、データのコピーを作成し、そのコピーを更新する
 
 immutableとは：　作成後にその状態を変えることのできないオブジェクトのこと  
 
+#### createSlice
+slice というのは簡単に言うと reducer 関数と action creator を含むオブジェクト  
+createActionとcreateReducerを使わなくても、createSliceを使ったら reducer を作成するだけで自動的に action type も定義してくれるし action creator も生成してくれる  
+ちなみに "slice" という名前になったのは「combineReducerでまとめられた root reducer を構成する1つのスライス(薄片)だから」という理由  
 
+createSliceの型  
+```ts
+function createSlice({
+    //名称（action type に使われる）
+    name: string,
+    //reducer の初期値
+    initialState: any,
+    //case reducer たちのオブジェクト
+    reducers: Object<string, ReducerFunction | ReducerAndPrepareObject>
+    //別で作成しておいた action に対する reducer（任意）
+    extraReducers?:
+    | Object<string, ReducerFunction>
+    | ((builder: ActionReducerMapBuilder<State>) => void)
+})
+```
 
+createSliceの返り値  
+```ts
+{
+    name : string,
+    reducer : ReducerFunction,
+    actions : Record<string, ActionCreator>,
+    caseReducers: Record<string, CaseReducer>
+}
+```
 
