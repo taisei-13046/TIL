@@ -21,7 +21,7 @@ export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 ```
 
-#### configureSotre
+#### configureSotre [doc(configureStore)](https://redux-toolkit.js.org/api/configureStore)
 configureStore accepts a single configuration object parameter, with the following options:
 ```ts
 interface ConfigureStoreOptions<
@@ -73,4 +73,26 @@ function configureStore<S = any, A extends Action = AnyAction>(
   options: ConfigureStoreOptions<S, A>
 ): EnhancedStore<S, A>
 ```
+- `reducer`
+  - これが単一の関数である場合、storeのroot reducerとして直接使用されます。
+  - もしこれが `{users : usersReducer, posts : postsReducer}` のようなslice reducerのオブジェクトであれば、  
+  configureStore はこのオブジェクトを `Redux combineReducers` ユーティリティに渡してルートリデューサーを自動的に作成します。
+- `middleware`
+  - このオプションを指定する場合、ストアに追加したいすべてのミドルウェア関数が含まれている必要があります。configureStoreは自動的にこれらの関数をapplyMiddlewareに渡します。
+  - 指定しなかった場合、configureStore は getDefaultMiddleware をコールし、それが返すミドルウェア関数の配列を使用します。  
+
+#### combineReducers(reducers)
+combineReducersの処理の本筋部分だけを取り出すと
+
+1. 各reducerを呼び出して初期状態を取り出す
+2. 初期状態をまとめて初期状態ツリーを作る
+3. reducerの処理をまとめたcombination関数を返す
+4. combineReducersが返すcombination関数はreducer名をキーにした状態ツリーから、そのreducerの部分状態を取り出して渡す。  
+  戻ってきた新しい部分状態はやはりreducer名をキーにしてまた１つの状態ツリーにまとめられて、最終的なreducerの戻り値となる。  
+
+[Reduxにおけるreducer分割とcombineReducersについて](https://qiita.com/kuy/items/59c6d7029a10972cba78)  
+[combineReducersでハマったメモ](https://qiita.com/usagi-f/items/ae568fb64c2eac882d05)  
+
+``
+
 
