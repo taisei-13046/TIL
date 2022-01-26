@@ -287,3 +287,27 @@ createSliceの返り値
 }
 ```
 
+##### extraReducer
+createAsyncThunkで生成した非同期 action など、別で作成しておいた action に対する reducer を作成するときは extraReducersを使う  
+```ts
+const todoSlice = createSlice({
+  name: 'todos',
+  initialState: [] as Item[],
+  reducers: {},
+  extraReducers: (builder) => {
+    builder
+    .addCase(fetchUserById.pending, (state, action) => {
+      //非同期処理中のロジック
+    })
+    .addCase(fetchUserById.fulfilled, (state, action) => {
+      //非同期処理成功時のロジック
+    })
+    .addCase(fetchUserById.rejected, (state, action) => {
+      //非同期処理失敗時のロジック
+    })
+  }
+})
+```
+
+
+
