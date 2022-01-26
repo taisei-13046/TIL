@@ -158,6 +158,35 @@ Store Methods
 
 返り値: (any): The current state tree of your application.
 
+##### dispatch(action)
+actionをdispatchする。これは状態変化のトリガーとなる唯一の方法である  
+```ts
+import { createStore } from 'redux'
+const store = createStore(todos, ['Use Redux'])
+
+function addTodo(text) {
+  return {
+    type: 'ADD_TODO',
+    text
+  }
+}
+
+store.dispatch(addTodo('Read the docs'))
+store.dispatch(addTodo('Read about the middleware'))
+```
+
+##### subscribe(listener)
+ステートを変更するのが自分であればステート変更のタイミングは分かりますが、誰か他の人が（=他の処理が）更新した時には、ステートがいつ変更されたのかわからない。  
+他の人がステートを変更した際に、その変更を教えてもらうのが、サブスクライブ（subscribe）という機能  
+**subscribe関数を使用することによってstateが変更された際に、引数に指定したlistener（関数）を実行することが可能**  
+```ts
+// 常に最新のstateを取得する例
+// stateを変更するとsubscribe()の引数に指定されたコールバック関数が実行される
+let appState = store.getState();
+store.subscribe(() => {appState = store.getState()});
+```
+
+
 
 
 
