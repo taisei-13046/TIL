@@ -143,6 +143,21 @@ React Reduxアプリ内のどのReactコンポーネントもストアに接続�
 
 #### Store [doc(Store)](https://redux.js.org/api/store)
 storeはアプリケーションの全状態ツリーを保持する  
+その中の状態を変更する唯一の方法は、その状態に対してactionをdispatchすること  
+ストアはクラスではなく、いくつかのメソッドを持つ単なるオブジェクト  
+
+Store Methods
+- getState()
+- dispatch(action)
+- subscribe(listener)
+- replaceReducer(nextReducer)
+
+##### getState()
+アプリケーションの現在の状態ツリーを返す。  
+これは、ストアのreducerが最後に返した値と同じ  
+
+返り値: (any): The current state tree of your application.
+
 
 
 
