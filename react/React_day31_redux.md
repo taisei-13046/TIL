@@ -308,6 +308,22 @@ const todoSlice = createSlice({
   }
 })
 ```
+##### payloadAction
+```ts
+interface PayloadAction<P, T extends string, M, E> {
+  type: T;
+  payload: P;
+  meta: M;
+  error: E;
+}
+```
+- action.type - Actionを識別する文字列
+  - アクションの名前はシステムが行うことではなく実際に起こったことを書く  
+  - 例) (x) 'CREATE_COMMENT' (o)'POST_COMMENT'
+- action.payload - Actionに必要なデータ
+- action.meta - action.payloadに含まれない副次的なデータ
+- action.error - trueである時エラーであり、action.payloadがエラーオブジェクトである
+
 
 
 
