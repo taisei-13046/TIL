@@ -391,6 +391,11 @@ useSelectorは概念的にはconnect関数に対して与えた引数mapToProps�
 前のコンポーネントのレンダリング後から、その参照先が普遍である限り、useSelctorはキャッシュしたselectorの値を返すので、関数コンポーネントのレンダリングをいつでも実行することができる  
 
 ### 要約
+1. `configurStore`でreduxのstoreを作成する
+2. `<Provider>`でreduxのstoreをコンポーネントに提供する
+3. createSliceでreduxのsliceを作成する
+4. useSelector/useDispatchでコンポーネント内でstoreを扱う
+
 
 
 
