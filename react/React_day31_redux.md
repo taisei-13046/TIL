@@ -1,12 +1,12 @@
 ## やったこと
 Redux Toolkitについて
 
-### Quick Start
+## Quick Start
 Install Redux Toolkit and React-Redux
 ```
 $ npm install @reduxjs/toolkit react-redux
 ```
-1. Create a Redux Store
+### 1. Create a Redux Store
 
 ```tsx
 import { configureStore } from '@reduxjs/toolkit'
@@ -119,6 +119,30 @@ const store = configureStore({
 // Store has all of the default middleware added, _plus_ the logger middleware
 ```
 middlewareの登録に使用する  
+
+### 2. Provide the Redux Store to React
+```tsx
+import React from 'react'
+import ReactDOM from 'react-dom'
+import './index.css'
+import App from './App'
+import { store } from './app/store'
+import { Provider } from 'react-redux'
+
+ReactDOM.render(
+  <Provider store={store}>
+    <App />
+  </Provider>,
+  document.getElementById('root')
+)
+```
+
+#### Provider [doc(Provider)](https://react-redux.js.org/api/provider)
+`<Provider>`コンポーネントは、Reduxストアにアクセスする必要があるネストされたコンポーネントが、Reduxストアを利用できるようにする  
+React Reduxアプリ内のどのReactコンポーネントもストアに接続できるため、ほとんどのアプリケーションではトップレベルで`<Provider>`をレンダリングし、その中にアプリのコンポーネントツリー全体が入るようにする  
+
+#### Store [doc(Store)](https://redux.js.org/api/store)
+storeはアプリケーションの全状態ツリーを保持する  
 
 
 
