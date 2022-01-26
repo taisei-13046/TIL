@@ -80,6 +80,15 @@ function configureStore<S = any, A extends Action = AnyAction>(
 - `middleware`
   - このオプションを指定する場合、ストアに追加したいすべてのミドルウェア関数が含まれている必要があります。configureStoreは自動的にこれらの関数をapplyMiddlewareに渡します。
   - 指定しなかった場合、configureStore は getDefaultMiddleware をコールし、それが返すミドルウェア関数の配列を使用します。  
+- `devTools`
+  - configureStoreが自動的にRedux DevToolsブラウザ拡張のサポートを有効にするかどうかを示す
+  - デフォルトは true 
+  ```ts
+  devTools: process.env.NODE_ENV !== 'production',
+  ```
+  
+
+
 
 #### combineReducers(reducers)
 combineReducersの処理の本筋部分だけを取り出すと
@@ -93,6 +102,22 @@ combineReducersの処理の本筋部分だけを取り出すと
 [Reduxにおけるreducer分割とcombineReducersについて](https://qiita.com/kuy/items/59c6d7029a10972cba78)  
 [combineReducersでハマったメモ](https://qiita.com/usagi-f/items/ae568fb64c2eac882d05)  
 
-``
+#### getDefaultMiddleware
+```ts
+import { configureStore } from '@reduxjs/toolkit'
+
+import logger from 'redux-logger'
+
+import rootReducer from './reducer'
+
+const store = configureStore({
+  reducer: rootReducer,
+  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(logger),
+})
+
+// Store has all of the default middleware added, _plus_ the logger middleware
+```
+middlewareの登録に使用する  
+
 
 
