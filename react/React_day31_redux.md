@@ -185,6 +185,30 @@ store.dispatch(addTodo('Read about the middleware'))
 let appState = store.getState();
 store.subscribe(() => {appState = store.getState()});
 ```
+listener (Function): アクションがディスパッチされ、ステートツリーが変更されたときに呼び出されるコールバック  
+このコールバックの内部でgetState()を呼び出すと、現在のステートツリーを読み出すことができる。  
+
+##### replaceReducer(nextReducer)
+replaceReducerは主に、reducerを動的に追加したり、ホットリロードを有効にしたりするために、使用される  
+```ts
+const store = createStore(plusMinus);
+
+store.subscribe(() => console.log(store.getState()));
+
+store.dispatch({type: INCREMENT, amount: 5}); // 5
+store.dispatch({type: DECREMENT, amount: 3}); // 2
+
+store.replaceReducer(multiplication); // 2
+
+// reducer が multiplication に変わっているので INCREMENT は実行されず state がそのまま返される
+store.dispatch({type: INCREMENT, amount: 4}); // 2
+
+store.dispatch({type: MULTIPLICATION, amount: 3}); // 6
+```
+replaceReducerを実行してもstateはそのまま維持される。これを理解せずに実装を行うと、不具合を生んでしまう可能性がある  
+
+[store.replaceReducer で reducer を入れ替える](https://numb86-tech.hatenablog.com/entry/2020/04/12/185515)  
+
 
 
 
