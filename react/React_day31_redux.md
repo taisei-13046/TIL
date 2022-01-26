@@ -209,7 +209,52 @@ replaceReducerを実行してもstateはそのまま維持される。これを�
 
 [store.replaceReducer で reducer を入れ替える](https://numb86-tech.hatenablog.com/entry/2020/04/12/185515)  
 
+### 3. Create a Redux State Slice
+src/features/counter/counterSlice.ts  
 
+```tsx
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+
+export interface CounterState {
+  value: number
+}
+
+const initialState: CounterState = {
+  value: 0,
+}
+
+export const counterSlice = createSlice({
+  name: 'counter',
+  initialState,
+  reducers: {
+    increment: (state) => {
+      // Redux Toolkit allows us to write "mutating" logic in reducers. It
+      // doesn't actually mutate the state because it uses the Immer library,
+      // which detects changes to a "draft state" and produces a brand new
+      // immutable state based off those changes
+      state.value += 1
+    },
+    decrement: (state) => {
+      state.value -= 1
+    },
+    incrementByAmount: (state, action: PayloadAction<number>) => {
+      state.value += action.payload
+    },
+  },
+})
+
+// Action creators are generated for each case reducer function
+export const { increment, decrement, incrementByAmount } = counterSlice.actions
+
+export default counterSlice.reducer
+```
+スライスを作成するには、スライスを識別するための`name`、ステートの`initialState`、ステートの更新方法を定義するための1つ以上の`rdeducer`関数が必要です。  
+スライスが作成されると、生成されたReduxアクションクリエイターとスライス全体のレデューサー関数をエクスポートすることができます。   
+
+Reduxでは、データのコピーを作成し、そのコピーを更新することで、すべての状態の更新をイミュータブルに記述する必要があります。  
+しかし、Redux ToolkitのcreateSliceとcreateReducerのAPIは内部でImerを使って、正しいimmutable更新となる「mutating」更新ロジックを書くことができるようになっています。  
+
+immutableとは：　作成後にその状態を変えることのできないオブジェクトのこと  
 
 
 
