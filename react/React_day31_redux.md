@@ -380,4 +380,18 @@ export function Counter() {
 }
 ```
 
+#### useSelector
+[React Redux Hooks公式ドキュメント翻訳（useSelector編）](https://qiita.com/japanesebonobo/items/843753903fdfa173f516)  
+```ts
+const result: any = useSelector(selector: Function, equalityFn?: Function)
+```
+useSelectorを使うことでReduxのstoreのstateにデータを登録することが可能  
+useSelectorは概念的にはconnect関数に対して与えた引数mapToPropsに相当  
+利点としては、Reduxのstore state全体をただの引数として扱える点  
+前のコンポーネントのレンダリング後から、その参照先が普遍である限り、useSelctorはキャッシュしたselectorの値を返すので、関数コンポーネントのレンダリングをいつでも実行することができる  
+
+### 要約
+
+
+
 
