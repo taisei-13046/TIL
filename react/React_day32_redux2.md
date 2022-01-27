@@ -138,49 +138,8 @@ React / Redux はどういう風にThunkの仕組みを利用しているのか�
 - 引数が同じ場合、常に同じ返り値となる。（参照透過性）
 - 副作用が発生しない
 
-## createAsyncThunkについて
-[Redux Toolkit で Async Thunk が曲者なので詳しく解説する](https://times.hrbrain.co.jp/entry/2020/12/08/redux-toolkit-async-thunk)  
 
-createAsyncThunkの型  
-```ts
-function createAsyncThunk<
-    Returned,
-    ThunkArg = void,
-    ThunkApiConfig extends AsyncThunkConfig = {}
->(
-    typePrefix: string,
-    payloadCreator: AsyncThunkPayloadCreator<Returned, ThunkArg, ThunkApiConfig>,
-    options?: AsyncThunkOptions<ThunkArg, ThunkApiCongi>
-): AsyncThunk<Returned, ThunkArg, ThunkApiConfig>;
-```
-```ts
-function createAsyncThunk<
-    第2引数の関数の返り値,
-    第2引数の関数の第1引数の型（生成された関数を実行する時に必要な引数）,
-    Thunkが引き回しているコンテキストの型
->(/* ... */)
-```
-#### 1. Returned
-Returned は AsyncThunkPayloadCreator に渡されている  
-```ts
-type AsyncThunkPayloadCreator<
-    Returned,
-    ThunkArg = void,
-    ThunkApiConfig extends AsyncThunkConfig = {}
-> = (arg: ThunkArg, thunkAPI: GetThunkAPI<ThunkApiConfig>) => AsyncThunkPayloadCreatorReturnValue<Returned, ThunkApiConfig>;
-```
-`AsyncThunkPayloadCreator` から渡ってきた Returned は更に `AsyncThunkPayloadCreatorReturnValue` に渡されている  
-
-```ts
-type AsyncThunkPayloadCreatorReturnValue<
-    Returned,
-    ThunkApiConfig extends AsyncThunkConfig
-> = Promise<Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>> | Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>;
-```
-入ってきた Returned がそのまま `Promise<T>` の中に渡されている  
-
-
-### createAsyncThunkの使い方
+## createAsyncThunkの使い方
 [createAsyncThunk doc](https://redux-toolkit.js.org/api/createAsyncThunk)  
 #### 概要
 Reduxのアクションタイプ文字列とプロミスを返すべきコールバック関数を受け取る関数  
@@ -359,5 +318,44 @@ const onClick = () => {
 ```
 unwrapResultを使うと成功時（fulfilled時）に.then(...)、失敗時（rejected時）に.catch(...)へと処理を分けてくれる  
 
+## createAsyncThunkについて
+[Redux Toolkit で Async Thunk が曲者なので詳しく解説する](https://times.hrbrain.co.jp/entry/2020/12/08/redux-toolkit-async-thunk)  
 
+createAsyncThunkの型  
+```ts
+function createAsyncThunk<
+    Returned,
+    ThunkArg = void,
+    ThunkApiConfig extends AsyncThunkConfig = {}
+>(
+    typePrefix: string,
+    payloadCreator: AsyncThunkPayloadCreator<Returned, ThunkArg, ThunkApiConfig>,
+    options?: AsyncThunkOptions<ThunkArg, ThunkApiCongi>
+): AsyncThunk<Returned, ThunkArg, ThunkApiConfig>;
+```
+```ts
+function createAsyncThunk<
+    第2引数の関数の返り値,
+    第2引数の関数の第1引数の型（生成された関数を実行する時に必要な引数）,
+    Thunkが引き回しているコンテキストの型
+>(/* ... */)
+```
+#### 1. Returned
+Returned は AsyncThunkPayloadCreator に渡されている  
+```ts
+type AsyncThunkPayloadCreator<
+    Returned,
+    ThunkArg = void,
+    ThunkApiConfig extends AsyncThunkConfig = {}
+> = (arg: ThunkArg, thunkAPI: GetThunkAPI<ThunkApiConfig>) => AsyncThunkPayloadCreatorReturnValue<Returned, ThunkApiConfig>;
+```
+`AsyncThunkPayloadCreator` から渡ってきた Returned は更に `AsyncThunkPayloadCreatorReturnValue` に渡されている  
+
+```ts
+type AsyncThunkPayloadCreatorReturnValue<
+    Returned,
+    ThunkApiConfig extends AsyncThunkConfig
+> = Promise<Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>> | Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>;
+```
+入ってきた Returned がそのまま `Promise<T>` の中に渡されている  
 
