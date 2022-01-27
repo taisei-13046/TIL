@@ -357,5 +357,28 @@ type AsyncThunkPayloadCreatorReturnValue<
     ThunkApiConfig extends AsyncThunkConfig
 > = Promise<Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>> | Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>;
 ```
-入ってきた Returned がそのまま `Promise<T>` の中に渡されている  
+大抵は void とかフェッチしてきたデータを返してあげたりする時の型を入れてあげれば良い  
+
+#### 2. ThunkArg
+これは createAsyncThunkの第2引数の関数の第1引数  
+
+#### 3. ThunkApiConfig
+これはRedux ToolkitがThunkのAPIをまとめた型で、中にはおなじみの dispatch や getState などが入っている  
+`ThunkApiConfig extends AsyncThunkConfig`となっているのでAsyncThunkConfigを見てみる  
+```ts
+type AsyncThunkConfig = {
+    state?: unknown;
+    dispatch?: Dispatch;
+    extra?: unknown;
+    rejectValue?: unknown;
+}
+```
+
+使い道は第二引数の関数の第二引数で使う  
+```ts
+const hoge = createAsyncThunk('hoge', (arg, thunkAPI) => {})
+//                                         ^^^^^^^^^ これ
+```
+
+
 
