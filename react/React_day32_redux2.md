@@ -234,6 +234,26 @@ dispatch(fetchUserById(123))
 **`payloadCreater`**  
 callback関数は非同期を含むPromiseを返す必要がある  
 同期的な値を返すこともある  
+payloadCreaterは二つの引数を受け取る  
 
+- `arg`
+  - 必要な引数を受け取る  
+  - 引数は1つしか使えないので、複数必要な場合はこのようにオブジェクトにする必要がある
+  ```ts
+  async (arg, thunkAPI) => {
+    // 引数は1つしか使えないので、複数必要な場合はこのようにオブジェクトにする必要がある
+    const { org, repo, issueId } = arg;
+  ```
+- `thunkAPI`
+  - thunkAPIは以下のような値を持つ
+  ```ts
+  interface ThunkAPI {
+    dispatch: Function;
+    getState: Function;
+    extra?: any;
+    requestId: string;
+    signal: AbortSignal;
+  }
+  ```
 
 
