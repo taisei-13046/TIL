@@ -221,5 +221,15 @@ const usersSlice = createSlice({
 dispatch(fetchUserById(123))
 ```
 
+#### createAsyncThunkの受け取るパラメータ  
+`type`, `payloadCreater`, `options`の三つ  
+
+**`type`**   
+例えば、`users/requestStatus`という文字列を渡した場合、  
+- pending: 'users/requestStatus/pending'
+- fulfilled: 'users/requestStatus/fulfilled'
+- rejected: 'users/requestStatus/rejected'
+とそれぞれのaction typeが作成される  
+
 
 
