@@ -80,6 +80,7 @@ Reduxはアクションオブジェクトしか理解できないのでは？そ
 そのため、さらに変更が必要になる  
 
 #### Redux-Thunk Middlewareのinstall
+redux-thunkをinstallするとdispatchが以下のように書き換えられる
 ```ts
 actionOrThunk =>
   typeof actionOrThunk === 'function'
@@ -124,6 +125,19 @@ const thunk = thunkedYell('bonjour') // まだ実行されてない
 thunk() // 'bonjour!' //必要時に呼ぶ
 ```
 複雑すぎてわからん...  
+
+React / Redux はどういう風にThunkの仕組みを利用しているのかというと、  
+主にはactions、 action creators、 componentsが「直接的に」データに(Asyncなどによる)影響を起こさせないようにしている  
+それらの処理は全部Thunkに包んで、そのあとmiddlewareがThunk呼ぶ時に実行される  
+このようの仕組みだと、少なくともMiddlewareレベル以外のところは比較的にピュア（Async関連の処理をしない）になる  
+
+#### 純粋関数とは
+ずっとpureの話が出てきたが何かわかっていなかった  
+純粋関数の特徴は以下である。
+
+- 引数が同じ場合、常に同じ返り値となる。（参照透過性）
+- 副作用が発生しない
+
 
 
 
