@@ -79,5 +79,30 @@ Reduxはアクションオブジェクトしか理解できないのでは？そ
 
 そのため、さらに変更が必要になる  
 
+#### Redux-Thunk Middlewareのinstall
+```ts
+actionOrThunk =>
+  typeof actionOrThunk === 'function'
+    ? actionOrThunk(dispatch, getState)
+    : passAlong(actionOrThunk);
+```
+通常のactionオブジェクトが呼ばれた場合は通常のようにそれをreducerに渡す  
+仮に関数がdispatchされた場合はredux-thunkはその関数を呼びstoreのdispatchとgetStateを渡す  
+redux-thunkはreducerにthunkを転送しない  
+
+これで統一されたAPIを使うことができ、純粋な関数を保つことができるようになった  
+
+##### なぜPromiseではなくThunkなのか
+Promiseを使うと、actionが不純になり再利用性が低下する  
+もちろんPromiseを使うこともできるがThunkの方がよりシンプルなアプローチができる  
+
+参考資料
+- [redux-thunk](https://github.com/reduxjs/redux-thunk)  
+- [Thunks in Redux: The Basics](https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60)
+
+
+
+
+
 
 
