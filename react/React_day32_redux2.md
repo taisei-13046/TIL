@@ -160,8 +160,23 @@ function createAsyncThunk<
     Thunkが引き回しているコンテキストの型
 >(/* ... */)
 ```
+#### 1. Returned
+Returned は AsyncThunkPayloadCreator に渡されている  
+```ts
+type AsyncThunkPayloadCreator<
+    Returned,
+    ThunkArg = void,
+    ThunkApiConfig extends AsyncThunkConfig = {}
+> = (arg: ThunkArg, thunkAPI: GetThunkAPI<ThunkApiConfig>) => AsyncThunkPayloadCreatorReturnValue<Returned, ThunkApiConfig>;
+```
+`AsyncThunkPayloadCreator` から渡ってきた Returned は更に `AsyncThunkPayloadCreatorReturnValue` に渡されている  
 
-
-
+```ts
+type AsyncThunkPayloadCreatorReturnValue<
+    Returned,
+    ThunkApiConfig extends AsyncThunkConfig
+> = Promise<Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>> | Returned | RejectWithValue<GetRejectValue<ThunkApiConfig>>;
+```
+入ってきた Returned がそのまま `Promise<T>` の中に渡されている  
 
 
