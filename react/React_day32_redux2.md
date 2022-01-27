@@ -340,7 +340,24 @@ type RejectedWithValue = <ThunkArg, RejectedValue>(
 ) => RejectedWithValueAction<ThunkArg, RejectedValue>
 ```
 
+### Handling Thunk Results
+```ts
+// in the component
+import { unwrapResult } from '@reduxjs/toolkit'
 
+// in the component
+const onClick = () => {
+  dispatch(fetchUserById(userId))
+    .then(unwrapResult)
+    .then((originalPromiseResult) => {
+      // handle result here
+    })
+    .catch((rejectedValueOrSerializedError) => {
+      // handle result here
+    })
+}
+```
+unwrapResultを使うと成功時（fulfilled時）に.then(...)、失敗時（rejected時）に.catch(...)へと処理を分けてくれる  
 
 
 
