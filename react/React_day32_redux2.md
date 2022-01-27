@@ -256,4 +256,19 @@ payloadCreaterは二つの引数を受け取る
   }
   ```
 
+#### Return
+返り値はdefaultのthunk action createrを返す  
+thunk action createrには`pending`, `fulfilled`, `rejected`がネスとされたフィールドとして追加されている  
+
+1. dispatchを実行すると、まずはpendingのactionを実行する  
+2. payloadCreatorを呼んで、Promiseの結果を待つ
+3. Promiseが正常に解決したら、Promiseの値をaction.payloadとしてfulfilledアクションをdispatchする
+4. PromiseがrejectWithValueとして解決した場合、rejectedアクションをaction.payloadに渡された値とaction.error.messageとしてdispatchする
+5. Promiseが失敗した場合、拒否されたアクションをシリアル化されたエラー値と共にaction.errorとしてdispatchする
+
+
+
+
+
+
 
