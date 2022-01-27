@@ -138,8 +138,28 @@ React / Redux はどういう風にThunkの仕組みを利用しているのか�
 - 引数が同じ場合、常に同じ返り値となる。（参照透過性）
 - 副作用が発生しない
 
+## createAsyncThunkについて
+[Redux Toolkit で Async Thunk が曲者なので詳しく解説する](https://times.hrbrain.co.jp/entry/2020/12/08/redux-toolkit-async-thunk)  
 
-
+createAsyncThunkの型  
+```ts
+function createAsyncThunk<
+    Returned,
+    ThunkArg = void,
+    ThunkApiConfig extends AsyncThunkConfig = {}
+>(
+    typePrefix: string,
+    payloadCreator: AsyncThunkPayloadCreator<Returned, ThunkArg, ThunkApiConfig>,
+    options?: AsyncThunkOptions<ThunkArg, ThunkApiCongi>
+): AsyncThunk<Returned, ThunkArg, ThunkApiConfig>;
+```
+```ts
+function createAsyncThunk<
+    第2引数の関数の返り値,
+    第2引数の関数の第1引数の型（生成された関数を実行する時に必要な引数）,
+    Thunkが引き回しているコンテキストの型
+>(/* ... */)
+```
 
 
 
