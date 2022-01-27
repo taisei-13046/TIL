@@ -226,10 +226,14 @@ dispatch(fetchUserById(123))
 
 **`type`**   
 例えば、`users/requestStatus`という文字列を渡した場合、  
-- pending: 'users/requestStatus/pending'
-- fulfilled: 'users/requestStatus/fulfilled'
-- rejected: 'users/requestStatus/rejected'
+- pending: `users/requestStatus/pending`
+- fulfilled: `users/requestStatus/fulfilled`
+- rejected: `users/requestStatus/rejected`
 とそれぞれのaction typeが作成される  
+
+**`payloadCreater`**  
+callback関数は非同期を含むPromiseを返す必要がある  
+同期的な値を返すこともある  
 
 
 
