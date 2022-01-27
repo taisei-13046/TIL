@@ -100,6 +100,31 @@ Promiseを使うと、actionが不純になり再利用性が低下する
 - [redux-thunk](https://github.com/reduxjs/redux-thunk)  
 - [Thunks in Redux: The Basics](https://medium.com/fullstack-academy/thunks-in-redux-the-basics-85e538a3fe60)
 
+上の英語記事をわかりやすく解説してくれてるQiitaがあった  
+[redux-thunk入門、簡単まとめ](https://qiita.com/hiroya8649/items/c202742c99d2cc6159b8)  
+
+### Thunkについて
+そのまま関数Aを利用するのではなく、まず関数Bに変数を提供して、関数Bはそれを使って関数Aの中身を完成させる。  
+最後は完成した関数Aを返す、必要な時に関数Aを呼び出す流れ  
+```js
+function yell (text) {
+  console.log(text + '!')
+}
+
+yell('bonjour') // 'bonjour!'
+
+function thunkedYell (text) {
+  return function thunk () {
+    console.log(text + '!')
+  }
+}
+
+const thunk = thunkedYell('bonjour') // まだ実行されてない
+
+thunk() // 'bonjour!' //必要時に呼ぶ
+```
+複雑すぎてわからん...  
+
 
 
 
