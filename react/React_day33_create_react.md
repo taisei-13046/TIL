@@ -148,6 +148,34 @@ eslintの設定は基本的にrecommendされているものを採用した
   - ESLint は、実行時のカレントディレクトリを起点にして、上位のディレクトリの設定ファイル (.eslintrc.~) を探していく  
   - root: true の指定があると、この検索の振る舞いをそこで停止できる
   - プロジェクトのトップディレクトリに置く .eslintrc.* には、この指定をしておくとよい
+- `env`
+  - どのようなグローバルオブジェクトを宣言なしで参照可能にするかを ESLint に知らせるための設定
+  - [ESLint - Specifying Environments](https://eslint.org/docs/user-guide/configuring/language-options#specifying-environments)  
+- `extends`
+  - 共有設定の適用 (Sharable configuration)
+  - 複数のルールをまとめたコンフィギュレーション名を適用
+  - ここで指定可能ものを sharable configuration オブジェクトと呼ぶ
+  - ESLint 標準のもの（eslint:recommeded など）以外は、npm パッケージをインストールすることで指定できるようになる
+  - 内部のルール設定が重複する場合は、後から指定したものが優先されることに注意
+  - sharable configuration のみを提供している npm パッケージには、eslint-config- というプレフィックスが付けられており、extends プロパティで指定するときは、このプレフィックスを省略できる
+    - eslint-config-airbnb パッケージ → airbnb
+- `parser`
+  - 使用するパーサー
+  - ESLint は標準で JavaScript コードのパースに対応していますが、TypeScript コード (.ts、.tsx) を扱えるようにするには、  
+    TypeScript 用のパーサー (@typescript-eslint/parser) をインストールして指定する必要がある
+- `parserOption`
+  - パーサーの設定
+  - ESLint のデフォルトパーサーは ECMAScript 5 の構文で記述されたコードを想定している
+    ```json
+    parserOptions:
+    ecmaFeatures:
+      jsx: true
+    ecmaVersion: 2021   # same as 12
+    sourceType: module  # use import/export
+    ```
+- `plugins`
+  - 使用するプラグインの指定
+  - 
 
 
 参考にした資料 
