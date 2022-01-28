@@ -54,7 +54,9 @@ jobs:
 公式では`${{ secrets.CHROMATIC_PROJECT_TOKEN }}`にproject-tokenを上書きしろと言っているが、流石にまずいだろ  
 調べたところ、githubActionsは`**github secret**`に値を設定することで環境変数として読み取れるみたい!!  
 
-参考にした記事: [chromaticでstorybookのビジュアルテスト](https://zenn.dev/kolife01/scraps/db60998387308a)  
+参考にした記事: 
+- [chromaticでstorybookのビジュアルテスト](https://zenn.dev/kolife01/scraps/db60998387308a)  
+- [secrets 公式](https://docs.github.com/ja/actions/security-guides/encrypted-secrets)
 
 
 
