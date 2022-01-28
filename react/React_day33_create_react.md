@@ -58,5 +58,48 @@ jobs:
 - [chromaticでstorybookのビジュアルテスト](https://zenn.dev/kolife01/scraps/db60998387308a)  
 - [secrets 公式](https://docs.github.com/ja/actions/security-guides/encrypted-secrets)
 
+### Github Actionについて
+ワークフローの構成
+```
+ワークフロー（YAMLファイル）
+  └ jobs:
+    └ ジョブ(名前は任意)
+       └ steps:
+         └ アクション
+```
+
+ワークフロー
+- .github/workflows/ ディレクトリ以下に配置されるYAMLファイルが個別のワークフローとなる。
+- 複数のワークフローを設置してもOK。
+- ワークフローは並列で実行される。
+
+ジョブ
+- 各ジョブは仮想環境の新しいインスタンスで実行される。
+  - したがって、ジョブ間で環境変数やファイル、セットアップ処理の結果などは共有されない。
+- ジョブ間の依存を定義して待ち合わせることができる。
+- データの受け渡しが必要ならアーティファクト経由で。
+
+Step
+- Jobが実行する処理の集合。
+- 同じJobのStepは同じ仮想環境で実行されるのでファイルやセットアップ処理は共有できる。
+- しかし各ステップは別プロセスなのでステップ内で定義した環境変数は共有できない。
+  - `jobs.<job_id>.env`で定義した環境変数は全Step で利用できる
+
+アクション
+- ワークフローの最小構成要素。
+- 単にrunでコマンドを実行することもできるし、Githubやサードパーティの公開アクションを利用(use)することもできる。
+- コンテキストを利用して秘密情報を受け取ったりできる
+
+[Github Actionsの使い方メモ](https://qiita.com/HeRo/items/935d5e268208d411ab5a)  
+
+### eslint, prettierの設定
+
+必要なパッケージのinstall
+```
+yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint
+```
+
+
+
 
 
