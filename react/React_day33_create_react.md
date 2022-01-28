@@ -233,6 +233,7 @@ endOfLine: lf
     "endOfLine": "auto"
     ```
 
+参考記事 [.prettierrc](https://qiita.com/takeshisakuma/items/bbb2cd2f1c65de70e363#prettierrc)  
 
 
 
