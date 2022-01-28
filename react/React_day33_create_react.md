@@ -99,6 +99,61 @@ Step
 yarn add -D @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint
 ```
 
+`.eslintrc.js`ファイルを作成してESLintの設定を書いていく  
+```ts
+/* eslint-disable */
+
+module.exports = {
+  root: true,
+  env: {
+    es2021: true,
+  },
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'plugin:@typescript-eslint/recommended',
+    'plugin:react-hooks/recommended',
+    'prettier',
+  ],
+  settings: {
+    react: {
+      version: 'detect',
+    },
+  },
+  parser: '@typescript-eslint/parser',
+  parserOptions: {
+    ecmaFeatures: {
+      jsx: true,
+    },
+    ecmaVersion: 12,
+  },
+  plugins: ['react', '@typescript-eslint'],
+  rules: {
+    '@typescript-eslint/ban-types': [
+      'error',
+      {
+        extendDefaults: true,
+        types: {
+          '{}': false,
+        },
+      },
+    ],
+  },
+}
+```
+eslintの設定は基本的にrecommendされているものを採用した  
+
+#### 各プロパティの説明
+- `root: true`  
+  - ESLint は、実行時のカレントディレクトリを起点にして、上位のディレクトリの設定ファイル (.eslintrc.~) を探していく  
+  - root: true の指定があると、この検索の振る舞いをそこで停止できる
+  - プロジェクトのトップディレクトリに置く .eslintrc.* には、この指定をしておくとよい
+
+
+参考にした資料 
+- [Reactの開発環境を整える~husky v6で各Linterの実行まで~](https://zenn.dev/okaharuna/articles/aa715f2d9c1929)  
+- [ESLint の設定ファイル (.eslintrc) の各プロパティの意味を理解する](https://maku.blog/p/j6iu7it/)
+
 
 
 
