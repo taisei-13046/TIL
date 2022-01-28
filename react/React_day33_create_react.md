@@ -181,10 +181,57 @@ eslintの設定は基本的にrecommendされているものを採用した
   - 個々のルール単位で有効／無効にする設定をする
   - 多くのケースでは、extends による共有設定で大まかなルール設定を行い、ここで個別ルールを細かく調整する  
 
+rulesに今回追加した内容: {}の型指定を許可する  
+[[ban-types] Should not ban {} by default!](https://github.com/typescript-eslint/typescript-eslint/issues/2063#issuecomment-675156492)  
 
 参考にした資料 
 - [Reactの開発環境を整える~husky v6で各Linterの実行まで~](https://zenn.dev/okaharuna/articles/aa715f2d9c1929)  
 - [ESLint の設定ファイル (.eslintrc) の各プロパティの意味を理解する](https://maku.blog/p/j6iu7it/)
+
+### prettierの設定
+```
+trailingComma: all
+tabWidth: 2
+semi: false
+endOfLine: lf
+```
+今回はこのような設定を書いた  
+- `trailingComma`
+  - 末尾のカンマの設定
+    ```
+    //ES5で有効な末尾のカンマ(オブジェクト、配列など) デフォルト
+    "trailingComma": "es5"
+
+    //末尾にカンマをつけない(デフォルト)
+    "trailingComma": "none"
+
+    //可能な限り末尾にカンマを付ける(関数の引数含む) ※node 8かtransformが必要
+    "trailingComma": "all"
+    ```
+- `semi`
+  - ステートメントの最後にセミコロンを追加
+    ```
+    //最後にセミコロンを追加(デフォルト)
+    "semi": true
+
+    //セミコロンが無いとエラーになる箇所にだけセミコロンを追加
+    "semi": false
+    ```
+- `endOfLine`
+  - 改行の文字コードを指定
+    ```
+    //Linux、MacOS、gitリポジトリで一般的な、ラインフィード(\n)のみ
+    "endOfLine": "lf"
+
+    //Windowsで一般的な、キャリッジリターン + ラインフィード文字(\r\n)
+    "endOfLine": "crlf"
+
+    //キャリッジリターン文字(\r)のみ
+    "endOfLine": "cr"
+
+    //既存の行末を維持(デフォルト)
+    "endOfLine": "auto"
+    ```
 
 
 
