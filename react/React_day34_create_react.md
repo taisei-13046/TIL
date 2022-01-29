@@ -147,7 +147,32 @@ React.createElement("div", {}, 'Children')
 React.createElement("div", 'Child 1', 'Child 2')
 ```
 
+3. `react/no-danger-with-children`  
+Report when a DOM element is using both children and dangerouslySetInnerHTML  
+DOM 要素が children と dangerouslySetInnerHTML の両方を使用している場合reportする  
 
+#### dangerouslySetInnerHTMLとは
+
+マークダウンエディタを作りたい場合など、ブラウザ上で記述したHTMLのプレビューを作りたいときに使う  
+しかし、XSSになる危険性があるのであまり使う機会は少ないかも  
+
+参考記事 [ReactのdangerouslySetInnerHTML使ってみた](https://qiita.com/hiromoon/items/f3ed77abd338139ba97b)  
+
+4. `react/no-deprecated`	
+非推奨のメソッドを使用しないようにする  
+incorrect
+```tsx
+// old lifecycles (since React 16.9)
+componentWillMount() { }
+componentWillReceiveProps() { }
+componentWillUpdate() { }
+```
+correct
+```tsx
+UNSAFE_componentWillMount() { }
+UNSAFE_componentWillReceiveProps() { }
+UNSAFE_componentWillUpdate() { }
+```
 
 
 
