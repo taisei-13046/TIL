@@ -60,15 +60,53 @@ switch文でcaseの重複を許可しない。
 10. `no-empty`  
 空のブロックを許可しない。
 
+11. `no-ex-assign`  
+try...catch 文でcatchブロック内で例外オブジェクトを上書きすることを許可しない。
+```js
+try {
+    // code
+} catch (e) {
+    e = 10; // 例外オブジェクトを上書き
+}
+```
 
+12. `no-extra-boolean-cast`  
+不必要なboolean型の型変換を許可しない。
 
+13. `no-extra-semi`  
+不必要なセミコロンを許可しない。
 
+14. `no-func-assign`  
+関数宣言として記述された関数への上書きを許可しない。
 
+15. `no-inner-declarations`  
+ネストブロック内での変数や関数宣言を許可しない。 （デフォルトでは関数宣言のみ）
+```js
+if (test) {
+    function doSomething() { }
+}
+ 
+function doSomethingElse() {
+    if (test) {
+        function doAnotherThing() { }
+    }
+}
+```
 
+16. `no-invalid-regexp`  
+RegExp コンストラクタ内で無効な正規表現文字列を許可しない。
 
+17. `no-irregular-whitespace`  
+Unicodeの特殊な空白文字を許可しない。
 
+18. `no-obj-calls`  
+グローバルオブジェクトを関数として呼び出すことを許可しない。
 
+19. `no-regex-spaces`  
+正規表現文字列の中で２文字以上の連続した空白を許可しない。
 
-
+20. `no-sparse-arrays`  
+空のスロットを含む配列を許可しない。  
+連続したカンマはカンマのタイプミスである可能性がある。  
 
 
