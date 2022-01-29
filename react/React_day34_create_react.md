@@ -149,7 +149,7 @@ React.createElement("div", 'Child 1', 'Child 2')
 
 3. `react/no-danger-with-children`  
 Report when a DOM element is using both children and dangerouslySetInnerHTML  
-DOM 要素が children と dangerouslySetInnerHTML の両方を使用している場合reportする  
+(DOM 要素が children と dangerouslySetInnerHTML の両方を使用している場合reportする)  
 
 #### dangerouslySetInnerHTMLとは
 
@@ -159,7 +159,7 @@ DOM 要素が children と dangerouslySetInnerHTML の両方を使用してい�
 参考記事 [ReactのdangerouslySetInnerHTML使ってみた](https://qiita.com/hiromoon/items/f3ed77abd338139ba97b)  
 
 4. `react/no-deprecated`	
-非推奨のメソッドを使用しないようにする  
+(非推奨のメソッドを使用しないようにする)  
 incorrect
 ```tsx
 // old lifecycles (since React 16.9)
@@ -176,13 +176,82 @@ UNSAFE_componentWillUpdate() { }
 
 5. `react/no-direct-mutation-state`  
 Prevent direct mutation of this.state  
-this.stateの直接的な変更を防ぐ  
+(this.stateの直接的な変更を防ぐ)  
 
 6. `react/no-find-dom-node`  
 Prevent usage of findDOMNode  
-findDOMNodeの使用を
-h失せ具
+(findDOMNodeの使用を防ぐ)  
 
+7. `react/no-is-mounted`  
+Prevent usage of isMounted  
+(isMountedの使用を防ぐ)  
+
+8. `react/no-render-return-value`  
+Prevent usage of the return value of React.render
+(React.renderの戻り値を使用しないようにする)
+
+9. `react/no-string-refs`  
+Prevent string definitions for references and prevent referencing this.refs  
+(リファレンスに文字列を定義し、this.refs を参照できないようにする。)  
+
+inccorect
+```js
+var component = this.refs.hello;
+```
+
+10. `react/no-unescaped-entities`  
+Detect unescaped HTML entities, which might represent malformed tags  
+(不正なタグを表すかもしれない、エスケープされていないHTMLエンティティを検出する)  
+
+example
+```tsx
+<MyComponent>{'Text'}}</MyComponent>
+```
+ 
+11. `react/no-unknown-property`  
+Prevent usage of unknown DOM property  
+(unknownなDOMプロパティの使用を防止する)  
+
+incorrect
+```tsx
+var Hello = <div class="hello">Hello World</div>;
+```
+
+correct
+```tsx
+var Hello = <div className="hello">Hello World</div>;
+```
+
+12. `react/prop-types`  
+Prevent missing props validation in a React component definition  
+(Reactコンポーネント定義でpropsの検証漏れを防止する)  
+
+example
+```tsx
+interface Props {
+  age: number
+}
+function Hello({ name }: Props) {
+  return <div>Hello {name}</div>;
+  // 'name' type is missing in props validation
+}
+```
+
+13. `react/react-in-jsx-scope`  
+Prevent missing React when using JSX  
+(JSX使用時にReactが欠落するのを防ぐ)  
+
+correct example
+```tsx
+import React from 'react';
+
+var Hello = <div>Hello {this.props.name}</div>;
+```
+
+14. `react/require-render-return`  
+Enforce ES5 or ES6 class for returning value in render function  
+(レンダー関数で値を返すためにES5またはES6クラスを強制する)  
+これもクラスコンポーネントの話なので割愛  
 
 
 
