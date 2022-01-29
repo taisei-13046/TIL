@@ -20,3 +20,35 @@ Issueのtemplateを作成したい場合には、二つの方法がある。
 
 ## ESLintについて
 ESLint設定しておきながらあんまり知らないな〜と思ったので調べてみる  
+今回、"eslint:recommended"を指定したが実際中で何をチェックしているのか知らなかった  
+
+### "eslint:recommended"は何をチェックしているのか
+この記事を参照 [ESLintの推奨設定（eslint:recommended）のチェック内容](https://www.tam-tam.co.jp/tipsnote/javascript/post11934.html)  
+[List of available rules - ESLint - Pluggable JavaScript linter](https://eslint.org/docs/rules/)  
+
+1. `no-cond-assign`
+if, for, while, and do...whileの条件式で代入演算子（=など）を許可しない。  
+比較演算子（==,===など）のタイプミスで代入演算子が入力された箇所などを見つけてくれる  
+
+2. `no-console`
+consoleオブジェクトのメソッド（console.log等）の記述を許可しない。  
+公開時の消し忘れを防いでくれる。  
+
+3. `no-constant-condition`
+if, for, while, and do...whileや三項演算子（?:）の条件式を定数式（リテラルなど）にすることを許可しない。  
+必ず実行されたり、一度も実行されなかったりするなど、条件文として不適切な記述が無いかチェックしてくれる  
+
+4. `no-control-regex`
+正規表現内でASCII制御文字の使用を許可しない。   
+
+5. `no-debugger`
+開発時のブレークポイントの設定などに使用するdebuggerステートメントの記述を許可しない。  
+公開時の消し忘れを防いでくれる。
+
+6. 
+
+
+
+
+
+
