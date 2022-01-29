@@ -174,6 +174,17 @@ UNSAFE_componentWillReceiveProps() { }
 UNSAFE_componentWillUpdate() { }
 ```
 
+5. `react/no-direct-mutation-state`  
+Prevent direct mutation of this.state  
+this.stateの直接的な変更を防ぐ  
+
+6. `react/no-find-dom-node`  
+Prevent usage of findDOMNode  
+findDOMNodeの使用を
+h失せ具
+
+
+
 
 
 
