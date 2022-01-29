@@ -308,6 +308,29 @@ window.opener.location="https://www.adc.com/"
 
 **この対策としては`rel="noopener"`を設定することで解決できる**  
 
+19. `react/jsx-no-undef`  
+Disallow undeclared variables in JSX  
+(JSXで宣言されていない変数を禁止する)  
+
+20. `react/jsx-uses-react`  
+Prevent React to be marked as unused  
+(Reactがunusedとされないようにする)  
+
+incorrect example  
+```tsx
+var React = require('react');
+
+// nothing to do with React
+```
+
+21. `react/jsx-uses-vars`  
+Prevent variables used in JSX to be marked as unused  
+(JSXで使用される変数が未使用とマークされないようにする。)  
+
+以上がeslint-plugin-reactのrecommendされているLintの内容  
+
+
+
 
 
 
