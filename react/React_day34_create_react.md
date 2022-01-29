@@ -17,3 +17,6 @@ Issueのtemplateを作成したい場合には、二つの方法がある。
 
 [リポジトリ用に Issue テンプレートを設定する](https://docs.github.com/ja/communities/using-templates-to-encourage-useful-issues-and-pull-requests/configuring-issue-templates-for-your-repository)  
 
+
+## ESLintについて
+ESLint設定しておきながらあんまり知らないな〜と思ったので調べてみる  
