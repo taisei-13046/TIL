@@ -112,6 +112,40 @@ Unicodeの特殊な空白文字を許可しない。
 一通り見たけど、割と当たり前な部分をチェックしてくれてるんだな〜〜
 
 ### "react/recommended"は何をチェックしているのか？
+[eslint-plugin-react](https://github.com/yannickcr/eslint-plugin-react#list-of-supported-rules)  
+
+1. `react/display-name`  
+Prevent missing displayName in a React component definition  
+(Reactコンポーネント定義でdisplayNameが欠落しないようにする)  
+＊これはクラスコンポーネントの際に必要になるため割愛  
+
+2. `react/no-children-prop`  
+Prevent passing of children as props.  
+(childrenをpropsとして渡すことを禁止する)  
+
+incorrect  
+```tsx
+<div children='Children' />
+
+<MyComponent children={<AnotherComponent />} />
+<MyComponent children={['Child 1', 'Child 2']} />
+
+React.createElement("div", { children: 'Children' })
+```
+correct
+```tsx
+<div>Children</div>
+
+<MyComponent>Children</MyComponent>
+
+<MyComponent>
+  <span>Child 1</span>
+  <span>Child 2</span>
+</MyComponent>
+
+React.createElement("div", {}, 'Children')
+React.createElement("div", 'Child 1', 'Child 2')
+```
 
 
 
