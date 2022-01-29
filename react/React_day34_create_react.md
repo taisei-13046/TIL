@@ -254,7 +254,21 @@ Enforce ES5 or ES6 class for returning value in render function
 これもクラスコンポーネントの話なので割愛  
 
 
+ここから下はJSXについて  
 
+15. `react/jsx-key`  
+Report missing key props in iterators/collection literals  
+(key propsの欠落を検知する)   
+
+icorrect example  
+```tsx
+data.map(x => <Hello>{x}</Hello>);
+```
+correct
+
+```tsx
+data.map((x, i) => <Hello key={i}>{x}</Hello>);
+```
 
 
 
