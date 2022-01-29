@@ -285,4 +285,30 @@ correct
 return <div>{/* empty div */}</div>;
 ```
 
+17. `react/jsx-no-duplicate-props`  
+Prevent duplicate properties in JSX   
+(JSXでのプロパティの重複を防ぐ)  
+
+example
+```tsx
+<Hello name="John" name="John" />;
+```
+
+18. `react/jsx-no-target-blank`  
+Prevent usage of unsafe `target='_blank'`  
+(安全でない `target='_blank'` () の使用を防止する。)  
+
+安全でない`target='_blank'`って何？と思いました  
+#### `target="_blank"`の何が怖いのか
+新しく開かれたウィンドウでJavaScriptのwindow.openerを使用し、親ウィンドウ（リンク元）を操作できてしまう点  
+以下のようなたった1行があるだけで、`target="_blank"`で新しく開かれたウィンドウから親ウィンドウを「hoge.com」へ遷移させることもできてしまう  
+```js
+window.opener.location="https://www.adc.com/"
+```
+
+**この対策としては`rel="noopener"`を設定することで解決できる**  
+
+
+
+
 
