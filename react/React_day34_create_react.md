@@ -270,5 +270,19 @@ correct
 data.map((x, i) => <Hello key={i}>{x}</Hello>);
 ```
 
+16. `react/jsx-no-comment-textnodes`  
+Comments inside children section of tag should be placed inside braces  
+(コメントがテキストノードとして挿入されないようにする)  
+
+incorrect example  
+```tsx
+return (
+  <div>// empty div</div>
+);
+```
+correct
+```tsx
+return <div>{/* empty div */}</div>;
+```
 
 
