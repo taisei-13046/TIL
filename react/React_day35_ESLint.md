@@ -120,7 +120,61 @@ const a: string = 'str';
 const a = 'str';
 ```
 
-11. 
+11. `@typescript-eslint/no-misused-new`  
+Enforce valid definition of new and constructor  
+(newとコンストラクタの有効な定義の強制)  
+クラスコンポーネントは割愛
+
+12. `@typescript-eslint/no-misused-promises`  
+Avoid using promises in places not designed to handle them  
+(このルールは、TypeScriptコンパイラがプロミスを許可しているにもかかわらず、適切に処理されていない場所でのプロミスの使用を禁止するものである。このような状況は、awaitキーワードが抜けていたり、非同期関数がどのように扱われ、待たされるのかについて単に誤解していたりすることで発生することがよくあります。)  
+適切なawaitが必要  
+
+13. `@typescript-eslint/no-namespace`  
+Disallow the use of custom TypeScript modules and namespaces  
+(カスタムTypeScriptモジュールとネームスペースの使用を禁止する)  
+カスタムTypeScriptモジュール（module foo {}）と名前空間（namespace foo {}）は、TypeScriptコードを整理するための時代遅れの方法と考えられています。ES2015のモジュール構文が好まれるようになりました(import/export)。  
+
+14. `@typescript-eslint/no-non-null-asserted-optional-chain`
+Disallows using a non-null assertion after an optional chain expression  
+(オプショナル・チェーン式は、オプショナル・プロパティがヌルである場合、未定義を返すように設計されています。オプショナル連鎖式の後に NULL でないアサーションを使用するのは間違っており、コードに深刻な型安全性の穴を開けてしまいます。)  
+
+example
+```ts
+//incorrect
+foo?.bar!;
+foo?.bar()!;
+
+//correct
+foo?.bar;
+(foo?.bar).baz;
+```
+
+15. `@typescript-eslint/no-non-null-assertion`
+Disallows non-null assertions using the ! postfix operator  
+(ポストフィックス演算子「!」を用いた非NULLアサーションの禁止)  
+
+```ts
+// incorrect
+interface Foo {
+  bar?: string;
+}
+
+const foo: Foo = getFoo();
+const includesBaz: boolean = foo.bar!.includes('baz');
+
+//correct
+interface Foo {
+  bar?: string;
+}
+
+const foo: Foo = getFoo();
+const includesBaz: boolean = foo.bar?.includes('baz') ?? false;
+```
+
+
+
+
 
 
 
