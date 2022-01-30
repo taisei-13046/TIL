@@ -176,7 +176,20 @@ const includesBaz: boolean = foo.bar?.includes('baz') ?? false;
 Disallow aliasing this  
 (このルールでは、thisに変数を割り当てることは禁止されています。)  
 
-17. 
+17. `@typescript-eslint/no-unnecessary-type-assertion`  
+Warns if a type assertion does not change the type of an expression  
+(型アサーションが式の型を変更しない場合に警告を出す)  
+
+example
+```ts
+type Foo = 3;
+const foo = 3 as Foo;
+```
+
+18. `@typescript-eslint/no-unnecessary-type-constraint`  
+Disallows unnecessary constraints on generic types  
+(型パラメータ(`<T>`)はextendsキーワードで "制約 "されることがある)  
+
 
 
 
