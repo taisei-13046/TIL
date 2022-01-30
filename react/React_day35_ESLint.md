@@ -172,6 +172,11 @@ const foo: Foo = getFoo();
 const includesBaz: boolean = foo.bar?.includes('baz') ?? false;
 ```
 
+16. `@typescript-eslint/no-this-alias`
+Disallow aliasing this  
+(このルールでは、thisに変数を割り当てることは禁止されています。)  
+
+17. 
 
 
 
