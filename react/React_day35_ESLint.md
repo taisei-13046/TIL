@@ -190,6 +190,119 @@ const foo = 3 as Foo;
 Disallows unnecessary constraints on generic types  
 (型パラメータ(`<T>`)はextendsキーワードで "制約 "されることがある)  
 
+19. `@typescript-eslint/no-unsafe-argument`  
+Disallows calling a function with an any type value	  
+(any型の値を持つ関数の呼び出しを禁止する)  
+
+20. `@typescript-eslint/no-unsafe-assignment`  
+Disallows assigning any to variables and properties  
+(anyな変数やプロパティへの代入を禁止する)  
+
+```ts
+const x = 1 as any,
+  y = 1 as any;
+```
+
+21. `@typescript-eslint/no-unsafe-call`  
+Disallows calling an any type value  
+(any型の呼び出しを禁止する)  
+
+22. `@typescript-eslint/no-unsafe-member-access`  
+Disallows member access on any typed variables  
+(型付き変数へのメンバアクセスを禁止する )
+
+23. `@typescript-eslint/no-unsafe-return`  
+Disallows returning any from a function  
+(returnでanyを返すな！)
+
+#### この上あたりは基本的にanyを使わなければ大丈夫な気がした！
+
+24. `@typescript-eslint/no-var-requires`  
+Disallows the use of require statements except in import statements  
+(import文以外のrequire文の使用を禁止する。)  
+
+
+25. `@typescript-eslint/prefer-as-const`  
+Prefer usage of as const over literal type  
+(リテラル型よりも const 型を優先して使用する。)  
+
+```ts
+// incorrect
+let bar: 2 = 2;
+let foo = <'bar'>'bar';
+let foo = { bar: 'baz' as 'baz' };
+
+//correct
+let foo = 'bar';
+let foo = 'bar' as const;
+let foo: 'bar' = 'bar' as const;
+let bar = 'bar' as string;
+let foo = <string>'bar';
+let foo = { bar: 'baz' };
+```
+
+26. `@typescript-eslint/prefer-namespace-keyword`  
+Require the use of the namespace keyword instead of the module keyword to declare custom TypeScript modules  
+(TypeScriptのカスタムモジュールとES2015の新しいモジュールとの間の混乱を防ぐため、TypeScript v1.5から、キーワードnamespaceがカスタムTypeScriptモジュールを宣言する好ましい方法として採用されるようになりました。)  
+
+#### namespaceって何??
+[TypeScriptのnamespaceは非推奨ではない](https://qiita.com/yuki153/items/a51878ad6a1ce913af48)  
+[TypeScriptで名前空間を定義する (namespace)](https://maku.blog/p/a3eh9w2/)  
+
+
+namespace を使うと、同じファイル内で階層化された名前空間を作ることができますが、あくまでその階層構造はグローバルに共有されています。 一方、モジュールの仕組みを使うと、ファイル単位で名前空間のコンテキストを分けることができます。  
+namespace による名前空間の定義は簡単で、namespace Xxx { ... } というブロックで囲むだけ  
+
+##### namespace が便利な時
+1. オブジェクトとして型を名前付き export したい時
+2. ② ネストした型オブジェクトを export したい時
+3. ③ d.ts で型をグローバルに扱いたい時
+
+27. `@typescript-eslint/restrict-plus-operands`  
+When adding two variables, operands must both be of type number or of type string	  
+(2 つの変数を加算する場合、オペランドは両方とも数値型または文字列型でなければなりません。)  
+
+incorrect
+```ts
+var foo = '5.5' + 5;
+var foo = 1n + 1;
+```
+
+28. `@typescript-eslint/restrict-template-expressions`  
+Enforce template literal expressions to be of string type	  
+(テンプレートリテラル式が文字列型であることの強制)  
+
+```ts
+// incorrect
+const arg1 = [1, 2];
+const msg1 = `arg1 = ${arg1}`;
+
+// correct
+const arg = 'foo';
+const msg1 = `arg = ${arg}`;
+```
+
+29. `@typescript-eslint/triple-slash-reference`  
+Sets preference level for triple slash directives versus ES6-style import declarations  
+(トリプルスラッシュの参照型ディレクティブの使用は、新しいインポートスタイルを優先して推奨されません。)  
+
+#### トリプルスラッシュって何？
+[Triple-Slash Directives](https://qiita.com/murank/items/faff57883338ebdeda12)  
+
+トリプルスラッシュ・ディレクティブは単一の XML タグを含む単一行コメントで、コメントの内容はコンパイラディレクティブとして使用されます。  
+トリプルスラッシュ・ディレクティブはファイルの先頭で使用された場合 のみ 有効  
+
+**`/// <reference path="..." />`**  
+もっとも一般的なディレクティブで、ファイル間の 依存関係 を宣言するために使用  
+トリブルスラッシュ参照はコンパイル時に追加のファイルをインクルードするようコンパイラに伝えます。  
+
+30. `@typescript-eslint/unbound-method`  
+Enforces unbound methods are called with their expected scope  
+(バインドされていないメソッドが期待されるスコープで呼び出されるようにします。)  
+
+
+
+
 
 
 
