@@ -17,4 +17,6 @@
 7. **ESLintやwebpackなどについて**  
 
 ### 今後やりたいこと
-- 
+- 素のJSをもう一度勉強する
+- create-react-appを使用しないでreact環境構築
+- redux, redux toolkitについて
