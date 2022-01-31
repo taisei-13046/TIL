@@ -21,15 +21,18 @@
 [Frontend Developer](https://roadmap.sh/frontend)  
 [React Developer](https://roadmap.sh/react)  
 
-### 1.Internet
+### 1.Internet(Frontend Developer)
 
-- How Does the Internet Work?
+- How Does the Internet Work? -> ⭕️
   - マスタリングTCP/IPで学習 
-- what is HTTP?
-- Browsers and how they work?
-- DNS and how it works?
-- What is Domain Name?
-- What is hosting?
+- what is HTTP? -> 🔺
+  - マスタリングTCP/IPでやったが、もっと学習するべき
+- **Browsers and how they work?** -> ❎
+- DNS and how it works? -> ⭕️
+- What is Domain Name? -> ⭕️
+- What is hosting? -> ❎
+
+### 1. 
 
 
 
