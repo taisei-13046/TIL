@@ -34,24 +34,24 @@
 
 ### 2. HTML, CSS, JS
 #### HTML
-- Learn the basics
-- Writing Semantic HTML
-- Forms and Validations
-- Conventions and Best Practices
-- Accessibility
-- SEO Basics
+- Learn the basics -> 🔺
+- Writing Semantic HTML -> 🔺
+- Forms and Validations -> 🔺
+- Conventions and Best Practices -> ❎
+- Accessibility -> ❎
+- SEO Basics -> ❎
 
 #### CSS
-- Learn the basics
-- Making Layouts
-- Responsive design and Media Queries
+- Learn the basics -> ⭕️
+- Making Layouts -> ⭕️
+- Responsive design and Media Queries -> 🔺
 
 #### JS
-- Syntax and Basic Constructs
-- Learn DOM Manipulation
-- Learn Fetch API / Ajax (XHR)
-- ES6+ and modular JavaScript
-- Understand the concepts Hoisting, Event Bubbling, Scope, Prototype, Shadow DOM, strict
+- Syntax and Basic Constructs -> ❎
+- Learn DOM Manipulation -> ❎
+- Learn Fetch API / Ajax (XHR) -> 🔺
+- ES6+ and modular JavaScript -> 🔺
+- Understand the concepts Hoisting, Event Bubbling, Scope, Prototype, Shadow DOM, strict -> 🔺
 
 
 
