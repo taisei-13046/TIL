@@ -32,6 +32,30 @@
 - What is Domain Name? -> ⭕️
 - **What is hosting?** -> ❎
 
+### 2. HTML, CSS, JS
+#### HTML
+- Learn the basics
+- Writing Semantic HTML
+- Forms and Validations
+- Conventions and Best Practices
+- Accessibility
+- SEO Basics
+
+#### CSS
+- Learn the basics
+- Making Layouts
+- Responsive design and Media Queries
+
+#### JS
+- Syntax and Basic Constructs
+- Learn DOM Manipulation
+- Learn Fetch API / Ajax (XHR)
+- ES6+ and modular JavaScript
+- Understand the concepts Hoisting, Event Bubbling, Scope, Prototype, Shadow DOM, strict
+
+
+
+
 ### 1. Fundamental Topics(React Developer)
 
 - create react app -> 🔺
