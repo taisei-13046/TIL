@@ -16,7 +16,8 @@
 ↓ 案件がはじまりそうになったため、環境構築の勉強
 7. **ESLintやwebpackなどについて**  
 
-### 今後やりたいこと
-- 素のJSをもう一度勉強する
-- create-react-appを使用しないでreact環境構築
-- redux, redux toolkitについて
+### 今後の進め方
+今後は、このロードマップに従って一つずつ進めていきます  
+![image](https://user-images.githubusercontent.com/78260526/151729923-cbfce10f-aea4-44b9-8e99-62b38371979b.png)  
+<img width="580" alt="スクリーンショット 2022-01-31 11 12 39" src="https://user-images.githubusercontent.com/78260526/151730017-04ba2832-74ec-4bd6-9ce3-42b51142eab2.png">  
+
