@@ -34,17 +34,19 @@
 
 ### 1. Fundamental Topics(React Developer)
 
-- create react app
-- JSX
+- create react app -> 🔺
+- JSX -> ⭕️
+  - 公式DOCの内容は抑えた
 - components
-  - Functional components
-  - class components
-- Props vs State
-- Conditional Rendering
-- Component Life Cycle
-- Lists and Keys
-- Composition vs Ingeritance
-- Basic Hooks
+  - Functional components -> ⭕️
+  - class components -> ❎
+    - どこまでやろうか迷ってる
+- Props vs State -> 🔺
+- Conditional Rendering -> ❎
+- Component Life Cycle -> 🔺
+- Lists and Keys -> ⭕️
+- Composition vs Ingeritance -> ❎
+- Basic Hooks -> ⭕️
   - useState
   - useEffect
 
