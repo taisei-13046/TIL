@@ -30,9 +30,23 @@
 - **Browsers and how they work?** -> ❎
 - DNS and how it works? -> ⭕️
 - What is Domain Name? -> ⭕️
-- What is hosting? -> ❎
+- **What is hosting?** -> ❎
 
-### 1. 
+### 1. Fundamental Topics(React Developer)
+
+- create react app
+- JSX
+- components
+  - Functional components
+  - class components
+- Props vs State
+- Conditional Rendering
+- Component Life Cycle
+- Lists and Keys
+- Composition vs Ingeritance
+- Basic Hooks
+  - useState
+  - useEffect
 
 
 
