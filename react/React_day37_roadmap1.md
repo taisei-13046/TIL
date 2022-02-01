@@ -309,7 +309,21 @@ Access-Control-Allow-Credentials: true
 `Access-Control-Allow-Headers`  
 プリフライトリクエストへのレスポンスで使用され、実際のリクエストを行う際に使用される HTTP ヘッダーを示します。  
 
+#### HTTP リクエストヘッダー
+HTTP リクエストを発行する際、オリジン間リソース共有機能を利用するためにクライアントが使用できるヘッダー  
+`Origin`  
+Origin ヘッダーはサイト間のアクセスリクエストやプリフライトリクエストのオリジンを示します。  
+origin は、リクエストを開始したサーバーを示す URL です。ここにパス情報は含めず、サーバー名だけにします。  
 
+Note: origin の値は null にすることができます。
+
+なお、すべてのアクセス制御リクエストにおいて、 Origin ヘッダーは常に送信されます。
+
+`Access-Control-Request-Method`  
+プリフライトリクエストを発信する際に、実際のリクエストを行う際に使用する HTTP メソッドをサーバーに知らせるために使用します。  
+
+`Access-Control-Request-Headers`  
+プリフライトリクエストを発行する際に、実際のリクエストを行う際に (setRequestHeader() などによって) 使用する HTTP ヘッダーをサーバーに知らせるために使用します。
 
 
 
