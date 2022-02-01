@@ -264,7 +264,14 @@ Cookie はドメインに関連付けられます。このドメインが閲覧�
 
 [【CORS】JavaScriptにおけるCORSやPreflightを理解する](https://it-web-life.com/javascript_cors_preflight/)  
 
+#### 資格情報を含むリクエスト
+XMLHttpRequest や Fetch と CORS の両方によって明らかになる最も興味深い機能は、HTTP クッキーと HTTP 資格情報によってわかる「資格情報を含む」リクエストを作成することができることです。既定では、サイト間の XMLHttpRequest または Fetch の呼び出しにおいて、ブラウザーは資格情報を送信しません。 XMLHttpRequest オブジェクトまたは Request のコンストラクターの呼び出し時に、特定のフラグを設定する必要があります。  
 
+資格情報付きリクエストに返答する場合、
+
+- サーバーは Access-Control-Allow-Origin ヘッダーで `"*"` ワイルドカードを指定してはならず、 Access-Control-Allow-Origin: https://example.com のように、明示的にオリジンを指定しなければなりません。
+- サーバーは Access-Control-Allow-Headers ヘッダーで `"*"` ワイルドカードを指定してはならず、 Access-Control-Allow-Headers: X-PINGOTHER, Content-Type のように、明示的にヘッダー名を指定しなければなりません。
+- サーバーは Access-Control-Allow-Methods ヘッダーで `"*"` ワイルドカードを指定してはならず、 Access-Control-Allow-Methods: POST, GET のように、明示的にメソッド名を指定しなければなりません。
 
 
   
