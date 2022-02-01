@@ -325,5 +325,9 @@ Note: origin の値は null にすることができます。
 `Access-Control-Request-Headers`  
 プリフライトリクエストを発行する際に、実際のリクエストを行う際に (setRequestHeader() などによって) 使用する HTTP ヘッダーをサーバーに知らせるために使用します。
 
+参考資料
+- [CORS: OPTIONSリクエスト（preflight request）を避ける](https://qiita.com/nnishimura/items/1f156f05b26a5bce3672)
+- [CORS のプリフライト・リクエストを観察する](https://misc.laboradian.com/web-test/001/) 
+
 
 
