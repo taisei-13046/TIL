@@ -273,8 +273,19 @@ XMLHttpRequest や Fetch と CORS の両方によって明らかになる最も�
 - サーバーは Access-Control-Allow-Headers ヘッダーで `"*"` ワイルドカードを指定してはならず、 Access-Control-Allow-Headers: X-PINGOTHER, Content-Type のように、明示的にヘッダー名を指定しなければなりません。
 - サーバーは Access-Control-Allow-Methods ヘッダーで `"*"` ワイルドカードを指定してはならず、 Access-Control-Allow-Methods: POST, GET のように、明示的にメソッド名を指定しなければなりません。
 
+#### HTTP レスポンスヘッダー
+`Access-Control-Allow-Origin`  
+Access-Control-Allow-Origin は、リソースへのアクセスを許可するオリジンをブラウザーに伝えるための単一のオリジン、または — 資格情報を含まないリクエストにおいては — どのオリジンにもリソースへのアクセスを許可することをブラウザーに伝えるワイルドカード `"*"` のどちらかを指定することができます。  
+```
+Access-Control-Allow-Origin: https://mozilla.org
+Vary: Origin
+```
 
-  
+サーバーがワイルドカード `"*"` ではなく (ホワイトリストの一部としてリクエストするオリジンに基づいて動的に変更される可能性がある) 単一のオリジンを指定した場合は、サーバーは Origin を Vary レスポンスヘッダーに含めて、サーバーのレスポンスが Origin リクエストヘッダーの値によって変化することもクライアントに示してください。  
+
+`Access-Control-Expose-Headers`  
+
+
 
 
 
