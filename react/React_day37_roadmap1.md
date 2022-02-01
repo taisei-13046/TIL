@@ -284,6 +284,30 @@ Vary: Origin
 サーバーがワイルドカード `"*"` ではなく (ホワイトリストの一部としてリクエストするオリジンに基づいて動的に変更される可能性がある) 単一のオリジンを指定した場合は、サーバーは Origin を Vary レスポンスヘッダーに含めて、サーバーのレスポンスが Origin リクエストヘッダーの値によって変化することもクライアントに示してください。  
 
 `Access-Control-Expose-Headers`  
+指定されたヘッダーをブラウザー内の JavaScript (getResponseHeader() など) からアクセスできる許可リストに加えます。  
+
+```
+Access-Control-Expose-Headers: X-My-Custom-Header, X-Another-Custom-Header
+```
+
+`Access-Control-Max-Age`  
+このヘッダーはプリフライトリクエストの結果をキャッシュしてよい時間を示します。  
+```
+Access-Control-Max-Age: <delta-seconds>
+```
+delta-seconds 引数は、結果をキャッシュしてよい時間を秒単位で示します。
+
+`Access-Control-Allow-Credentials`  
+credentials フラグが true である場合に、リクエストへのレスポンスを開示してよいか否かを示します。プリフライトリクエストのレスポンスの一部として用いられたときは、実際のリクエストで資格情報を使用してよいか否かを示します。単純な GET リクエストはプリフライトを行いませんので、リソースへのリクエストが資格情報付きで行われた場合にリソースと共にこのヘッダーを返さなければ、ブラウザーがそのレスポンスを無視し、ウェブのコンテンツが返されないことに注意してください。  
+```
+Access-Control-Allow-Credentials: true
+```
+
+`Access-Control-Allow-Methods`  
+リソースへのアクセス時に許可するメソッドを指定します。これはプリフライトリクエストのレスポンスで用いられます。  
+
+`Access-Control-Allow-Headers`  
+プリフライトリクエストへのレスポンスで使用され、実際のリクエストを行う際に使用される HTTP ヘッダーを示します。  
 
 
 
