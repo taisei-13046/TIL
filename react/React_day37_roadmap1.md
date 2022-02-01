@@ -328,6 +328,8 @@ Note: origin の値は null にすることができます。
 参考資料
 - [CORS: OPTIONSリクエスト（preflight request）を避ける](https://qiita.com/nnishimura/items/1f156f05b26a5bce3672)
 - [CORS のプリフライト・リクエストを観察する](https://misc.laboradian.com/web-test/001/) 
+- [CORSの理解を深める](https://zenn.dev/riko/articles/cors_deepen_understanding#origin%E3%81%A8%E3%81%AF)
+
 
 
 
