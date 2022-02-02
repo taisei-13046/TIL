@@ -80,3 +80,22 @@ interface HTMLAttributes<T> extends AriaAttributes, DOMAttributes<T> {
 ```
 つまりこれらのHTML要素としての型がPropsに継承される  
 
+### styled-componentsは`as`で上書きすることができる
+[Extending Styles](https://styled-components.com/docs/basics#extending-styles)  
+```tsx
+const Button = styled.button`
+`;
+
+const TomatoButton = styled(Button)`
+`;
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <Button as="a" href="#">Link with Button styles</Button>
+    <TomatoButton as="a" href="#">Link with Tomato Button styles</TomatoButton>
+  </div>
+);
+```
+
+
