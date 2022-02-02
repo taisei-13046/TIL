@@ -223,7 +223,37 @@ Webkit のノードはスタイル オブジェクト（RenderStyle）を参照�
 ここが最適化されている点で、構造体全体が共有されることになります。これにより最終値の計算が省略され、メモリも節約できます。  
 
 
- 
- 
+構造体の定義が見つからなかった場合、構造体が「継承型」の場合は、コンテキスト ツリー内の親の構造体を指すことになります。この場合も構造体は共有されます。「リセット型」の構造体の場合は、デフォルト値が使用されます。  
+(例)
+```html
+<html>
+  <body>
+    <div class="err" id="div1">
+      <p>
+        this is a <span class="big"> big error </span>
+        this is also a
+        <span class="big"> very  big  error</span> error
+      </p>
+    </div>
+    <div class="err" id="div2">another error</div>
+  </body>
+</html>
+```
+```
+div {margin:5px;color:black}
+.err {color:red}
+.big {margin-top:3px}
+div span {margin-bottom:4px}
+#div1 {color:blue}
+#div2 {color:green}
+```
+color 構造体には 1 つのメンバー（color）しかありません。margin 構造体には 4 つの辺があります。  
+生成されるルール ツリーは次のとおりです  
+
+![スクリーンショット 2022-02-02 13 52 03](https://user-images.githubusercontent.com/78260526/152095034-2b39676f-04e2-4de0-94c1-4cc91221b476.png)
+
+ルール ツリーのない Webkit では、一致した宣言が 4 回走査されます。まず、重要でないが優先度の高いプロパティ（他のプロパティがそのプロパティに依存しているため、最初に適用すべきプロパティ。display など）が適用され、次に優先度の高い重要なルール、通常の優先度で重要でないルール、通常の優先度で重要なルールの順に適用されます。つまり、複数回登場するプロパティは、正しいカスケード順序に従って最終的に解決されます。  
+
+
  
  
