@@ -106,6 +106,25 @@ HTML は通常のトップダウン パーサーやボトムアップ パーサ�
 7. body end トークンを受け取ると、「after body」モードに移ります。html end トークンを受け取ると、「after after body」モードに移ります。
 8. end of file トークンを受け取ると解析が終了します。
 
+### CSS の解析
+HTML とは異なり、CSS は文脈自由文法なので、概要で述べた種類のパーサーを使って解析することができます。  
+CSS 仕様（英語）では、CSS の語彙文法と構文文法を定義しています。  
+以下のような例の場合は
+```css
+div.error , a.error {
+  color:red;
+  font-weight:bold;
+}
+```
+ルールセットはこのようになっている
+```
+ruleset
+  : selector [ ',' S* selector ]*
+    '{' S* declaration [ ';' S* declaration ]* '}' S*
+  ;
+```
+
+
 
 
 
