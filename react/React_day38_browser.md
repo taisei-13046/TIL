@@ -326,6 +326,8 @@ clientWidth() - paddingLeft() - paddingRight()
 - [ブラウザレンダリング入門〜知ることで見える世界〜](https://qiita.com/codemafia0000/items/caed57ec30d638e40728)
 
 
+## Browser ページの生成: ブラウザーの動作の仕組み
+[ページの生成: ブラウザーの動作の仕組み](https://developer.mozilla.org/ja/docs/Web/Performance/How_browsers_work)  
 
 
  
