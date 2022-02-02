@@ -154,7 +154,37 @@ class RenderObject{
 }
 ```
 
+ボックスの種類は、そのノードに関連する「display」スタイル属性に影響されます  
+次の Webkit のコードは、DOM ノードに対してどの種類のレンダラーを作成するかを display 属性に従って決定するコードです。  
+```c++
+RenderObject* RenderObject::createObject(Node* node, RenderStyle* style)
+{
+    Document* doc = node->document();
+    RenderArena* arena = doc->renderArena();
+    ...
+    RenderObject* o = 0;
 
+    switch (style->display()) {
+        case NONE:
+            break;
+        case INLINE:
+            o = new (arena) RenderInline(node);
+            break;
+        case BLOCK:
+            o = new (arena) RenderBlock(node);
+            break;
+        case INLINE_BLOCK:
+            o = new (arena) RenderBlock(node);
+            break;
+        case LIST_ITEM:
+            o = new (arena) RenderListItem(node);
+            break;
+       ...
+    }
+
+    return o;
+}
+```
 
 
  
