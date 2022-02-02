@@ -140,6 +140,19 @@ Webkit と Firefox のいずれもこの最適化を行っています。スク�
 一方、スタイル シートは異なるモデルです。理論的には、スタイル シートは DOM ツリーを変更しないため、スタイル シートの読み込みを待ってドキュメントの解析を中断する理由はないように思われます。しかし、ドキュメントの解析段階でスクリプトがスタイル情報を要求するという問題があります。スタイルの読み込みと解析がまだ済んでいない場合、スクリプトは誤った回答を受け取ることになり、さまざまな問題を引き起こす可能性があります。これは特殊なケースのように見えますが、実際にはよく起きています。  
 
 
+#### レンダー ツリーの構築
+DOM ツリーを構築する間に、ブラウザは「レンダー ツリー」という別のツリーも構築します。このツリーは、視覚的な要素を表示順に並べたツリーであり、ドキュメントの視覚的な表現です。レンダー ツリーの目的は、コンテンツを正しい順序で描画できるようにすることです。  
+Webkit のレンダラーの基本クラスである RenderObject クラスは次のように定義されています。  
+```c++
+class RenderObject{
+  virtual void layout();
+  virtual void paint(PaintInfo);
+  virtual void rect repaintRect();
+  Node* node;  //the DOM node
+  RenderStyle* style;  // the computed style
+  RenderLayer* containgLayer; //the containing z-index layer
+}
+```
 
 
 
