@@ -321,8 +321,9 @@ clientWidth() - paddingLeft() - paddingRight()
 4. 子
 5. アウトライン
 
-
-
+参考資料
+- [ブラウザレンダリングの仕組み](https://qiita.com/sasakiki/items/91dcc8b50d7a61ce98bc) 
+- [ブラウザレンダリング入門〜知ることで見える世界〜](https://qiita.com/codemafia0000/items/caed57ec30d638e40728)
 
 
 
