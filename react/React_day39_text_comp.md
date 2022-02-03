@@ -97,5 +97,38 @@ render(
   </div>
 );
 ```
+#### `as`の型定義
+[as prop of styled components in TypeScript](https://github.com/emotion-js/emotion/issues/1137)  
+```ts
+interface StyledLinkProps {
+  as?: React.ElementType;
+}
+```
+
+### createGlobalStyleでGlobalにスタイルを当てる
+[createGlobalStyle](https://styled-components.com/docs/api#createglobalstyle)  
+sample
+```tsx
+import { createGlobalStyle } from 'styled-components'
+
+const GlobalStyle = createGlobalStyle`
+  body {
+    color: ${props => (props.whiteColor ? 'white' : 'black')};
+  }
+`
+
+// later in your app
+
+<React.Fragment>
+  <GlobalStyle whiteColor />
+  <Navigation /> {/* example of other top-level stuff */}
+</React.Fragment>
+```
+
+
+
+
+
+
 
 
