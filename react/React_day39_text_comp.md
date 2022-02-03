@@ -125,7 +125,20 @@ const GlobalStyle = createGlobalStyle`
 </React.Fragment>
 ```
 
+### CSS helper
+[css helper](https://styled-components.com/docs/api#css)  
+```tsx
+import styled, { css } from 'styled-components'
 
+const complexMixin = css`
+  color: ${props => (props.whiteColor ? 'white' : 'black')};
+`
+
+const StyledComp = styled.div`
+  /* This is an example of a nested interpolation */
+  ${props => (props.complex ? complexMixin : 'color: blue;')};
+`
+```
 
 
 
