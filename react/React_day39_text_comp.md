@@ -140,6 +140,8 @@ const StyledComp = styled.div`
 `
 ```
 
+css helperを使用することでcssの構文ミスや不適切な要素がstyledComponent内に入ってきてもエラーを起こすことができる  
+
 
 
 
