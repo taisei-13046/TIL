@@ -142,6 +142,19 @@ const StyledComp = styled.div`
 
 css helperを使用することでcssの構文ミスや不適切な要素がstyledComponent内に入ってきてもエラーを起こすことができる  
 
+### TypeScriptの組み込み型関数 `Record`
+[Record<Keys, Type>](https://www.typescriptlang.org/docs/handbook/utility-types.html#recordkeys-type)  
+[サバイバルTypeScript](https://typescriptbook.jp/reference/type-reuse/utility-types/record)  
+
+Record<Keys, Type>はプロパティのキーがKeysであり、プロパティの値がTypeであるオブジェクト型を作るユーティリティ型  
+**Keysに代入できる型は、string、number、symbolとそれぞれのリテラル型**  
+Typeには任意の方を指定できる  
+
+```ts
+type StringNumber = Record<string, number>;
+const value: StringNumber = { a: 1, b: 2, c: 3 };
+```
+
 
 
 
