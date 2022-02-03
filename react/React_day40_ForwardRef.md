@@ -29,6 +29,6 @@ var isSmartphoneAccess = true;
 完全文（Complete sentence）で書くことを推奨しますが、必須ではありません。完全文を使う場合は適切に大文字で開始し、句読点で終わらせましょう。  
 
 - ブロックタグ内で改行が必要な場合、コードの改行と同様にスペース4つ分インデントする  
-- JSDocも多くのHTMLタグをサポートしています。<code>、<pre>、<tt>、<strong>、<ul>、<ol>、<li>、<a> 等々です。  
+- JSDocも多くのHTMLタグをサポートしています。`<code>、<pre>、<tt>、<strong>、<ul>、<ol>、<li>、<a>` 等々です。  
 
 
