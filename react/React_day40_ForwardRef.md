@@ -39,12 +39,33 @@ var isSmartphoneAccess = true;
 1. コードヒント/コード補完の表示
 2. APIリファレンスの生成
 
-### JSDocリファレンス
+### Typescript JSDocリファレンス
 [JSDocリファレンス](https://www.typescriptlang.org/ja/docs/handbook/jsdoc-supported-types.html)  
 
+#### `@type`
+“@type”タグを使用すれば、型名(プリミティブ、TypeScript宣言やJSDocの”@typedef”タグで定義されたもの)を参照することができます。  
+```ts
+/**
+ * @type {string}
+ */
+var s;
+```
 
-
-
+#### `@paramと@returns`
+```ts
+// パラメータは様々な構文形式で宣言することができます
+/**
+ * @param {string}  p1 - 文字列パラメータ
+ * @param {string=} p2 - 任意のパラメータ(Closure構文)
+ * @param {string} [p3] - 任意のパラメータ(JSDoc構文).
+ * @param {string} [p4="test"] - デフォルト値を持つ任意のパラメータ
+ * @return {string} 結果
+ */
+function stringsStringStrings(p1, p2, p3, p4) {
+  // TODO
+}
+```
+@paramは@typeと同じ型の構文を使用しますが、パラメータ名を追加します。 また、パラメータ名を角括弧で囲むことで、パラメータを任意のものとして宣言することもできます  
 
 
 
