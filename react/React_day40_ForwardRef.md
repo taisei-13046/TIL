@@ -114,7 +114,8 @@ createRef() によって作成された ref 属性を渡す代わりに、関数
 
 #### DOM コンポーネントに ref をフォワーディングする
 (例)ネイティブの button DOM 要素をレンダーする FancyButton というコンポーネント  
-``tsx
+
+```tsx
 function FancyButton(props) {
   return (
     <button className="FancyButton">
@@ -123,11 +124,37 @@ function FancyButton(props) {
   );
 }
 ```
+React コンポーネントは、レンダーの結果も含め、実装の詳細を隠蔽します。  
+FancyButton を使用する他のコンポーネントは内側の button DOM 要素に対する ref を取得する必要は通常ありません 。これは、互いのコンポーネントの DOM 構造に過剰に依存することを防ぐので、良いことです。  
 
+このようなコンポーネントは、アプリケーションのいたるところで通常の DOM である button や input と同様に扱われる傾向にあり、フォーカス、要素の選択、アニメーションをこなすにはそれら DOM ノードにアクセスすることが避けられないかもしれません。  
 
+ref のフォワーディングはオプトインの機能であり、それにより、コンポーネントが ref を受け取って、それをさらに下層の子に渡せる（つまり、ref を “転送” できる）ようになります。  
 
+```tsx
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
 
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
 
+このように、FancyButton を使ったコンポーネントは下層の button DOM ノードの ref を取得することができ、必要であれば button DOM を直接使うかのように、DOM にアクセスすることができます。  
+
+1. React.createRef を呼び、React ref をつくり、それを ref 変数に代入します。
+2. ref を `<FancyButton ref={ref}>` に JSX の属性として指定することで渡します。
+3. React は ref を、forwardRef 内の関数 (props, ref) => ... の 2 番目の引数として渡します。
+4. この引数として受け取った ref を `<button ref={ref}>` に JSX の属性として指定することで渡します。
+5. この ref が紐付けられると、ref.current は `<button>` DOM ノードのことを指すようになります。
+
+#### DevTools でのカスタム名表示
+React.forwardRef は render 関数を受け取ります。React DevTools は ref をフォワーディングしているコンポーネントとして何を表示すべきかを決定するために、この関数を使います。
+
+[DevTools でのカスタム名表示](https://ja.reactjs.org/docs/forwarding-refs.html#displaying-a-custom-name-in-devtools)  
 
 
 
