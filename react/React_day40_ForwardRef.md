@@ -107,6 +107,22 @@ ref の値はノードの種類によって異なります。
   - 関数コンポーネントに対して ref が使用できるようにしたい場合は、forwardRef を（必要に応じて useImperativeHandle と組み合わせて）利用するか、コンポーネントをクラスに書き換えます。
 
 #### DOM の Ref を親コンポーネントに公開する
+Ref のフォワーディングを使うと、コンポーネントは任意の子コンポーネントの ref を自分自身の ref として公開できるようになります。  
+
+#### コールバック Ref
+createRef() によって作成された ref 属性を渡す代わりに、関数を渡します。この関数は、引数として React コンポーネントのインスタンスまたは HTML DOM 要素を受け取ります。これを保持することで、他の場所からアクセスできます。  
+
+#### DOM コンポーネントに ref をフォワーディングする
+(例)ネイティブの button DOM 要素をレンダーする FancyButton というコンポーネント  
+``tsx
+function FancyButton(props) {
+  return (
+    <button className="FancyButton">
+      {props.children}
+    </button>
+  );
+}
+```
 
 
 
