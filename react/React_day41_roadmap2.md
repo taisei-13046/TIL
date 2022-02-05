@@ -150,6 +150,7 @@ async 属性を使って読み込むスクリプトは(下記を見てくださ�
 
 ##### [varの巻き上げ](https://developer.mozilla.org/ja/docs/Web/JavaScript/Reference/Statements/var#var_hoisting)
 変数の宣言 (および一般的な宣言) はコードを実行する前に処理されますので、変数はコード内のどこで宣言しても、コードの先頭で宣言したものと等価になります。  
+JavaScriptでは、関数内で宣言されたローカル変数は、すべてその関数の先頭で宣言されたものとみなされる。
 ```js
 bla = 2;
 var bla;
@@ -160,6 +161,19 @@ var bla;
 bla = 2;
 ```
 巻き上げはもはや let で動作しません。  
+```js
+var myname = "global";
+ 
+function func() {
+    console.log(myname);    //出力内容は？
+    var myname = "local";
+    console.log(myname);    //出力内容は？
+}
+ 
+func();
+```
+最初のconsole.logが”undefined“、次のconsole.logが”local“  
+
 var を使用するとき、好きなだけ同じ変数を何度でも宣言することができます、しかし let ではできません。  
 ```js
 var myName = 'Chris';
