@@ -190,6 +190,42 @@ let myName = 'Chris';
 myName = 'Bob';
 ```
 
+### Object のプロトタイプ
+プロトタイプは、JavaScript オブジェクトが互いに機能を継承するメカニズムです。  
+JavaScript はしばしばプロトタイプベースの言語として記述されます - 継承機能を提供するため、オブジェクトは prototype オブジェクト を持つことができます。これはテンプレートオブジェクトとして機能し、そこからメソッドやプロパティを継承します。
+
+JavaScript では、あるオブジェクトのインスタンスとそのプロトタイプ (コンストラクタの prototype プロパティから派生した __proto__ プロパティ) の間にリンクが張られており、そのプロパティとメソッドはプロトタイプの連鎖を辿って発見されます。  
+
+#### [プロトタイプオブジェクト](https://jsprimer.net/basic/prototype-object/)  
+Objectには、他のArray、String、Functionなどのオブジェクトとは異なる特徴があります。 それは、他のオブジェクトはすべてObjectを継承しているという点です。  
+正確には、ほとんどすべてのオブジェクトはObject.prototypeプロパティに定義されたprototypeオブジェクトを継承しています。   
+
+![スクリーンショット 2022-02-05 15 06 04](https://user-images.githubusercontent.com/78260526/152630813-55c59916-e7c4-439c-a86d-55c44f58885b.png)  
+このようなprototypeオブジェクトに組み込まれているメソッドはプロトタイプメソッドと呼ばれます。  
+
+ObjectとObject.prototypeの関係と同じように、ビルトインオブジェクトArrayもArray.prototypeを持っています。 同じように、配列（Array）のインスタンスはArray.prototypeを継承します。 さらに、Array.prototypeはObject.prototypeを継承しているため、ArrayのインスタンスはObject.prototypeも継承しています。
+
+`Arrayのインスタンス → Array.prototype → Object.prototype`  
+
+### JSON の操作
+JavaScript Object Notation (JSON) は、構造化データを表現するための標準のテキストベースの形式で、 JavaScript のオブジェクト構文に基づいています。ウェブアプリケーションでデータを転送する場合によく使われます  
+JSON は JavaScript オブジェクトの構文に従ったテキストベースのデータ形式で、Douglas Crockford によって普及されました。JSON は JavaScript オブジェクトの構文に似ていますが、 JavaScript とは独立して扱われることがあり、多くのプログラミング言語環境には JSON を読み取ったり（解釈したり）生成したりする機能があります。  
+
+#### 注意点
+- JSON は指定されたデータ形式の純粋な文字列です。プロパティのみを含むことができ、メソッドを含むことはできません。 
+- JSON では文字列とプロパティ名を二重引用符で括る必要があります。単一引用符は、JSON 文字列全体を囲む以外では無効です。
+- カンマやコロンが 1 つ抜けるだけでも JSON ファイルは無効になり、動作しません。利用しようとしているデータを注意して確認してください
+
+
+
+
+
+
+
+
+
+
+
 
 
 
