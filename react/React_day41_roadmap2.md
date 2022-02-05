@@ -60,8 +60,21 @@ export default reportWebVitals;
 
 web-vitalsはGoogleChromeが提供するWebVitals計測ライブラリ  
 
+##### 使い方[(公式)](https://create-react-app.dev/docs/measuring-performance/)
+reportWebVitals.tsでexportされたreportWebVitalsを呼び出して引数に関数を渡して使います  
+参考 [CreateReactAppにWebVitals計測ライブラリが入ったので試してみた](https://qiita.com/ozaki25/items/6139cbc70cf988d1c870)   
 
 
+#### setupTests.ts
+「create-react-app」におけるJestの設定ファイル  
+
+### Reactのテストについて
+[テストのレシピ集](https://ja.reactjs.org/docs/testing-recipes.html)   
+テストにおいて、通常われわれは React ツリーを document に結びついた DOM 要素として描画することになります。これは DOM イベントを受け取れるようにするために重要です。テストが終了した際に「クリーンアップ」を行い、document からツリーをアンマウントします。  
+このためによく行うのは beforeEach と afterEach ブロックのペアを使い、それらを常に実行することで、各テストの副作用がそれ自身にとどまるようにすることです。  
+仮にテストが失敗した場合でもクリーンアップコードを実行するようにするべき、ということを覚えておいてください。さもなくば、テストは「穴の開いた」ものとなってしまい、あるテストが他のテストの挙動に影響するようになってしまいます。これはデバッグを困難にします。
+
+#### `act()`  
 
 
 
