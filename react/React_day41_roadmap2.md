@@ -103,6 +103,19 @@ act(() => {
 // make assertions
 ```
 
+## JavaScript MDNを読む
+[JavaScript](https://developer.mozilla.org/ja/docs/Web/JavaScript)  
+JavaScript (JS) は軽量で、インタープリター型、あるいは実行時コンパイルされる、第一級関数を備えたプログラミング言語です。  
+**第一級関数**とは、その言語の関数がその他の変数と同様に扱われることを表します。例えば、こうした言語では、関数を他の関数への引数として渡したり、他の関数から返却したり、変数の値として代入したりすることができます。    
+[First-class Function (第一級関数)](https://developer.mozilla.org/ja/docs/Glossary/First-class_Function)  
+
+### JavaScript とは
+JavaScript のごく一般的な用途は、(先ほど例示した) Document Object Model API を介して動的に HTML と CSS を変更し、ユーザーインターフェイスを更新すること  
+
+#### DOMとは
+Document Object Model (DOM) は HTML や XML 文書のためのプログラミングインターフェイス  
+
+
 
 
 
