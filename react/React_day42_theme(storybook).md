@@ -83,6 +83,20 @@ export const decorators = [
 - [Storybook. Decorators and Context in examples](https://medium.com/litslink/storybook-decorators-and-context-in-examples-daa4edadaf1a)
 - [What Type is Storybook Story From Example](https://stackoverflow.com/questions/66854096/what-type-is-storybook-story-from-example)
 
+### StyledComponents命名について
+各コンポーネントのトップレベルの要素についてはContainerと命名するのが多い  
+Styledとprefixを付けるのは、既存のコンポーネントを拡張する場合は見通しがよくなる  
+```tsx
+// e.g.
+const StyledText = styled(Text)``
+```
+参考資料: [styled-componentsを使ったCSS設計](https://qiita.com/taneba/items/4547830b461d11a69a20#%E5%91%BD%E5%90%8D%E3%83%AB%E3%83%BC%E3%83%AB)  
+
+
+
+
+
+
 
 
 
