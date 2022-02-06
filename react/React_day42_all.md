@@ -32,4 +32,15 @@ export const theme: AppTheme = {
     black: "#4D4D4D",
   },
 ```
-この
+この構造の型を作成する  
+
+また、`ThemeProvider`に入れ込むことで下位コンポーネントで使用可能になる  
+```ts
+background-color: ${(props) => props.isSelected ? props.theme.color.primary : props.theme.color.white};
+```
+受け取る時はpropsに格納されている  
+
+### StorybookでThemeProviderを使う方法
+
+
+
