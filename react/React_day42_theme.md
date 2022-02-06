@@ -1,4 +1,5 @@
 ## やったこと
+themeについてのまとめ
 
 ## レビューまとめ
 ### COLOR定数をまとめる方法(一例)
@@ -41,6 +42,19 @@ background-color: ${(props) => props.isSelected ? props.theme.color.primary : pr
 受け取る時はpropsに格納されている  
 
 ### StorybookでThemeProviderを使う方法
+現在、ThemeProviderが適用されるのは`<ThemeProvider>`で囲われた中のコンポーネントだけ  
+すると、Sotrybookではこれらの色の定数は反映されない  
+解決方法としては、Storybookの**decorators**にProviderを登録することで解決する  
+
+```tsx
+export const StorybookPropvider = (Story: Story, context: StoryContext) => {
+  return (
+    <ThemeProvider theme={theme}>
+      <Story {...context} />
+    </ThemeProvider>
+  )
+}
+```
 
 
 
