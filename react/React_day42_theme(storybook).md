@@ -77,5 +77,12 @@ export const decorators = [
 
 ![スクリーンショット 2022-02-06 14 11 03](https://user-images.githubusercontent.com/78260526/152668518-9a02c73c-643d-4214-a7ec-6aa93202ae72.png)  
 
+参考資料
+- [公式](https://storybook.js.org/docs/react/writing-stories/decorators)  
+- [[発展編] Decorators を定義する](https://zenn.dev/sa2knight/books/aca5d5e021dd10262bb9/viewer/958abe)
+- [Storybook. Decorators and Context in examples](https://medium.com/litslink/storybook-decorators-and-context-in-examples-daa4edadaf1a)
+- [What Type is Storybook Story From Example](https://stackoverflow.com/questions/66854096/what-type-is-storybook-story-from-example)
+
+
 
 
