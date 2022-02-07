@@ -128,6 +128,28 @@ Async Functionは通常の関数とは異なり、必ずPromiseインスタン�
 重要なこととしてAsync FunctionはPromiseの上に作られた構文です。  
 
 ##### Async FunctionはPromiseを返す
+Async Functionとして定義した関数は必ずPromiseインスタンスを返します。 具体的にはAsync Functionが返す値は次の3つのケースが考えられます。
+
+- Async Functionが値をreturnした場合、その返り値を持つFulfilledなPromiseを返す
+- Async FunctionがPromiseをreturnした場合、その返り値のPromiseをそのまま返す
+- Async Function内で例外が発生した場合は、そのエラーを持つRejectedなPromiseを返す
+
+##### await文
+await式は次の箇所で利用できる式です。 次の箇所以外ではawait式は構文エラーとなるため、利用できません。
+
+- Async Functionの関数の直下
+- ECMAScriptモジュールの直下
+
+await式は、awaitの右辺（Promiseインスタンス）の評価結果を値として返します  このawait式の評価方法は評価するPromiseの状態（FulfilledまたはRejected）によって異なります。  
+awaitの右辺のPromiseがFulfilledとなった場合は、resolveされた値がawait式の返り値となります。   
+
+await式の右辺のPromiseがRejectedとなった場合は、その場でエラーをthrowします。 またAsync Function内で発生した例外は自動的にキャッチされます。 そのためawait式でPromiseがRejectedとなった場合は、そのAsync FunctionがRejectedなPromiseを返すことになります。  
+
+Async Function内でawait式を使って処理を待っている間も、関数の外側では通常どおり処理が進みます。  
+このようにawait式でAsync Function内の非同期処理を一時停止しても、Async Function外の処理が停止するわけではありません。 Async Function外の処理も停止できてしまうと、JavaScriptでは基本的にメインスレッドで多くの処理をするため、UIを含めた他の処理が止まってしまいます。 これがawait式がAsync Functionの外で利用できない理由の1つです。  
+
+
+
 
 
 
