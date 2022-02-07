@@ -81,6 +81,45 @@ setTimeout(() => {
 console.log("この行は実行されます");
 ```
 
+このようにコールバック関数内でエラーをキャッチできますが、非同期処理の外からは非同期処理の中で例外が発生したかがわかりません。 非同期処理の外から例外が起きたことを知るためには、非同期処理の中で例外が発生したことを非同期処理の外へ伝える方法が必要です。  
+
+#### Promise
+エラーファーストコールバックは非同期処理を扱うコールバック関数の最初の引数にエラーオブジェクトを渡すというルールでした。 Promiseはこれを発展させたもので、単なるルールではなくオブジェクトという形にして非同期処理を統一的なインターフェースで扱うことを目的にしています。  
+
+##### Promiseインスタンスの作成
+Promiseはnew演算子でPromiseのインスタンスを作成して利用します。 このときのコンストラクタにはresolveとrejectの2つの引数を取るexecutorと呼ばれる関数を渡します。 executor関数の中で非同期処理を行い、非同期処理が成功した場合はresolve関数を呼び、失敗した場合はreject関数を呼び出します。
+
+```js
+const executor = (resolve, reject) => {
+    // 非同期の処理が成功したときはresolveを呼ぶ
+    // 非同期の処理が失敗したときはrejectを呼ぶ
+};
+const promise = new Promise(executor);
+```
+
+Promiseチェーンで一度キャッチすると、次に呼ばれるのは成功時の処理となります。 そのため、catchメソッドで返した値は次のthenメソッドのコールバック関数に引数として渡されます。  
+
+```js
+Promise.reject(new Error("失敗")).catch(error => {
+    // 一度catchすれば、次に呼ばれるのは成功時のコールバック
+    return 1;
+}).then(value => {
+    console.log(value); // => 1
+    return value * 2;
+}).then(value => {
+    console.log(value); // => 2
+});
+```
+
+#### Promise.allで複数のPromiseをまとめる
+Promise.allメソッドは Promiseインスタンスの配列を受け取り、新しいPromiseインスタンスを返します。 その配列のすべてのPromiseインスタンスがFulfilledとなった場合は、返り値のPromiseインスタンスもFulfilledとなります。 一方で、ひとつでもRejectedとなった場合は、返り値のPromiseインスタンスもRejectedとなります。  
+返り値のPromiseインスタンスにthenメソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。 このときの配列の要素の順番はPromise.allメソッドに渡した配列のPromiseの要素の順番と同じになります。  
+
+#### Promise.race
+
+
+
+
 
 
 
