@@ -1,5 +1,5 @@
 ## やっやこと
-JSのMDNの続きを読んだ
+JSの非同期について
 
 ### 非同期 JavaScript
 #### 非同期とは？
@@ -116,8 +116,18 @@ Promise.allメソッドは Promiseインスタンスの配列を受け取り、�
 返り値のPromiseインスタンスにthenメソッドで登録したコールバック関数には、Promiseの結果をまとめた配列が渡されます。 このときの配列の要素の順番はPromise.allメソッドに渡した配列のPromiseの要素の順番と同じになります。  
 
 #### Promise.race
+Promise.raceメソッドでは複数のPromiseを受け取りますが、Promiseが1つでも完了した（Settled状態となった）時点で次の処理を実行します。  
+Promise.raceメソッドはPromiseインスタンスの配列を受け取り、新しいPromiseインスタンスを返します。 この新しいPromiseインスタンスは、配列の中で一番最初にSettled状態となったPromiseインスタンスと同じ状態になります。
+- 配列の中で一番最初にSettledとなったPromiseがFulfilledの場合は、新しいPromiseインスタンスもFulfilledになる
+- 配列の中で一番最初にSettledとなったPromiseがRejectedの場合は、新しいPromiseインスタンスも Rejectedになる
 
+Promise.raceメソッドを使うことでPromiseを使った非同期処理のタイムアウトが実装できます。 ここでのタイムアウトとは、一定時間経過しても処理が終わっていないならエラーとして扱う処理のことです。
 
+#### Async Function
+Async Functionは通常の関数とは異なり、必ずPromiseインスタンスを返す関数を定義する構文です。  
+重要なこととしてAsync FunctionはPromiseの上に作られた構文です。  
+
+##### Async FunctionはPromiseを返す
 
 
 
