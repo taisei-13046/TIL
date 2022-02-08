@@ -191,7 +191,34 @@ const Wrapper = ({ message }) => {
 };
 ```
 
+#### Attaching additional props
+これは、コンポーネントに追加のプロップ（または「属性」）をアタッチするためのものです  
+この方法では、たとえば要素に静的なプロップを追加したり、React RouterのLinkコンポーネントにactiveClassNameのようなサードパーティのプロップを渡したりすることができます。さらに、より動的なプロップをコンポーネントにアタッチすることもできます。.attrsオブジェクトは、コンポーネントが受け取るpropを受け取る関数も受け取ります。戻り値は、同様に結果のpropsにマージされます。  
 
+- 呼び出し時に渡したpropsを元に動的に変更する
+- staticなprops記述もできる
+
+```tsx
+const Button = styled.button.attrs(props => ({
+    type:'password',//staticなprops
+    margin: props.size || '1em',//sizeとして受け取りmappingしている
+    padding:props.size || '1em'//sizeとして受け取りmappingしている
+    //共通部分はこの下に書く
+}))`
+    font-size: 1em;
+    border-radius: 3px;
+    margin: ${props => props.margin};//上で定義したmarginを受け取る
+    padding: ${props => props.padding};//上で定義したpaddingを受け取る
+`
+
+//render
+<Button>ボタン</Button>
+<Button size="2em">ボタン</Button>
+
+//最終的にViewされるHTML
+<button type="password" margin="1em" padding="1em" class="sc-htpNat fTzOaU">ボタン</button>
+<button type="password" margin="2em" padding="2em" class="sc-htpNat fTzOaU">ボタン</button>
+```
 
 
 
