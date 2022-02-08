@@ -40,7 +40,61 @@ svgタグには、何も指定しなくてもデフォルトで、`preserveAspec
 参考資料 [SVGの記述方法](https://qiita.com/takeshisakuma/items/777e3cb0a54ea7b1dbe7)  
 
 
+## styled-componentsのドキュメントを読みたくなった
+### Basic
+#### Extending Styles
+```tsx
+// The Button from the last section without the interpolations
+const Button = styled.button`
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+`;
 
+// A new component based on Button, but with some override styles
+const TomatoButton = styled(Button)`
+  color: tomato;
+  border-color: tomato;
+`;
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <Button as="a" href="#">Link with Button styles</Button>
+    <TomatoButton as="a" href="#">Link with Tomato Button styles</TomatoButton>
+  </div>
+);
+```
+- `styled()`の形で既存のスタイルを拡張することができる
+- `as`propsを使うことによって、要素を変更することができる
+
+**`as`propsの補足**  
+```tsx
+const Button = styled.button`
+  display: inline-block;
+  color: palevioletred;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid palevioletred;
+  border-radius: 3px;
+  display: block;
+`;
+
+const ReversedButton = props => <Button {...props} children={props.children.split('').reverse()} />
+
+render(
+  <div>
+    <Button>Normal Button</Button>
+    <Button as={ReversedButton}>Custom Button with Normal Button styles</Button>
+  </div>
+);
+```
+カスタムコンポーネントを`as`として渡すことも可能  
+v4以前は`withComponent`もあったが今は非推奨  
 
 
 
