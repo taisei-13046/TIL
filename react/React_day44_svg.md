@@ -96,6 +96,45 @@ render(
 カスタムコンポーネントを`as`として渡すことも可能  
 v4以前は`withComponent`もあったが今は非推奨  
 
+#### Passed props
+```tsx
+// Create an Input component that'll render an <input> tag with some styles
+const Input = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  color: ${props => props.inputColor || "palevioletred"};
+  background: papayawhip;
+  border: none;
+  border-radius: 3px;
+`;
+
+// Render a styled text input with the standard input color, and one with a custom input color
+render(
+  <div>
+    <Input defaultValue="@probablyup" type="text" />
+    <Input defaultValue="@geelen" type="text" inputColor="rebeccapurple" />
+  </div>
+);
+```
+上の例で見ると、`defaultValue`, `type`はDOMに渡されるが、`inputColor`はpropsに渡されてもDOMには渡されない  
+意図的にpropsをDOMに反映させたくない場合には、2つの方法がある  
+[Props Are Not Forever: Preventing Props From Being Passed to the DOM with styled-components v5.1](https://dev.to/sarahscode/props-are-not-forever-preventing-props-from-being-passed-to-the-dom-with-styled-components-v5-1-l47)  
+
+[Transient props v5.1](https://styled-components.com/docs/api#transient-props)  
+
+```tsx
+const Comp = styled.div`
+  color: ${props =>
+    props.$draggable || 'black'};
+`;
+
+render(
+  <Comp $draggable="red" draggable="true">
+    Drag me!
+  </Comp>
+);
+```
+transient propsでは、`$`をつけることによって明治的にDOMに渡さないようにできる  
 
 
 
