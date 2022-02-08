@@ -175,6 +175,9 @@ const Comp = styled.div`
 ```
 transient化されたpropsを消費して、通常のpropsを伝搬する  
 
+参考資料  
+[React does not recognize the prop passed to a styled-component within Material UI](https://stackoverflow.com/questions/61488512/react-does-not-recognize-the-prop-passed-to-a-styled-component-within-material-u)  
+
 
 
 
