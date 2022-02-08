@@ -30,6 +30,13 @@ fill 属性には使われ方により2つの意味があります.  1つは図�
 #### stroke
 stroke属性は与えられた図形要素の外側に描画される色を定義します。stroke属性のデフォルト値は none です.  
 
+#### preserveAspectRatio
+preserveAspectRatio 属性は、与えられたアスペクト比を提供するビューボックスを持つ要素が、異なるアスペクト比を持つビューポートにどのように適合しなければならないかを示すものである。  
+svgタグには、何も指定しなくてもデフォルトで、`preserveAspectRatio="xMidYMid meet"`が指定されています。
+
+
+
+
 参考資料 [SVGの記述方法](https://qiita.com/takeshisakuma/items/777e3cb0a54ea7b1dbe7)  
 
 
