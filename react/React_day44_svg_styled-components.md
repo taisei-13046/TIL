@@ -162,6 +162,19 @@ const Comp = styled(SomeOtherComponent)`
 // $color will not be passed to SomeOtherComponent
 <Comp $color="blue">Hello world!</Comp>
 ```
+仮に同じ名前のpropsが渡されて、片方がtransient化されていた場合
+```tsx
+import styled from "styled-components";
+const OtherComp = ({ as: asProp, ...props }) => <asProp {...props} onClick={somethingCool} />;
+const Comp = styled.div`
+  color: red;
+`;
+// Now it's a <span> element with an onClick handler
+// that does something cool
+<Comp $as={OtherComp} as="span">Hello World!</Comp>
+```
+transient化されたpropsを消費して、通常のpropsを伝搬する  
+
 
 
 
