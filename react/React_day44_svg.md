@@ -117,7 +117,7 @@ render(
 );
 ```
 上の例で見ると、`defaultValue`, `type`はDOMに渡されるが、`inputColor`はpropsに渡されてもDOMには渡されない  
-意図的にpropsをDOMに反映させたくない場合には、2つの方法がある  
+意図的にpropsを伝搬させたくない場合には、2つの方法がある  
 [Props Are Not Forever: Preventing Props From Being Passed to the DOM with styled-components v5.1](https://dev.to/sarahscode/props-are-not-forever-preventing-props-from-being-passed-to-the-dom-with-styled-components-v5-1-l47)  
 
 [Transient props v5.1](https://styled-components.com/docs/api#transient-props)  
@@ -134,9 +134,34 @@ render(
   </Comp>
 );
 ```
-transient propsでは、`$`をつけることによって明治的にDOMに渡さないようにできる  
+transient propsでは、`$`をつけることによって明示的に伝搬させないようにできる  
 
+[Introducing “transient” props](https://medium.com/@probablyup/introducing-transient-props-f35fd5203e0c)  
+もっとわかりやすい記事があった  
+要約する  
 
+```tsx
+import styled from "styled-components";
+const SomeOtherComponent = props => <div {...props} />;
+const Comp = styled(SomeOtherComponent)`
+  color: ${p => p.color};
+`;
+<Comp color="blue">Hello world!</Comp>
+```
+
+このようなコンポーネントの場合、propsはDOMにまで伝搬されてしまう。  
+ただし、`styled.div`のようにHTML要素をstyledで指定した場合にはこれはおき得ない。  
+現状では、color propはHTML属性としてDOMに残ってしまう  
+その場合は以下のように`$`をつけることによって、propsの伝搬を最上位に絞って渡すことができる  
+```tsx
+import styled from "styled-components";
+const SomeOtherComponent = props => <div {...props} />;
+const Comp = styled(SomeOtherComponent)`
+  color: ${p => p.$color};
+`;
+// $color will not be passed to SomeOtherComponent
+<Comp $color="blue">Hello world!</Comp>
+```
 
 
 
