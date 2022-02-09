@@ -79,6 +79,31 @@ const MyComponent = () => {
 }
 ```
 
+[React Styled Components — Hooks, Refs, and Security](https://levelup.gitconnected.com/react-styled-components-hooks-refs-and-security-281fb8ab0341)  
+### refs
+styled-componentsにもDOM操作をするrefを渡すことが可能  
+```tsx
+import React from "react";
+import styled from "styled-components";
+const Input = styled.input`
+  padding: 0.5em;
+  margin: 0.5em;
+  background: greenyellow;
+  border: none;
+  border-radius: 3px;
+`;
+export default function App() {
+  const inputRef = React.useRef();
+  React.useEffect(() => {
+    inputRef.current.focus();
+  }, []);
+  return (
+    <div>
+      <Input ref={inputRef} />
+    </div>
+  );
+}
+```
 
 
 
