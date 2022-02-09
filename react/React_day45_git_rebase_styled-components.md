@@ -162,6 +162,42 @@ const MyComponent = styled.div`background-color: green;`;
 ```
 上記の例では、styled-components が実行時にデフォルトで `<head>` の末尾にスタイルを注入するため、スタイル付きコンポーネント・クラスがグローバル・クラスより優先されることになります。従って，そのスタイルは他の単一クラス名セレクタよりも優先されます。   
 
+### API Reference
+#### StyleSheetManager
+CSS スタイルの処理を変更するために使用するヘルパーコンポーネント  
+
+`**disableCSSOMInjections**`  
+disableCSSOMInjectionsというプロパティで、CSSオブジェクトモデル（CSSOM）APIから、テキストノードベースのCSSインジェクションシステムに切り替えることができます。  
+しかし、おそらくこのプロパティを使用する必要があるのは、サードパーティツールとの統合に問題がある場合だけでしょう。CSSOM API の方が性能が良く、推奨されるオプションだからです。  
+
+`**disableVendorPrefixes**`  
+CSS ベンダープレフィックス（CSS ブラウザープレフィックスとも呼ばれる）の生成を無効にするプロパティです。  
+
+##### Customizing the way CSS is processed
+`**stylisPlugins**`を入れると、スタイルの当て方などを変更できるようになる  
+例えば
+```jsx
+import rtlPlugin from "stylis-plugin-rtl";
+
+const Title = styled.h1`
+  border: solid 5px;
+  border-radius: 35px 0px 0 35px; /* top-left top-right bottom-right bottom-left */
+  color: red;
+`;
+
+// ...
+
+<StyleSheetManager
+  stylisPlugins={ [rtlPlugin]}
+>
+   <div className="App">
+      <Title>Hello world!</Title>
+   </div>
+</StyleSheetManager>  
+```
+![スクリーンショット 2022-02-09 17 37 39](https://user-images.githubusercontent.com/78260526/153157257-93cc2e14-b29d-43de-8251-2c8ccda3b7b2.png)
+
+
 
 
 
