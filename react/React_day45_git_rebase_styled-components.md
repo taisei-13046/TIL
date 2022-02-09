@@ -197,6 +197,50 @@ const Title = styled.h1`
 ```
 ![スクリーンショット 2022-02-09 17 37 39](https://user-images.githubusercontent.com/78260526/153157257-93cc2e14-b29d-43de-8251-2c8ccda3b7b2.png)
 
+#### isStyledComponent
+渡された関数が有効なstyled components-wrapped component classである場合にtrueを返します。これは、コンポーネントがコンポーネントセレクタとして使用できるようにラップする必要があるかどうかを判断するのに便利です。  
+
+```tsx
+import React from 'react'
+import styled, { isStyledComponent } from 'styled-components'
+import MaybeStyledComponent from './somewhere-else'
+
+let TargetedComponent = isStyledComponent(MaybeStyledComponent)
+  ? MaybeStyledComponent
+  : styled(MaybeStyledComponent)``
+
+const ParentComponent = styled.div`
+  color: cornflowerblue;
+
+  ${TargetedComponent} {
+    color: tomato;
+  }
+`
+```
+
+### TypeScript ✖️ styled-components
+#### DefaultTheme
+```ts
+// my-theme.ts
+import { DefaultTheme } from 'styled-components';
+
+const myTheme: DefaultTheme = {
+  borderRadius: '5px',
+
+  colors: {
+    main: 'cyan',
+    secondary: 'magenta',
+  },
+};
+
+export { myTheme };
+```
+styled-componentsに型定義があるんだって思ったけど、
+```ts
+export interface DefaultTheme {}
+```
+これって意味なくないか？w  
+DefaultThemeでstyled-componentsの型ですよ！って示してるだけか  
 
 
 
