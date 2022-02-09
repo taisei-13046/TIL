@@ -104,8 +104,25 @@ export default function App() {
   );
 }
 ```
+ ()
+### Security
+styled-componentsでは、任意の入力を補間として使用できるため、その入力をサニタイズするように注意する必要があります。ユーザーの入力をスタイルとして使用すると、ユーザーのブラウザで評価されるあらゆるCSSが、攻撃者がアプリケーションに配置できるようになる可能性があります。  
 
+この例では、不適切なユーザー入力が、ユーザーの代わりにAPIエンドポイントを呼び出すことにさえつながることを示しています。  
 
+```tsx
+// Oh no! The user has given us a bad URL!
+const userInput = '/api/withdraw-funds'
+
+const ArbitraryComponent = styled.div`
+  background: url(${userInput});
+  /* More styles here... */
+`
+```
+
+非常に注意してください! これは明らかにでっち上げの例ですが、CSS インジェクションは目に見えないところで悪い影響を与えることがあります。IEのいくつかのバージョンでは、URL宣言の中で任意のJavaScriptを実行することさえあります。
+
+JavaScriptからCSSをサニタイズするために、CSS.escapeという規格が近々発表されます。これはまだブラウザ間であまりサポートされていないので、Mathias Bynensによるポリフィルをアプリで使用することをお勧めします。
 
 
 
