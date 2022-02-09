@@ -65,7 +65,19 @@ Reflogs は、ローカル リポジトリでいつ Git refs が更新された�
 ```
 このコマンドはすべての ref の完全な reflog を取得できます。  
 
+## styled-componentsの公式DOCについて
+### useTheme
+useThemeを使うことによって、styled-components外からでもthemeを参照することができる  
+```tsx
+import { useTheme } from 'styled-components'
 
+const MyComponent = () => {
+  const theme = useTheme()
+
+  console.log('Current theme: ', theme)
+  // ...
+}
+```
 
 
 
