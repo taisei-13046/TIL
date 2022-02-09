@@ -124,5 +124,49 @@ const ArbitraryComponent = styled.div`
 
 JavaScriptからCSSをサニタイズするために、CSS.escapeという規格が近々発表されます。これはまだブラウザ間であまりサポートされていないので、Mathias Bynensによるポリフィルをアプリで使用することをお勧めします。
 
+##### css escapeとは
+[CSSのエスケープ方法](https://blog.ohgaki.net/css%E3%81%AE%E3%82%A8%E3%82%B9%E3%82%B1%E3%83%BC%E3%83%97%E6%96%B9%E6%B3%95)  
+プログラムからCSSファイルにデータを書き込む場合、エスケープしないと不正なCSSになってしまう場合があります。現在のブラウザはCSSでプログラムを実行する仕様が削除されているのでコード実行脆弱性の問題になりませんが、不正なCSSはセキュリティ問題（クリックジャック等）になる場合もあります。  
+
+```js
+var a = CSS.escape( ".foo#bar" ) ;
+var b = CSS.escape( "()[]{}" ) ;
+var c = CSS.escape( 0 ) ;
+var d = CSS.escape( 1 ) ;
+var e = CSS.escape( "999" ) ;
+```
+上のような場合、escapeすると
+```css
+a = \.foo\#bar
+b = \(\)\[\]\{\}
+c = \30 
+d = \31 
+e = \39 99
+```
+こうなる  
+
+#### Issues with specificity
+グローバルクラスとスタイル付きコンポーネントクラスを一緒に適用した場合、期待した結果にならないことがあります。もしあるプロパティが両方のクラスで同じ仕様で定義されているならば、最後に定義されたものが勝ります。  
+```tsx
+// MyComponent.js
+const MyComponent = styled.div`background-color: green;`;
+
+// my-component.css
+.red-bg {
+  background-color: red;
+}
+
+// For some reason this component still has a green background,
+// even though you're trying to override it with the "red-bg" class!
+<MyComponent className="red-bg" />
+```
+上記の例では、styled-components が実行時にデフォルトで `<head>` の末尾にスタイルを注入するため、スタイル付きコンポーネント・クラスがグローバル・クラスより優先されることになります。従って，そのスタイルは他の単一クラス名セレクタよりも優先されます。   
+
+
+
+
+
+
+
 
 
