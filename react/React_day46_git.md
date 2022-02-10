@@ -2,6 +2,17 @@
 Gitについて勉強!!!
 超初心に戻ってgitを復習していく!!!
 
+## レビューまとめ
+### SVGについて
+自分が作成したSVG要素がなぜか右によっていたり、右側が欠けていたりした。
+<img width="210" alt="スクリーンショット 2022-02-10 11 04 52" src="https://user-images.githubusercontent.com/78260526/153323184-a173f935-7272-42e4-aef5-abacda62dd25.png">  
+原因: 
+1. **svgを取得する際にviewboxSizeを考慮していないsvgをexportしてしまった**
+2. **viewboxSizeの指定が20になっていた(本来24)**
+
+
+
+
 参考にしたサイト [Bitbucket Cloud での Git の使用方法](https://www.atlassian.com/ja/git/tutorials/what-is-version-control)  
 ### はじめに
 ### 新しいリポジトリの初期化: `git init`
