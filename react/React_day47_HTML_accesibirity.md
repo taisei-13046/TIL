@@ -81,7 +81,40 @@ HTMLのマークアップが正しければ基本的にはコンテンツの順�
 
 > この達成方法の目的は、利用者がコンテキストの変化を明示的に要求できるメカニズムを提供することである。送信ボタンの使用目的は、フォームに入力されたデータを送信する HTTP リクエストを生成することであるため、コンテキストの変化を起こすために使うものとして適切なコントロールである。
 
+```html
+<form action="http://www.example.com/cgi/subscribe/" method="post"><br /> 
+ <p>Enter your e-mail address to subscribe to our mailing list.</p><br /> 
+ <label for="address">Enter email address:</label><input type="text" 
+ id="address" name="address" /> 
+ <input type="submit" value="Subscribe" /><br /> 
+</form>
+```
 
+### H33: title 属性を用いて、リンクテキストを補足する
+「title属性でリンクのテキストを補足しましょう」というもの  
+この達成方法の目的は、リンクを説明する追加情報を提供するための、a 要素の title 属性の利用方法を示すことである。title 属性は、リンクの目的を明らかにしたり、詳しく説明したりするのに役立つ追加情報の指定に用いる。もし title 属性を通して提供する補足情報が、警告文のように利用者がリンクをたどる前に知っておくべき内容であれば、title 属性ではなくリンクテキストとして提供すべきである。  
+
+```html
+<a href="http://example.com/WORLD/africa/kenya.elephants.ap/index.html" 
+   title="Read more about failed elephant evacuation">
+   Evacuation Crumbles Under Jumbo load
+</a>
+```
+
+### H34: インラインでテキストの方向を混在させるために、Unicode の right-to-left mark (RLM) 又は left-to-right mark (LRM) を使用する
+文字の方向に対して、記号の位置を調整する。具体的には、左から右に読む文字では、&lrm;。右から左に読む文字では&rlm;を記号の後ろの挿入してあげればOK。  
+> この達成方法の目的は、HTML の双方向性アルゴリズムが望ましくない結果を生じるとき時に、それを無効にするために Unicode 制御文字の right-to-left mark と left-to-right mark を用いることである。たとえば、スペース又は句読点のようなニュートラルな文字が異なる方向性のテキストの間に置かれている時に必要となることがある。
+
+Unicode 制御文字の right-to-left mark 及び left-to-right mark は、以下に示すように、 そのまま、又は文字符号か数字符号の参照によって挿入することが可能である。
+
+`left-to-right mark (LRM): &lrm; 又は &#x200e; (U+200E)`
+
+`right-to-left mark (RLM): &rlm; 又は &#x200f; (U+200F)`
+
+### H35: applet 要素にテキストによる代替を提供する
+applet要素の代替テキストを用意してあげましょう。alt属性とapplet要素のテキストとして存在していることが大切です。  
+
+> この達成方法の目的は、アプレットのラベルを提供する alt 属性を用いること及び applet 要素のボディにテキストによる代替を提供することによって、アプレットに対するテキストによる代替を提供することである。この達成方法では、ユーザエージェントごとに、alt 属性及び applet 要素のボディのサポート状況が異なるため、両方のメカニズムを必要としている。
 
 
 
