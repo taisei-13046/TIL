@@ -66,8 +66,29 @@ git clone -branch new_feature git://remoterepository.git
 
 **git clone --bare**  
 
+git init --bare と同様に、-bare 引数を git clone に渡すと、省略された作業ディレクトリにリモートリポジトリのコピーが作成されます。つまり、プロジェクトの履歴を持つリポジトリが作成されます。このリポジトリでは、プッシュやプルは可能ですが、直接編集することはできません。  
 
+### git config
+git config コマンドは、グローバルまたはローカルのプロジェクト レベルで Git の構成値を設定するのに便利な機能です。これらの構成レベルは .gitconfig テキスト ファイルに対応しています。git config を実行すると、構成テキスト ファイルを編集します。ここではメールやユーザー名、エディターなどの一般的な構成設定を取り上げていきます。  
 
+### Git エイリアス
+エイリアスを使うとより長いコマンドに対応するより短いコマンドを作成できます。また、コマンドを実行する際のキー入力の手間が省けるため、より効率的なワークフローを実現できます。  
+
+```
+$ git config --global alias.co checkout
+$ git config --global alias.br branch
+$ git config --global alias.ci commit
+$ git config --global alias.st status
+```
+
+#### Git エイリアスの作り方
+Git 構成ファイルを直接編集する
+グローバルまたはローカルの構成ファイルを手動で編集、保存してエイリアスを作成できます。グローバル構成ファイルは $HOME/.gitconfig ファイル パスにあります。ローカル構成ファイルは /.git/config のアクティブ Git リポジトリにあります。  
+
+```
+[alias]
+ co = checkout
+```
 
 
 
