@@ -11,7 +11,27 @@
 
 ### コンポーネント名の命名規則について
 明るいLineと暗いLineを作る際に, `LighterLine`か`(色名)Line`かで迷った。  
-しかし、色名でいれてしまうと色の定数の名前が変わるたびに変えなくてはいけないので、前者が正しい！
+しかし、色名でいれてしまうと色の定数の名前が変わるたびに変えなくてはいけないので、前者が正しい！  
+
+### styled.d.tsについて
+styled-componentsでThemeProviderを使用した際に、styled.d.tsファイルを定義しないと  
+1. propsでうまく保管がされない -> DefaultTheme扱いになるから?
+2. useTheme()にDefaultThemeが当たっていてasキャストしなくてはいけない
+
+そのため,
+```ts
+import { AppTheme } from "constants/theme"
+
+declare module "styled-components" {
+  // eslint-disable-next-line @typescript-eslint/no-empty-interface
+  export interface DefaultTheme extends AppTheme {}
+}
+```
+このようにinterfaceの拡張でDefaultThemeを上書きすることによって、
+```tsx
+  const theme = useTheme()
+```
+でthemeを受け取ることができるようになる！！
 
 
 ### H2: 同じリソースに対して隣接する画像とテキストリンクを結合する
