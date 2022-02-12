@@ -44,7 +44,20 @@ def get_default_redirect_url(self):
 
 そのため、まずはsettings.pyに`LOGIN_REDIRECT_URL`を指定することが必要  
 
+[django/django/contrib/auth/forms.py](https://github.com/django/django/blob/3702819227fd0cdd9b581cd99e11d1561d51cbeb/django/contrib/auth/forms.py#L174)  
 
+Formを見ると、usename, passwordで認証が行われていることがわかる  
+＊　この認証方式は変更可能
+
+ちなみにログインの実装は、これだけで済む!(超簡単)  
+```html
+<h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+```
 
 
 
