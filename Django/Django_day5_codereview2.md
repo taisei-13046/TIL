@@ -59,6 +59,22 @@ Formを見ると、usename, passwordで認証が行われていることがわ�
 </form>
 ```
 
+##### ちなみに`form.as_p`って何？？
+[form.as_pの意味を分かりやすく解説【ソースコード付き】](https://codor.co.jp/django/meaning-form-as-p)  
+**form.as_pは「formの内容をpタグで囲って表示」という意味**  
+
+```html
+<p>
+  <form action="/your-name/" method="post">
+   <label for="your_name">Your name: </label>
+   <input id="your_name" type="text" name="your_name" value="{{ current_name }}">
+   <input type="submit" value="OK">
+  </form>
+</p>
+```
+というhtmlの形に変換される  
+
+
 
 
 
