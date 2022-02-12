@@ -1,6 +1,65 @@
 ## やったこと
 案件の中で疑問に思ったことを調べる
 
+### レビューまとめ
+ハンバーガーメニューを作ってる際に
+```tsx
+<Container isOpen={isOpen} {...rest}>
+  <div />
+  <div />
+  <div />
+</Container>
+```
+このようなネストした形式になっており、以下のようにcssを当てていた  
+```tsx
+const Container = styled.button<ContainerProps>`
+  display: flex;
+  
+  div {
+    height: ${LINE_HEIGHT}px;
+    width: 100%;
+    
+    :first-child {
+    }
+    :nth-child(2) {
+    }
+    :nth-child(3) {
+    }
+  }
+```
+しかし、これはstyled-componentsを生かした設計になっていない  
+
+模範例は、
+```tsx
+<Container isOpen={isOpen} {...rest}>
+  <Line />
+  <Line />
+  <Line />
+</Container>
+```
+```tsx
+const Line = styled.div`
+  height: ${LINE_HEIGHT}px;
+  width: 100%;
+`
+
+const Container = styled.button<ContainerProps>`
+  display: flex;
+
+  ${Line} {
+    }
+
+    :nth-child(2) {
+    }
+
+    :nth-child(3) {
+    }
+  }
+`
+```
+このように指定する方が確かに見やすくstyled-componentsを生かした設計になっているのに納得した！  
+
+
 ### 1. イージングについて
 [イージングの基本](https://developers.google.com/web/fundamentals/design-and-ux/animations/the-basics-of-easing?hl=ja)  
 
