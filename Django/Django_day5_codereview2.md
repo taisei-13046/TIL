@@ -17,7 +17,8 @@ urlpatterns = [
 ]
 ```
 
-すると以下のpathが設置される  
+すると以下の機能が追加される  
+[django/django/contrib/auth/urls.py](https://github.com/django/django/blob/main/django/contrib/auth/urls.py)  
 ```python
 accounts/login/ [name='login']
 accounts/logout/ [name='logout']
@@ -28,6 +29,22 @@ accounts/password_reset/done/ [name='password_reset_done']
 accounts/reset/<uidb64>/<token>/ [name='password_reset_confirm']
 accounts/reset/done/ [name='password_reset_complete']
 ```
+
+#### Loginの実装内容
+[django/django/contrib/auth/views.py#login](https://github.com/django/django/blob/main/django/contrib/auth/views.py#L42)  
+
+codeを見ると、get_default_redirect_urlで以下のようにdefaultの遷移先を取得している  
+```python
+def get_default_redirect_url(self):
+    """Return the default redirect URL."""
+    return resolve_url(self.next_page or settings.LOGIN_REDIRECT_URL)
+```
+
+[resolve_url](https://github.com/django/django/blob/3702819227fd0cdd9b581cd99e11d1561d51cbeb/django/shortcuts.py#L117)  
+
+そのため、まずはsettings.pyに`LOGIN_REDIRECT_URL`を指定することが必要  
+
+
 
 
 
