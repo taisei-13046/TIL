@@ -284,7 +284,14 @@ function Glossary(props) {
 
 key はフラグメントに渡すことができる唯一の属性です。将来的には、イベントハンドラのような他の属性を渡すこともサポートするかもしれません。
 
+### 高階 (Higher-Order) コンポーネント
+具体的には、**高階コンポーネントとは、あるコンポーネントを受け取って新規のコンポーネントを返すような関数です。**  
 
+```js
+const EnhancedComponent = higherOrderComponent(WrappedComponent);
+```
+
+コンポーネントが props を UI に変換するのに対して、高階コンポーネントはコンポーネントを別のコンポーネントに変換します。
 
 
 
