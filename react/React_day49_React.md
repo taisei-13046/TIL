@@ -76,10 +76,55 @@ React アプリケーションは実行されている間、継続的に HTML �
 
 もし多くの階層を経由していくつかの props を渡すことを避けたいだけであれば、コンポーネントコンポジションは多くの場合、コンテクストよりシンプルな解決策です。  
 
+例えば、深くネストされた Link と Avatar コンポーネントがプロパティを読み取ることが出来るように、user と avatarSize プロパティをいくつかの階層下へ渡す Page コンポーネントを考えてみましょう。  
 
+```jsx
+<Page user={user} avatarSize={avatarSize} />
+// ... Page コンポーネントは以下をレンダー ...
+<PageLayout user={user} avatarSize={avatarSize} />
+// ... PageLayout コンポーネントは以下をレンダー ...
+<NavigationBar user={user} avatarSize={avatarSize} />
+// ... NavigationBar コンポーネントは以下をレンダー ...
+<Link href={user.permalink}>
+  <Avatar user={user} size={avatarSize} />
+</Link>
+```
+コンテクストを使用せずにこの問題を解決する 1 つの手法は、Avatar コンポーネント自身を渡すようにするというもので、そうすれば間のコンポーネントは user や avatarSize プロパティを知る必要はありません  
 
+```jsx
+function Page(props) {
+  const user = props.user;
+  const userLink = (
+    <Link href={user.permalink}>
+      <Avatar user={user} size={props.avatarSize} />
+    </Link>
+  );
+  return <PageLayout userLink={userLink} />;
+}
 
+// これで以下のようになります。
+<Page user={user} avatarSize={avatarSize} />
+// ... Page コンポーネントは以下をレンダー ...
+<PageLayout userLink={...} />
+// ... PageLayout コンポーネントは以下をレンダー ...
+<NavigationBar userLink={...} />
+// ... NavigationBar コンポーネントは以下をレンダー ...
+{props.userLink}
+```
 
+この制御の反転はアプリケーション内で取り回す必要のあるプロパティの量を減らし、ルートコンポーネントにより多くの制御を与えることにより、多くのケースでコードを綺麗にすることができます。しかし、このような制御の反転がすべてのケースで正しい選択となるわけではありません。ツリー内の上層に複雑性が移ることは、それら高い階層のコンポーネントをより複雑にして、低い階層のコンポーネントに必要以上の柔軟性を強制します。
+
+### Error Boundary
+UI の一部に JavaScript エラーがあってもアプリ全体が壊れてはいけません。React ユーザがこの問題に対応できるように、React 16 では “error boundary” という新しい概念を導入しました。  
+
+error boundary は**自身の子コンポーネントツリーで発生した JavaScript エラーをキャッチし、エラーを記録し、**クラッシュしたコンポーネントツリーの代わりに**フォールバック用の UI を表示する** React コンポーネントです。    error boundary は配下のツリー全体のレンダー中、ライフサイクルメソッド内、およびコンストラクタ内で発生したエラーをキャッチします。  
+
+error boundary は以下のエラーをキャッチしません：
+
+- イベントハンドラ（詳細）
+- 非同期コード（例：setTimeout や requestAnimationFrame のコールバック）
+- サーバサイドレンダリング
+- （子コンポーネントではなく）error boundary 自身がスローしたエラー
 
 
 
