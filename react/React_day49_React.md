@@ -226,6 +226,74 @@ const ref = React.createRef();
 
 2 番目の引数 ref は React.forwardRef の呼び出しを使ってコンポーネントを定義したときにだけ存在します。通常の関数またはクラスコンポーネントは ref 引数を受け取らず、ref は props からも利用できません。  
 
+### フラグメント
+React でよくあるパターンの 1 つに、コンポーネントが複数の要素を返すというものがあります。フラグメント (fragment) を使うことで、DOM に余分なノードを追加することなく子要素をまとめることができるようになります。  
+
+```jsx
+class Columns extends React.Component {
+  render() {
+    return (
+      <>
+        <td>Hello</td>
+        <td>World</td>
+      </>
+    );
+  }
+}
+```
+
+フラグメントを使用すると、以下のように正しい出力になる
+```jsx
+<table>
+  <tr>
+    <td>Hello</td>
+    <td>World</td>
+  </tr>
+</table>
+```
+
+仮に`<div>`で囲んだ場合こうなる
+
+```jsx
+<table>
+  <tr>
+    <div>
+      <td>Hello</td>
+      <td>World</td>
+    </div>
+  </tr>
+</table>
+```
+
+明示的に `<React.Fragment>` と宣言したフラグメントでは key を持つことができます。これはコレクションをフラグメントの配列に変換するときに有用です。たとえば定義リストを作成する時に利用します：  
+```jsx
+function Glossary(props) {
+  return (
+    <dl>
+      {props.items.map(item => (
+        // Without the `key`, React will fire a key warning
+        <React.Fragment key={item.id}>
+          <dt>{item.term}</dt>
+          <dd>{item.description}</dd>
+        </React.Fragment>
+      ))}
+    </dl>
+  );
+}
+```
+
+key はフラグメントに渡すことができる唯一の属性です。将来的には、イベントハンドラのような他の属性を渡すこともサポートするかもしれません。
+
+
+
+
+
+
+
+
+
+
+
 
 
 
