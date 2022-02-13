@@ -126,28 +126,50 @@ error boundary は以下のエラーをキャッチしません：
 - サーバサイドレンダリング
 - （子コンポーネントではなく）error boundary 自身がスローしたエラー
 
+error boundary はコンポーネントに対して JavaScript の catch {} ブロックのように動作します。error boundary になれるのはクラスコンポーネントだけです。実用上、一度だけ error boundary を定義してそれをアプリケーションの至るところで使用することがよくあります。
+
+error boundary は配下のツリー内のコンポーネントで発生したエラーのみをキャッチすることに注意してください。error boundary は自身で起こるエラーをキャッチできません。error boundary がエラーメッセージのレンダーに失敗した場合、そのエラーは最も近い上位の error boundary に伝搬します。この動作もまた、JavaScript の catch {} ブロックの動作と似ています。  
+
+### ref のフォワーディング
+ref のフォワーディングはあるコンポーネントを通じてその子コンポーネントのひとつに ref を自動的に渡すテクニックです。これは基本的にはアプリケーション内のほとんどのコンポーネントで必要ありません。しかし、コンポーネントの種類によっては、特に再利用可能なコンポーネントライブラリにおいては、便利なものとなるかもしれません。  
+
+#### DOM コンポーネントに ref をフォワーディングする
+```jsx
+function FancyButton(props) {
+  return (
+    <button className="FancyButton">
+      {props.children}
+    </button>
+  );
+}
+```
+
+React コンポーネントは、レンダーの結果も含め、実装の詳細を隠蔽します。FancyButton を使用する他のコンポーネントは内側の button DOM 要素に対する ref を取得する必要は通常ありません 。これは、互いのコンポーネントの DOM 構造に過剰に依存することを防ぐので、良いことです。  
+
+そういったカプセル化は FeedStory や Comment のようなアプリケーションレベルのコンポーネントでは望ましいことではありますが、FancyButton や MyTextInput といった非常に多くのところで再利用可能な “末梢の” コンポーネントでは不便である可能性があります。このようなコンポーネントは、アプリケーションのいたるところで通常の DOM である button や input と同様に扱われる傾向にあり、フォーカス、要素の選択、アニメーションをこなすにはそれら DOM ノードにアクセスすることが避けられないかもしれません。  
+
+**ref のフォワーディングはオプトインの機能であり、それにより、コンポーネントが ref を受け取って、それをさらに下層の子に渡せる（つまり、ref を “転送” できる）ようになります。**  
+
+```jsx
+const FancyButton = React.forwardRef((props, ref) => (
+  <button ref={ref} className="FancyButton">
+    {props.children}
+  </button>
+));
+
+// You can now get a ref directly to the DOM button:
+const ref = React.createRef();
+<FancyButton ref={ref}>Click me!</FancyButton>;
+```
+
+1. React.createRef を呼び、React ref をつくり、それを ref 変数に代入します。
+2. ref を `<FancyButton ref={ref}>` に JSX の属性として指定することで渡します。
+3. React は ref を、forwardRef 内の関数 (props, ref) => ... の 2 番目の引数として渡します。
+4. この引数として受け取った ref を `<button ref={ref}>` に JSX の属性として指定することで渡します。
+5. この ref が紐付けられると、ref.current は `<button>` DOM ノードのことを指すようになります。
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+2 番目の引数 ref は React.forwardRef の呼び出しを使ってコンポーネントを定義したときにだけ存在します。通常の関数またはクラスコンポーネントは ref 引数を受け取らず、ref は props からも利用できません。  
 
 
 
