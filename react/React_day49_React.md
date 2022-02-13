@@ -3,6 +3,61 @@ Reactの公式を復習した
 Main Conceptsは大丈夫！ Advanced guideを見ていく  
 [advanced guide](https://ja.reactjs.org/docs/accessibility.html)  
 
+## 案件内の発見
+### typescriptの型の拡張
+今回、`HTMLTextAreaElement`のonChangeの型を
+```ts
+onChange?: () => void
+```
+から
+```ts
+onChange?: (value: string) => void
+```
+に変更したかった。  
+しかし、単純に上書きしようとすると  
+「インターフェイス 'B' はインターフェイス 'A' を正しく拡張していません。
+  プロパティ 'X' の型に互換性がありません。
+    型 'string' を型 'number' に割り当てることはできません。」
+こんなエラーが出てしまう  
+
+そもそも、型を上書きすること自体あまりしないのかなと思ったりするけど、今回のようにHTMLElementsを上書きしたいことは割とある気がする  
+その場合の対処法  
+
+**中継型を経由すれば実現可能**  
+
+```ts
+interface A {
+  foo: number
+  bar: number
+  baz: number
+  qux: number
+  yo: number
+}
+
+// weakな中継用のinterfaceを用意する
+interface Bweaken extends A {
+  yo: any
+}
+
+interface B extends Bweaken {
+  cha: string
+  yo: string
+}
+```
+このように一度any型にしてから上書きすることはできる。  
+でもすごい違和感を感じる...
+
+```ts
+type Weaken<T, K extends keyof T> = {
+  [P in keyof T]: P extends K ? any : T[P];
+};
+```
+一応こんなutilsを提案してる人もいた  
+[(suggestion) Overrides in extending class and interface definitions. #3402](https://github.com/Microsoft/TypeScript/issues/3402)  
+
+
+
+
 ### アクセシビリティ
 Web アクセシビリティ（a11y とも呼ばれます）とは、誰にでも使えるようウェブサイトを設計・構築することです。ユーザ補助技術がウェブページを解釈できるようにするためには、サイトでアクセシビリティをサポートする必要があります。  
 
