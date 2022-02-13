@@ -5,24 +5,6 @@ Main Conceptsは大丈夫！ Advanced guideを見ていく
 
 ## 案件内の発見
 ### typescriptの型の拡張
-今回、`HTMLTextAreaElement`のonChangeの型を
-```ts
-onChange?: () => void
-```
-から
-```ts
-onChange?: (value: string) => void
-```
-に変更したかった。  
-しかし、単純に上書きしようとすると  
-「インターフェイス 'B' はインターフェイス 'A' を正しく拡張していません。
-  プロパティ 'X' の型に互換性がありません。
-    型 'string' を型 'number' に割り当てることはできません。」
-こんなエラーが出てしまう  
-
-そもそも、型を上書きすること自体あまりしないのかなと思ったりするけど、今回のようにHTMLElementsを上書きしたいことは割とある気がする  
-その場合の対処法  
-
 **中継型を経由すれば実現可能**  
 
 ```ts
