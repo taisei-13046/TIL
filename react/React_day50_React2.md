@@ -173,11 +173,41 @@ render() {
 - [React Portalsの活用（Modal作り）](https://zenn.dev/maktub_bros/articles/a700d189c60ca8)
 
 ### プロファイラ API
+Profiler を使って、React アプリケーションのレンダーの頻度やレンダーの「コスト」を計測することができます。 本機能の目的は、アプリケーション中の、低速でメモ化などの最適化が有効な可能性のある部位を特定する手助けをすることです。  
 
+#### 使用法
+Profiler は React ツリー内の特定部位におけるレンダーのコストを計測するため、ツリー内のどこにでも追加できます。 2 つの props が必要です。id（文字列）と、ツリー内のコンポーネントが更新を「コミット」した際に React が毎回呼び出す onRender コールバック（関数）です。
 
+```jsx
+render(
+  <App>
+    <Profiler id="Navigation" onRender={callback}>
+      <Navigation {...props} />
+    </Profiler>
+    <Main {...props} />
+  </App>
+);
+```
 
+#### onRender コールバック
+Profiler には props として onRender 関数を渡す必要があります。 プロファイリングされているツリー内のコンポーネントが更新を「コミット」した際に、React がこの関数を毎回呼び出します。 この関数は、レンダー内容とかかった時間に関する情報を引数として受け取ります。  
 
+```jsx
+function onRenderCallback(
+  id, // the "id" prop of the Profiler tree that has just committed
+  phase, // either "mount" (if the tree just mounted) or "update" (if it re-rendered)
+  actualDuration, // time spent rendering the committed update
+  baseDuration, // estimated time to render the entire subtree without memoization
+  startTime, // when React began rendering this update
+  commitTime, // when React committed this update
+  interactions // the Set of interactions belonging to this update
+) {
+  // Aggregate or log render timings...
+}
+```
 
+参考資料
+- [React Profilerの活用](https://zenn.dev/maktub_bros/articles/814a14312d2393)  
 
 
 
