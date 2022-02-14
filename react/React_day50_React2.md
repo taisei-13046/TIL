@@ -104,7 +104,29 @@ function App2() {
 }
 ```
 
+#### 真偽値、null、undefined は無視される
+true と false、null、そして undefined は子要素として渡すことができます。これらは何もレンダーしません。以下の JSX の式はすべて同じ結果となります。
+```jsx
+<div />
 
+<div></div>
+
+<div>{false}</div>
+
+<div>{null}</div>
+
+<div>{undefined}</div>
+
+<div>{true}</div>
+```
+
+反対に、false、true、null、または undefined といった値を表示したいのであれば、まず文字列に変換する必要があります。  
+
+```jsx
+<div>
+  My JavaScript variable is {String(myVariable)}.
+</div>
+```
 
 
 
