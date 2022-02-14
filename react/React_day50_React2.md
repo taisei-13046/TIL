@@ -90,6 +90,20 @@ JSX の中においては、ドット記法を使うことによって React コ
 ES6 におけるオブジェクトの簡略表記においては、{foo} は {foo: true} ではなく {foo: foo} を意味するため、HTML の動作に似せて作られたこの機能はかえって混乱をきたす可能性があります。
 
 
+#### 属性の展開
+props オブジェクトがあらかじめ存在しており、それを JSX に渡したいような場合は ... を「スプレッド」演算子として使用することで、props オブジェクトそのものを渡すことができます。そのため以下のふたつの JSX の式はまったく等しいものとなります。
+
+```jsx
+function App1() {
+  return <Greeting firstName="Ben" lastName="Hector" />;
+}
+
+function App2() {
+  const props = {firstName: 'Ben', lastName: 'Hector'};
+  return <Greeting {...props} />;
+}
+```
+
 
 
 
