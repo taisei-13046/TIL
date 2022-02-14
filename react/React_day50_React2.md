@@ -168,9 +168,11 @@ render() {
 ポータルの典型的なユースケースとは、親要素が overflow: hidden や z-index のスタイルを持っていても、子要素がコンテナを「飛び出して」見える必要があるものです。例えば、ダイアログ、ホバーカード、ツールチップがそれに当たります。  
 
 
-#### [入門者でもわかるReactのPortalsの設定方法](https://reffect.co.jp/react/react-portals)  
+参考資料
+- [入門者でもわかるReactのPortalsの設定方法](https://reffect.co.jp/react/react-portals)  
+- [React Portalsの活用（Modal作り）](https://zenn.dev/maktub_bros/articles/a700d189c60ca8)
 
-
+### プロファイラ API
 
 
 
