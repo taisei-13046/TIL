@@ -128,7 +128,47 @@ true と false、null、そして undefined は子要素として渡すことが
 </div>
 ```
 
+### パフォーマンス最適化
+React は UI の更新時に必要となる高コストな DOM 操作の回数を最小化するために、内部的にいくつかの賢いテクニックを使用しています。多くのアプリケーションでは React を使用するだけで、パフォーマンス向上のための特別な最適化を苦労して行わなくても、レスポンスの良いユーザインターフェースを実現できますが、それでもなお、React アプリケーションを高速化するための方法はいくつか存在します。  
 
+### ポータル
+ポータル (portal) は、親コンポーネントの DOM 階層外にある DOM ノードに対して子コンポーネントをレンダーするための公式の仕組み  
+
+```jsx
+ReactDOM.createPortal(child, container)
+```
+
+第 1 引数 (child) は React の子要素としてレンダー可能なもの、例えば、要素、文字列、フラグメントなどです。第 2 引数 (container) は DOM 要素を指定します。
+
+通常、コンポーネントの render メソッドから要素を返すと、最も近い親ノードの子として DOM にマウントされます。
+
+```jsx
+render() {
+  // React は新しい div 要素をマウントし、子をその中に描画します
+  return (
+    <div>
+      {this.props.children}
+    </div>
+  );
+}
+```
+しかし、時に子要素を DOM 上の異なる位置に挿入したほうが便利なことがあります。
+
+```jsx
+render() {
+  // React は新しい div をつくり*ません*。子要素は `domNode` に対して描画されます。
+  // `domNode` は DOM ノードであれば何でも良く、 DOM 構造内のどこにあるかは問いません。
+  return ReactDOM.createPortal(
+    this.props.children,
+    domNode
+  );
+}
+```
+
+ポータルの典型的なユースケースとは、親要素が overflow: hidden や z-index のスタイルを持っていても、子要素がコンテナを「飛び出して」見える必要があるものです。例えば、ダイアログ、ホバーカード、ツールチップがそれに当たります。  
+
+
+#### [入門者でもわかるReactのPortalsの設定方法](https://reffect.co.jp/react/react-portals)  
 
 
 
