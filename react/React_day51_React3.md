@@ -20,6 +20,13 @@ export const Component = ({ isOpen, ...rest }: ComponentProps) => {
 
 Topレベルに{...rest}を渡さないと、className経由でcssを当てる際に意図しない結果になる  
 
+### cssの`gap`について
+今の今までgapの存在を知らなかった。。。  
+[gap](https://developer.mozilla.org/ja/docs/Web/CSS/gap)  
+
+gap は CSS のプロパティで、行や列の間のすき間 (溝) を定義します。これは row-gap および column-gap の一括指定です。  
+
+
 
 ## React公式
 ### React の最上位 API
