@@ -63,6 +63,10 @@ React.isValidElement(object)
 
 オブジェクトが React 要素であることを確認します。true または false を返します。
 
+#### React.Children
+React.Children はデータ構造が非公開の this.props.children を扱うためのユーティリティを提供します。
+
+
 
 
 
