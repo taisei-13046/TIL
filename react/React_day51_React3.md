@@ -66,10 +66,27 @@ React.isValidElement(object)
 #### React.Children
 React.Children はデータ構造が非公開の this.props.children を扱うためのユーティリティを提供します。
 
+**React.Children.map**  
+```jsx
+React.Children.map(children, function[(thisArg)])
+```
 
+this を thisArg に設定して、children 内に含まれるすべての直下の子要素に対して関数を呼び出します。children が配列の場合は走査され、配列の各要素に対して関数が呼び出されます。children が null または undefined の場合はこのメソッドは配列ではなく null または undefined を返します。  
 
+**React.Children.count**  
+```jsx
+React.Children.count(children)
+```
 
+children に含まれるコンポーネントの総数を返します。これは map または forEach に渡したコールバックが呼ばれる回数と同じです。
 
+**React.Children.only**  
+
+```jsx
+React.Children.only(children)
+```
+
+children が 1 つの子要素しか持たないことを確認し、結果を返します。そうでない場合、このメソッドはエラーを投げます。
 
 
 
