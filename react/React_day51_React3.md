@@ -174,6 +174,32 @@ ReactDOMServer オブジェクトはコンポーネントを静的なマーク�
 React 要素を初期状態の HTML へと変換します。React は HTML 文字列を返します。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。  
 
 #### renderToStaticMarkup()
+React が内部的に使用する data-reactroot のような追加の DOM 属性を作成しないことを除いて、renderToString と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。  
+
+#### renderToNodeStream()
+React 要素を初期状態の HTML へと変換します。HTML の文字列を出力する Readable ストリームを返します。このストリームによる HTML 出力は ReactDOMServer.renderToString が返すものと全く同じです。このメソッドにより、サーバ上で HTML を生成して最初のリクエストに対してマークアップを送信してページ読み込み速度を向上させたり、また SEO 目的で検索エンジンがページを巡回することを可能にします。  
+
+#### renderToStaticNodeStream()
+React が内部的に使用する data-reactroot のような追加の DOM 属性を作成しないことを除いて、renderToNodeStream と同様の動作をします。このメソッドは React を単純な静的サイトジェネレータとして使用したい場合に便利で、追加の属性を省略することでバイト数を削減できます。  
+
+### DOM 要素
+React はパフォーマンスとブラウザ間での互換性のために、ブラウザから独立した DOM システムを実装しています。このことを機に、ブラウザの DOM 実装にあるいくつかの粗削りな部分が取り払われました。  
+
+React では、DOM のプロパティと属性（イベントハンドラを含む）全てがキャメルケースで名前付けされる必要があります。例えば、HTML 属性 tabindex に React で対応する属性は tabIndex です。例外は aria-* と data-* 属性であり、これらは全て小文字に揃える必要があります。例えば、aria-label は aria-label のままにできます。
+
+
+#### 属性についての差異
+**checked**  
+
+checked 属性はインプットタイプが checkbox または radio の `<input>` コンポーネントでサポートされています。コンポーネントがチェックされた状態かどうかの設定に、この属性を使うことができます。これは制御されたコンポーネント (controlled component) を構築する際に役立ちます。defaultChecked は非制御コンポーネント (uncontrolled component) において同様の働きをする属性で、そのコンポーネントが最初にマウントされた時に、チェックされた状態かどうかを設定します。
+
+**className**   
+CSS クラスを指定するには、className 属性を使用してください。このことは `<div>、<a>` など全ての標準 DOM 要素と SVG 要素に当てはまります。
+
+React を（一般的ではありませんが）Web Components とともに使用する場合は、代わりに class 属性を使用してください。
+
+**dangerouslySetInnerHTML**  
+
 
 
 
