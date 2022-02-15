@@ -88,11 +88,31 @@ React.Children.only(children)
 
 children が 1 つの子要素しか持たないことを確認し、結果を返します。そうでない場合、このメソッドはエラーを投げます。
 
+**React.Children.toArray**  
+```jsx
+React.Children.toArray(children)
+```
 
+データ構造が非公開の children を平坦な配列として返し、それぞれの要素に key を割り当てます。レンダーメソッド内で子の集合を操作したい場合、特に this.props.children を渡す前に並べ替えたりスライスしたい場合に便利です。  
 
+#### React.createRef
+React.createRef は ref を作成します。ref は ref 属性を介して React 要素に取り付けることができます。  
 
+#### React.forwardRef
+React.forwardRef は ref を配下のツリーの別のコンポーネントに受け渡す React コンポーネントを作成します。  
+React.forwardRef はレンダー関数を引数として受け入れます。React は props と ref を 2 つの引数として呼び出します。この関数は React ノードを返す必要があります。  
 
+#### React.lazy
+React.lazy() を使用すると、動的に読み込まれるコンポーネントを定義できます。これにより、バンドルサイズを削減して、最初のレンダー時に使用されないコンポーネントの読み込みを遅らせることができます。  
 
+```jsx
+// This component is loaded dynamically
+const SomeComponent = React.lazy(() => import('./SomeComponent'));
+```
+
+lazy コンポーネントをレンダーするには <React.Suspense> がレンダリングツリーの上位に必要です。これはローディングインジケータを指定する方法です。
+
+#### React.Suspense
 
 
 
