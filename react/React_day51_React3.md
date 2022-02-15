@@ -56,6 +56,24 @@ export default React.memo(MyComponent, areEqual);
 
 これはパフォーマンス最適化のためだけの方法です。バグを引き起こす可能性があるため、レンダーを「抑止する」ために使用しないでください。
 
+#### isValidElement()
+```jsx
+React.isValidElement(object)
+```
+
+オブジェクトが React 要素であることを確認します。true または false を返します。
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
