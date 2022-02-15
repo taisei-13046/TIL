@@ -27,7 +27,6 @@ Topレベルに{...rest}を渡さないと、className経由でcssを当てる�
 gap は CSS のプロパティで、行や列の間のすき間 (溝) を定義します。これは row-gap および column-gap の一括指定です。  
 
 
-
 ## React公式
 ### React の最上位 API
 
