@@ -18,3 +18,64 @@ React は再利用可能な振る舞いをコンポーネントに「付加す�
 
 これらの問題を解決するため、フックは、より多くの React の機能をクラスを使わずに利用できるようにします。コンセプト的には、React のコンポーネントは常に関数に近いものでした。フックは関数を活用しながらも、React の実用性を犠牲にしません。フックは命令型コードへの避難ハッチへのアクセスを提供しますし、複雑な関数型プログラミングやリアクティブプログラミングの技法を学ばせることもありません。  
 
+### フック早わかり
+
+フックとは、関数コンポーネントに state やライフサイクルといった React の機能を “接続する (hook into)” ための関数です。フックは React をクラスなしに使うための機能ですので、クラス内では機能しません。  
+
+#### 副作用フック
+useEffect は副作用のためのフックであり、関数コンポーネント内で副作用を実行することを可能にします。クラスコンポーネントにおける componentDidMount, componentDidUpdate および componentWillUnmount と同様の目的で使うものですが、1 つの API に統合されています  
+
+```jsx
+const Component = () => {
+  useEffect(() => {
+    // componentDidMount のタイミングで実行したい処理を記述
+    return () => {
+      // componentWillUnmount のタイミングで実行したい処理を記述
+    }
+  }, []);
+};
+```
+
+#### componentWillUnmount()のタイミングがいまいちわからない
+
+[Reactの基礎 (Lifecycle)](https://programmagick.com/sections/react/lifecycle#commmponent_willunmount)  
+[componentWillUnmount](https://js.studio-kingdom.com/react/component_lifecycle/unmounting_componentwillunmount)  
+
+componentWIllUnmount() はコンポーネントがアンマウントされ、破棄される直前に呼び出されます。このメソッド中では、setInterval()を使ったタイマーのような処理を解除したり、何らかのデータの購読を解除したりする処理を記述します。  
+
+DOMからコンポーネントがアンマウントされる直前に実行されます。
+タイマーの無効化やcomponentDidMountで作成されたDOMの後片付けのような、 何らかのクリーンアップが必要な際には、このメソッドの中でそれを実行して下さい。  
+
+#### マウントって何？
+[ReactのMountとは何か](https://gist.github.com/kenmori/7996ff836bf4ec5f08088eff55c1442d)  
+[What is "Mounting" in React js?](https://stackoverflow.com/questions/31556450/what-is-mounting-in-react-js)  
+Reactコンポーネントに対応するインスタンスとDOMノードを作成し、それらをDOMに挿入するこのプロセスがマウントと呼ばれます。  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
