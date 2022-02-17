@@ -90,10 +90,82 @@ SEO の方法は大きく3つに分類されます:
 - **サイトの人気**
   - 他の有名なされたサイトがあなたのサイトにリンクしすると、多くのトラフィックを得ることができます。
 
+## roadmapの現状
+### 2. HTML, CSS, JS
+#### HTML
+- Learn the basics -> ⭕️
+- Writing Semantic HTML -> ⭕️
+- Forms and Validations -> ⭕️
+- Conventions and Best Practices -> ⭕️
+- Accessibility -> 🔺
+- SEO Basics -> ⭕️
+
+#### CSS
+- Learn the basics -> ⭕️
+- Making Layouts -> ⭕️
+- Responsive design and Media Queries -> 🔺
+
+#### JS
+- Syntax and Basic Constructs -> ⭕️
+- Learn DOM Manipulation -> ⭕️
+- Learn Fetch API / Ajax (XHR) -> 🔺
+- ES6+ and modular JavaScript -> 🔺
+- Understand the concepts Hoisting, Event Bubbling, Scope, Prototype, Shadow DOM, strict -> 🔺
 
 
 
 
+### 1. Fundamental Topics(React Developer)
+
+- create react app -> ⭕️
+- JSX -> ⭕️
+  - 公式DOCの内容は抑えた
+- components
+  - Functional components -> ⭕️
+  - class components -> 🔺
+    - どこまでやろうか迷ってる
+- Props vs State -> ⭕️
+- Conditional Rendering -> 🔺
+- Component Life Cycle -> ⭕️
+- Lists and Keys -> ⭕️
+- Composition vs Ingeritance -> ⭕️
+- Basic Hooks -> ⭕️
+  - useState
+  - useEffect
+
+
+## 次のroadmap(Frontend)
+### Web Security Knowledge
+- HTTPS -> ⭕️
+- CORS -> ⭕️
+- Content Security Policy -> ❎
+- OWASP Security Risks -> ❎
+
+### CSS Preprocessors
+- Sass -> 🔺
+- PostCSS -> 🔺
+
+### Build Tools 
+- Prettier -> ❎
+- ESLint -> 🔺
+- npm script -> ❎
+- webpack -> 🔺
+- esbuild -> ❎
+- Rollup -> ❎
+- Parcel -> ❎
+- Vite -> ❎
+
+
+## 次のRoadmap(React)
+### Advanced Topics
+- Hooks -> 🔺
+- Context ->　⭕️
+- Refs -> 🔺
+- Render Props -> 🔺
+- High Order Components -> 🔺
+- Portals -> 🔺
+- Error Boundaries -> ❎
+- Fiber Architecture -> ❎
 
 
 
