@@ -151,21 +151,40 @@ optionを追加したい場合は、
 
 追加可能なoption:
 - required
+  - A Boolean which, if true, indicates that the input must have a value before the form can be submitted. You can assign a string to return an error message in the errors object.  
 - maxLength
+  - The maximum length of the value to accept for this input.	
 - minLength
+  - The minimum length of the value to accept for this input.	
 - max
+  - The maximum value to accept for this input.	
 - min
+  - The minimum value to accept for this input.	
 - pattern
+  - The regex pattern for the input.
 - validate
+  - You can pass a callback function as the argument to validate, or you can pass an object of callback functions to validate all of them. This function will be executed on its own without depending on other validation rules include required attribute.
 - valueAsNumber
+  - Returns a Number normally. If something goes wrong NaN will be returned.
 - valueAsDate
+  - Returns a Date object normally. If something goes wrong null will be returned.
 - setValueAs
+  - Return input value by running through the function.
 - disabled
+  - Set disabled to true will lead input value to be undefined and input control to be disabled.
 - onChange
+  - onChange function event to be invoked in the change event.
 - onBlur
+  - onBlur function event to be invoked in the blur event.
 - value
+  - Set up value for the registered input. This prop should be utilised inside useEffect or invoke once, each re-run will update or overwrite the input value which you have supplied.
 - shouldUnregister
+  - Input will be unregistered after unmount and defaultValues will be removed as well.
 - deps
+  - Validation will be triggered for the dependent inputs,it only limited to register api not trigger.
+
+
+
 
 
 
