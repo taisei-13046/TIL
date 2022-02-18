@@ -72,7 +72,36 @@ export default function App() {
 }
 ```
 
+##### sample code
+```tsx
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
 
+interface Inputs {
+  example: string;
+  exampleRequired: string;
+}
+
+function App() {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input defaultValue="test" {...register("example")} />
+      <input {...(register("exampleRequired"), { required: true })} />
+      {errors.exampleRequired && <span>this field is required</span>}
+      <input type="submit" />
+    </form>
+  );
+}
+```
+
+**SubmitHandler** は、 TypeScript で書く場合に必要になる型定義です。 submit イベントに関連して実行する関数の型宣言に使います。  
 
 
 
