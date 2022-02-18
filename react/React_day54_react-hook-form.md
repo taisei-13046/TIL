@@ -124,7 +124,7 @@ interface Inputs {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 ```
 
-#### register
+### register
 [register](https://react-hook-form.com/api/useform/register)  
 
 **Props**
@@ -183,7 +183,58 @@ optionを追加したい場合は、
 - **deps**
   - Validation will be triggered for the dependent inputs,it only limited to register api not trigger.
 
+#### Rules
+- nameはユニークである必要がある
 
+#### Tips
+forwardRefを使う場合
+```tsx
+const Select = React.forwardRef(({ onChange, onBlur, name, label }, ref) => (
+  <select name={name} ref={ref} onChange={onChange} onBlur={onBlur}>
+    <option value="20">20</option>
+    <option value="30">30</option>
+  </select>
+));
+```
+
+### handleSubmit
+This function will receive the form data if form validation is successful.
+
+validationが成功したらformのdataが返される関数
+
+#### Props
+- SubmitHandler
+- SubmitErrorHandler
+
+#### examples
+
+```jsx
+import React from "react";
+import { useForm, SubmitHandler } from "react-hook-form";
+
+type FormValues = {
+  firstName: string;
+  lastName: string;
+  email: string;
+};
+
+export default function App() {
+  const { register, handleSubmit } = useForm<FormValues>();
+  const onSubmit: SubmitHandler<FormValues> = data => console.log(data);
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} />
+      <input {...register("lastName")} />
+      <input type="email" {...register("email")} />
+
+      <input type="submit" />
+    </form>
+  );
+}
+```
+
+handleSubmit メソッドは、第 1 引数の関数を『バリデーションが成功した場合』に実行します。つまり、バリデーションが失敗した場合には、 onSubmit 関数は実行されないままになります。  
 
 
 
