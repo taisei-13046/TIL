@@ -101,12 +101,71 @@ function App() {
 }
 ```
 
+```tsx
+import { useForm, SubmitHandler } from "react-hook-form";
+```
 **SubmitHandler** は、 TypeScript で書く場合に必要になる型定義です。 submit イベントに関連して実行する関数の型宣言に使います。  
 
+```tsx
+interface Inputs {
+  example: string;
+  exampleRequired: string;
+}
+```
+フォームの入力値についての型定義。useFormフックを書く時に使う。  
 
+```tsx
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors },
+  } = useForm<Inputs>();
+  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+```
 
+#### register
+[register](https://react-hook-form.com/api/useform/register)  
 
+**Props**
+- onChange	
+- onBlur	
+- ref
+- name
 
+**Options**
+- ref
+```jsx
+<input {...register("test")} />
+```
+
+optionを追加したい場合は、
+```jsx
+<input
+  {...register("test", {
+    required: 'error message' // JS only: <p>error message</p> TS only support string
+  })}
+/>
+```
+のように追加する。
+
+追加可能なoption:
+- required
+- maxLength
+- minLength
+- max
+- min
+- pattern
+- validate
+- valueAsNumber
+- valueAsDate
+- setValueAs
+- disabled
+- onChange
+- onBlur
+- value
+- shouldUnregister
+- deps
 
 
 
