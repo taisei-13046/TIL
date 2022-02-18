@@ -236,6 +236,14 @@ export default function App() {
 
 handleSubmit メソッドは、第 1 引数の関数を『バリデーションが成功した場合』に実行します。つまり、バリデーションが失敗した場合には、 onSubmit 関数は実行されないままになります。  
 
+### formState
+This object contains information about the entire form state. It helps you to keep on track with the user's interaction with your form application.
+
+このオブジェクトは、フォームの状態全体に関する情報を含んでいます。これは、フォームアプリケーションとユーザーのインタラクションを追跡するのに役立ちます。  
+state を参照したい場合は、 useForm フックを使う時に、 formState オブジェクトの値として、対象の state 名を書いておく必要があります。  
+
+
+
 
 
 
