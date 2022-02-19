@@ -82,6 +82,10 @@ export default function App() {
 }
 ```
 
+本来、 React Hook Form は、非制御コンポーネントやネイティブな HTML フォームを使うことを前提にしています。
+
+しかし、外部ライブラリ（ React-Select や Mateial-UI など）の UI コンポーネントを導入できないと不便です。そこで、そういった UI コンポーネントに対して React Hook Form を提供するためのラッパーコンポーネントとして、 Controller コンポーネントが用意されています。  
+
 
 
 
