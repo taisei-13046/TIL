@@ -24,6 +24,31 @@ Omit<HOGE,"fuga" | "piyo">
 このように除外できる  
 
 ### useRefとcreateRefの違い
+参照  
+[What's the difference between `useRef` and `createRef`?](https://stackoverflow.com/questions/54620698/whats-the-difference-between-useref-and-createref)  
+[demo](https://codesandbox.io/s/1rvwnj71x3?file=/src/index.js)  
+
+- createRefは常に新しいrefを作成する  
+- useRefは毎回のレンダリングで同じrefを返す  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
