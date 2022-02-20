@@ -1,4 +1,5 @@
 ## やったこと
+react hook formとyupについて
 
 ### useFormContext
 useFormContext フックは、入れ子になっているコンポーネントに対して、必要になる props を簡単に渡せるようにするために用意されています。 React の useContext フックと同じような用途です。  
@@ -110,6 +111,32 @@ function FieldArray() {
   );
 }
 ```
+
+
+## Yup
+[yup github](https://github.com/jquense/yup)  
+
+> Killer Features:
+
+> - Concise yet expressive schema interface, equipped to model simple to complex data models
+> - Powerful TypeScript support. Infer static types from schema, or ensure schema correctly implement a type
+> - Built-in async validation support. Model server-side and client-side validation equally well
+> - Extensible: add your own type-safe methods and schema
+> - Rich error details, make debugging a breeze
+
+↓ 翻訳
+
+- シンプルなデータモデルから複雑なデータモデルまで対応可能な、簡潔かつ表現力豊かなスキーマインターフェイス。
+- TypeScriptを強力にサポート。スキーマから静的な型を推論したり、スキーマが正しく型を実装していることを確認することができます。
+- 非同期検証をサポート。サーバーサイドとクライアントサイドの検証を同じようにモデル化します。
+- 拡張性：独自のタイプセーフなメソッドやスキーマを追加可能
+- 豊富なエラーの詳細、デバッグを容易にします。
+
+
+
+
+
+
 
 
 
