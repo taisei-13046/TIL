@@ -79,9 +79,49 @@ div > p {
 </div>
 ```
 
+#### hoge + fuga
+`+` は直後の隣接要素を表します。  
 
+```css
+p + span {
+  color: orange;
+}
+```
 
+```html
+<p class="hoge">
+  一つ内側(p　.hoge)
+  <span>二つ内側(span)</span>
+</p>
+<span>一つ内側(span)(ここにスタイルが当たる)</span>
+<span>一つ内側(span)</span>
+<span>一つ内側(span)</span>
+```
 
+#### hoge ~ fuga
+`~` は 後続の隣接要素を表します。 `+` が直後だけだったのに対し、これは後続のもの全てが対象です。
+
+```css
+p ~ span {
+  color: orange;
+}
+```
+
+```html
+<p class="hoge">
+  一つ内側(p　.hoge)
+  <span>二つ内側(span)</span>
+</p>
+<span>一つ内側(span)(ここにスタイルが当たる)</span>
+<span>一つ内側(span)(ここにスタイルが当たる)</span>
+<span>一つ内側(span)(ここにスタイルが当たる)</span>
+```
+
+#### hoge:hover
+`:` は擬似クラス(pseudo-class)を表すのに使います。   
+MDN の説明を借りるなら、擬似クラスは「**セレクターに付加するキーワードであり、選択された要素に対して特定の状態を指定します。**」です。  
+
+#### hoge::before
 
 
 
