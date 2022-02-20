@@ -58,9 +58,58 @@ function App() {
 }
 ```
 
+### useFormState
+useFormState フックは、それぞれのフォームの状態を取得できます。 useFormState フックは、他の useFormState フックや useForm フックに干渉しないので、意図しない再レンダリングを予防できます。  
 
+```tsx
+import * as React from "react";
+import { useForm, useFormState } from "react-hook-form";
 
+export default function App() {
+  const { register, handleSubmit, control } = useForm({
+    defaultValues: {
+      firstName: "firstName"
+    }
+  });
+  const { dirtyFields } = useFormState({
+    control
+  });
+  const onSubmit = (data) => console.log(data);
 
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <input {...register("firstName")} placeholder="First Name" />
+      {dirtyFields.firstName && <p>Field is dirty.</p>}
+      
+      <input type="submit" />
+    </form>
+  );
+}
+```
+
+### useFieldArray
+useFieldArray フックは、制御されていないフィールドの配列として取り扱えます。また、配列に対して操作できる各種メソッドを取得できます。
+
+useFieldArray フックを機能させるには、 useuseForm フックによって取得できる control オブジェクトを引数として設定する必要があります。  
+
+```tsx
+function FieldArray() {
+  const { control, register } = useForm();
+  const { fields, append, prepend, remove, swap, move, insert } = useFieldArray({
+    control, // control props comes from useForm (optional: if you are using FormContext)
+    name: "test", // unique name for your Field Array
+  });
+
+  return (
+    {fields.map((field, index) => (
+      <input
+        key={field.id} // important to include key with field's id
+        {...register(`test.${index}.value`)} 
+      />
+    ))}
+  );
+}
+```
 
 
 
