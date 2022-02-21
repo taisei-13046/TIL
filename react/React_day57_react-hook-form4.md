@@ -113,6 +113,9 @@ export default function App() {
 };
 ```
 
+![スクリーンショット 2022-02-21 16 18 20](https://user-images.githubusercontent.com/78260526/154906905-7c262364-a7db-4182-b6d0-3e36c7e610d8.png)  
+
+unregister後はregisterの関心から離れる  
 
 
 
