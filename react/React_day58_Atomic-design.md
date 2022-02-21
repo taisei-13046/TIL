@@ -27,6 +27,7 @@ Organism は groups of molecules と定義されているが、実際には直�
 
 
 ## 食べログにおけるAtomic Design
+[食べログでのAtomic Design 〜どう分類しているか編〜](https://note.com/tabelog_frontend/n/n4b8bcb44294c)  
 
 ### Organisms
 #### 一般的な責務：
