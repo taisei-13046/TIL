@@ -62,7 +62,6 @@ valueAsNumberをつけないと、全てstringで扱われてしまう
 />
 ```
 
-### unregister
 #### isDirtyって何？
 ていうかdirtyって何？w  
 
@@ -87,7 +86,32 @@ valueAsNumberをつけないと、全てstringで扱われてしまう
 こうすることで新しい仮想DOMを構築するコストを極限まで減らしています。また仮想DOMの差分を計算する際も、変更されている可能性があるcomponentに絞って計算すればいいことになります。
 
 
+### unregister
+```tsx
+import React, { useEffect } from "react";
+import { useForm } from "react-hook-form";
 
+interface IFormInputs {
+  firstName: string;
+  lastName?: string;
+}
+
+export default function App() {
+  const { register, handleSubmit, unregister } = useForm<IFormInputs>();
+  const onSubmit = (data: IFormInputs) => console.log(data);
+
+  React.useEffect(() => {
+    register("lastName");
+  }, [register])
+
+  return (
+    <form onSubmit={handleSubmit(onSubmit)}>
+      <button type="button" onClick={() => unregister("lastName")}>unregister</button>
+      <input type="submit" />
+    </form>
+  );
+};
+```
 
 
 
