@@ -1,5 +1,57 @@
 ## やったこと
-sass記法について復習, コンテンツセキュリティポリシー (CSP)
+sass記法について復習, コンテンツセキュリティポリシー (CSP), React Hook Form4
+
+
+## React Hook Formについて
+### register
+[register](https://react-hook-form.com/api/useform/register)  
+特に注目した点
+
+#### valueAsNumber
+valueAsNumberをつけないと、全てstringで扱われてしまう
+```tsx
+<input
+  type="number"
+  {...register("test", {
+    valueAsNumber: true,
+  })}
+/>
+```
+
+`valueAsDate`, `setValueAs`なども同様  
+
+#### errorの設定方法
+```tsx
+<input
+  {...register("test", {
+    required: 'error message' // JS only: <p>error message</p> TS only support string
+  })}
+/>
+```
+以下の書き方も可能
+```tsx
+<input
+  {...register("test", {
+    required: {
+      value: ture,
+      message: 'error message' // JS only: <p>error message</p> TS only support string
+     }
+  })}
+/>
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 ### Sass, SASS, SCSSの違い
@@ -193,6 +245,21 @@ XSS攻撃は、アプリケーションにWebページ上の信頼できない�
 
 #### 10. 不十分なロギングと監視
 ロギングと監視は、Webサイトの安全性を保証するために、Webサイトに対して頻繁に実行する必要のあるアクティビティです。サイトを適切にログに記録して監視しないと、サイトはより深刻な侵害アクティビティに対して脆弱になります。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
