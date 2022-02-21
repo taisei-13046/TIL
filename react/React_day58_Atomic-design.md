@@ -26,8 +26,27 @@ UI設計、ビジュアルデザイン、HTMLコーディングを実際に行�
 Organism は groups of molecules と定義されているが、実際には直下に Atom を直接持ってもいいし、Organism の中に Organism を持つ、つまり Organism がネストされることもある。  
 
 
+## 食べログにおけるAtomic Design
 
+### Organisms
+#### 一般的な責務：
 
+- サービスとして意味のある単位の塊。
+- 他のAtoms/Molecules/Organismsや純粋なHTMLで構成される。
+- 独立して成立するコンテンツを提供する。
+
+#### 食べログでのOrganisms：
+
+- ドメインが入ったらOrganisms。
+- 他に依存するコンポーネントがなかったとしても、ドメインが入った時点でOrganismsにする。
+- useContextによるContext接続可。
+- **その機能のためのAPIを叩くのはここ。**
+
+ドメインが入るとは？  
+-> 特定のコンテンツ・コンテキストじゃないと使えない状態。
+
+「他のコンポーネントに依存」とは？  
+-> 別のコンポーネントをimportしている状態。
 
 
 
