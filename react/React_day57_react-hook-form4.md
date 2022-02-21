@@ -62,6 +62,29 @@ valueAsNumberをつけないと、全てstringで扱われてしまう
 />
 ```
 
+### unregister
+#### isDirtyって何？
+ていうかdirtyって何？w  
+
+[What is "Dirty" in React.js?](https://stackoverflow.com/questions/35262546/what-is-dirty-in-react-js)  
+
+> Dirty data - the data, that have been changed recently and DOM haven't been re-rendered according to this changes yet. So dirty checking is diff between next state and current state. 
+
+最近変更されたデータであり、DOMはまだその変更に従って再レンダリングされていません。つまり、ダーティチェックとは、次の状態と現在の状態の差分である。  
+
+
+[Reactjsのチュートリアルを読んで浮かんだ疑問とそれに対する答え](https://qiita.com/yuku_t/items/f453839377317e013537)  
+
+あるcomponentのstateが setState() によって変更されると、Reactjsはそのcomponentにdirtyフラグを立てます。  
+
+![スクリーンショット 2022-02-21 15 21 37](https://user-images.githubusercontent.com/78260526/154900057-912712fe-2ba7-4ba7-8376-6c6a2fb9be21.png)
+
+
+そして処理が終わった段階でdirtyなcomponentとその子供達を全てrenderします。  
+
+![スクリーンショット 2022-02-21 15 21 50](https://user-images.githubusercontent.com/78260526/154900073-938f682f-1480-4399-b3c8-49b8c66608a3.png)  
+
+こうすることで新しい仮想DOMを構築するコストを極限まで減らしています。また仮想DOMの差分を計算する際も、変更されている可能性があるcomponentに絞って計算すればいいことになります。
 
 
 
