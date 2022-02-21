@@ -144,6 +144,27 @@ CSP の第一の目的は XSS 攻撃の軽減と報告です。 XSS 攻撃とは
 
 
 ### [CSP(コンテンツセキュリティポリシー)について調べてみた](https://techblog.securesky-tech.com/entry/2020/05/21/)  
+CSP(Content Security Policy)は、対応しているユーザーエージェント（通常はブラウザ）の挙動をWebサイト運営者が制御できるようにする宣言的なセキュリティの仕組み  
+簡単に説明すると、XSS等を緩和する為、インラインスクリプトやevalなどを禁止したり、信頼できるコードなどを参照するように制限をかけたりするセキュリティの為のHTTPレスポンスヘッダーです。このHTTPレスポンスヘッダー(CSP)はAlexa Top 100万サイト中ではわずか4~6%しか利用されていません，裏を返せば約95%ぐらいのサイトはCSPをしていないということですね。単純に知名度がないのか他の理由があるのか気になりますが、ただ探してみると意外にもTwitterやpixiv、Facebookなどで使われていたりします。  
+
+
+CSPの適応方法はHTTPレスポンスヘッダーに以下のように設定すれば使えます
+
+```
+Content-Security-Policy: policy
+```
+
+## OWASP
+[Open Web Application Security Project Top 10（OWASP Top 10）](https://www.synopsys.com/ja-jp/glossary/what-is-owasp-top-10.html)  
+
+### OWASPとは
+Open Web Application Security Project（OWASP）は、ソフトウェアのセキュリティを向上させることを専門とした非営利団体です。OWASPは「オープン・コミュニティ」モデルの下で運営されており、誰でもプロジェクト、イベント、オンライン・チャットなどに参加して貢献することができます。OWASPの基本理念は、すべての資料と情報が無料で、誰でもWebサイトから簡単にアクセスできることです。OWASPは、ツール、ビデオ、フォーラム、プロジェクトからイベントまで、あらゆるものを提供します。つまりOWASPは、オープン・コミュニティの貢献者の幅広い知識と経験に裏打ちされた、汎用的なWebアプリケーション・セキュリティのリポジトリです  
+
+
+
+
+
+
 
 
 
