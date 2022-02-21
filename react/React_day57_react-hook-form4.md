@@ -117,7 +117,9 @@ export default function App() {
 
 unregister後はregisterの関心から離れる  
 
-
+### formState
+#### isDirty
+defaultValueと異なっていた場合Trueが返される
 
 
 
