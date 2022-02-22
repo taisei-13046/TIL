@@ -107,6 +107,7 @@ Organism は groups of molecules と定義されているが、実際には直�
 
 [Atomic Design という名のデザイン整理術](https://www.slideshare.net/ygoto3q/organizing-design-with-atomic-design-104872303)
 
+## コンポーネント設計手法について
 
 
 
