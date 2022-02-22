@@ -100,6 +100,15 @@ Organism は groups of molecules と定義されているが、実際には直�
 - 他のコンポーネントに依存していなければAtoms。
 
 
+### ユーザ行動のプロセスに合わせてAtomic Designを切る!
+
+[スクリーンショット 2022-02-22 14 02 49](https://user-images.githubusercontent.com/78260526/155066318-642d5353-77f6-4eb2-9792-6424f6299aa2.png)  
+![スクリーンショット 2022-02-22 14 03 11](https://user-images.githubusercontent.com/78260526/155066361-00fd3326-88fa-4263-a105-3982312d18b8.png)  
+
+[Atomic Design という名のデザイン整理術](https://www.slideshare.net/ygoto3q/organizing-design-with-atomic-design-104872303)
+
+
+
 
 
 
