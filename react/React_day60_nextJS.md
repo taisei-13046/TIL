@@ -16,6 +16,9 @@ udemyでnextJSのハンズオンをした
 ![スクリーンショット 2022-02-24 9 54 01](https://user-images.githubusercontent.com/78260526/155436248-8898b918-fccb-4f81-90f0-27d4d0b2dfc6.png)
 
 
+### tailwind cssのチートシート
+[TailwindCHEAT SHEET](https://nerdcave.com/tailwind-cheat-sheet)  
+
 
 
 
