@@ -24,6 +24,30 @@ tailwind cssのチートシート
 
 ![スクリーンショット 2022-02-24 13 40 21](https://user-images.githubusercontent.com/78260526/155459210-cac0c79b-3353-4a82-bcca-5b5ee56273aa.png)  
 
+## NextJSについて
+### 1. Pre-rendering
+SPAではページをロードする時、まず空の html を読み込んで JS ファイルも読み込んでその JS が画面をレンダリングします。このやり方では SEO でデメリットがあったりファーストビューが遅くなったりする問題があります。  
+
+この問題を解決するため、 Next.js は基本的にすべてのページを Pre-rendering します。これはクライエント側の JS がレンダリングする代わりに、各ページに対して html を予め作っておくことを意味します。そうするとパーフォーマンスでも SEO でもより良い結果が出せます。  
+
+![スクリーンショット 2022-02-24 14 18 01](https://user-images.githubusercontent.com/78260526/155462545-8926a3d8-6b1e-48cd-a554-c32668563930.png)  
+
+### 2. SSG
+SSG は Static Site Generation の略で、言葉通り静的サイトを生成する Pre-redndering です。この方式では html がビルド時に生成され、各リクエストに再利用されます。  
+
+#### getStaticProps
+[getStaticProps（静的生成）](https://nextjs-ja-translation-docs.vercel.app/docs/basic-features/data-fetching)  
+
+
+
+
+
+
+
+
+
+
+
 
 
 
