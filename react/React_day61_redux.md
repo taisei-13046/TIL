@@ -62,7 +62,35 @@ export {
 
 命名規則は自分で選択していいが、UPPER_SNAKE_CASEを使用するのが良い
 
+#### Actions
+It's important to be consistent when defining actions, so let's always export functions from this file, we don't care if the action needs any input from the outside to build the payload or not.
 
+アクションを定義するときに一貫性を持たせることが重要なので、常にこのファイルから関数をエクスポートするようにしましょう。アクションがペイロードを構築するために外部からの入力を必要とするかどうかは気にしません。  
+
+```ts
+/* ACTION CREATOR FUNCTIONS
+Put here the functions that return an action object that can be dispatched
+HINT: Always use functions for consistency, don't export plain objects
+*/
+
+import * as types from "./types";
+
+const quack = ( ) => ( {
+    type: types.QUACK
+} );
+
+const swim = ( distance ) => ( {
+    type: types.SWIM,
+    payload: {
+        distance
+    }
+} );
+
+export {
+    swim,
+    quack
+};
+```
 
 
 
