@@ -32,8 +32,35 @@ duck/
 ├── utils.js
 ```
 
+#### General rules for a duck folder
+- MUST contain the entire logic for handling only ONE concept in your app, ex: product, cart, session, etc.
+- MUST have an index.js file that exports according to the original duck rules.
+- MUST keep code with similar purpose in the same file, ex: reducers, selectors, actions, etc.
+- MUST contain the tests related to the duck.
 
+和訳 ↓
 
+- アプリ内に含まれるすべてのロジックを一つのコンセプトで扱う必要がある
+- ducksルールに則ってexportする`index.js`を用意する
+- 共通する目的を持つコードはまとめる
+- testを書く必要がある
+
+#### Types
+Let's start from defining the constants we will use as redux action types. In order to keep the naming simple, let's call the file `types.js`, because `constants.js` is a bit too generic.  
+
+```ts
+// You can use any convention you wish here, but the name should remain UPPER_SNAKE_CASE for consistency.
+
+const QUACK = "app/duck/QUACK";
+const SWIM = "app/duck/SWIM";
+
+export {
+    QUACK,
+    SWIM
+};
+```
+
+命名規則は自分で選択していいが、UPPER_SNAKE_CASEを使用するのが良い
 
 
 
