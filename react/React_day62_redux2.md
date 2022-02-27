@@ -90,6 +90,7 @@ const taskInitialEntityState = tasksAdapter.getInitialState();
 ```
 
 #### sortComparer
+entityを常にsortしてくれるパラメータもある
 ```tsx
 const booksAdapter = createEntityAdapter<Book>({
   // Keep the "all IDs" array sorted based on book titles
