@@ -98,6 +98,7 @@ const booksAdapter = createEntityAdapter<Book>({
 })
 ```
 
+#### CRUD Functions
 
 
 
