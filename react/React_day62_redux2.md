@@ -159,7 +159,23 @@ const usersSlice = createSlice({
 dispatch(fetchUserById(123))
 ```
 
+#### ちょっと思った、payloadって何？
+[What is a Payload in Redux context](https://stackoverflow.com/questions/51357412/what-is-a-payload-in-redux-context)  
 
+Payload is what is keyed ( the key value pairs ) in your actions and passed around between reducers in your redux application. For example -
+
+```tsx
+const someAction = {
+  type: "Test",
+  payload: {user: "Test User", age: 25},
+}
+```
+
+This is a generally accepted convention to have a type and a payload for an action
+
+### Selector
+[reselect](https://github.com/reduxjs/reselect)  
+[Deriving Data with Selectors](https://redux.js.org/usage/deriving-data-selectors)  
 
 
 
