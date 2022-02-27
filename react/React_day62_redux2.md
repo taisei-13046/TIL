@@ -178,6 +178,51 @@ This is a generally accepted convention to have a type and a payload for an acti
 [Deriving Data with Selectors](https://redux.js.org/usage/deriving-data-selectors)  
 
 
+#### Basic Selector Concepts
+A "selector function" is any function that accepts the Redux store state (or part of the state) as an argument, and returns data that is based on that state.  
+
+selector関数とは、Reduxストアの状態（または状態の一部）を引数として受け取り、その状態を元にしたデータを返す関数のことです。  
+
+#### Optimizing Selectors with Memoization
+- Selectors used with useSelector or mapState will be re-run after every dispatched action, regardless of what section of the Redux root state was actually updated. Re-running expensive calculations when the input state sections didn't change is a waste of CPU time, and it's very likely that the inputs won't have changed most of the time anyway.
+- useSelector and mapState rely on === reference equality checks of the return values to determine if the component needs to re-render. If a selector always returns new references, it will force the component to re-render even if the derived data is effectively the same as last time. This is especially common with array operations like map() and filter(), which return new array references.
+
+[Reduxのreselectとは](https://qiita.com/zaki-yama/items/5258e6f1ae37f63034b9)  
+
+Redux には「state はアプリケーション全体で1つのツリーオブジェクトである（Single source of truth）」という原則があるが、
+state のツリーが巨大になったとき、たいてい各コンポーネントで関心のある state はツリーの中のほんの一部にしかすぎないはずなのに
+無関係なツリーの更新によって計算処理が何度も実行されてしまうのは無駄である。  
+
+Selector は state の中から自分が関心のあるツリー部分だけを抜き出してきて
+抜き出してきたパラメータから必要な計算を行う。  
+
+##### createSelector() を使うと何がうれしいか
+> createSelector determines if the value returned by an input-selector has changed between calls using reference equality (===).
+...
+Selectors created with createSelector have a cache size of 1. This means they always recalculate when the value of an input-selector changes, as a selector only stores the preceding value of each input-selector.
+
+なので、呼ばれるたびに input selectors の戻り値（つまり state のうち関係する部分）に更新があったかどうかを === で比較し、更新がなかった場合は resultFunc は再実行せず、キャッシュしておいた直前の結果を利用する。
+そのため、コンポーネント側からロジックが分離できただけでなく、state のツリーのうち、関係のある部分が更新されない限りは getVisibleTodos() による再計算は発生しない。  
+
+##### useSelector について
+```ts
+const result　= useSelector(selector: Function, equalityFn?: Function)
+```
+
+- useSelector は、default で、厳格な等価性チェック(===) を使う。
+- useSelector は、オブジェクトだけではなく、値も返す。
+
+useSelector は、=== によるチェックを行うため、もし useSelectorがオブジェクトを返す場合、毎回新しいオブジェクトを返すと認識され、rerender が起きてしまいます。
+
+
+
+
+
+
+
+
+
+
 
 
 
