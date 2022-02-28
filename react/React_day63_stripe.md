@@ -27,8 +27,9 @@ axios.interceptors.response.use(function (response) {
   });
 ```
 
+## 2月の振り返り
 
-
+HTTP -> ブラウザ -> styled-components -> ForwardRef -> JS -> git -> HTMLアクセシビリティ -> React -> react hook form -> Atomic Design -> redux
 
 
 
