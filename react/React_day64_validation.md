@@ -1,7 +1,7 @@
 ## やったこと
 validationについて
 
-### [クライアント側のフォームデータ検証](https://developer.mozilla.org/ja/docs/Learn/Forms/Form_validation)  
+## [クライアント側のフォームデータ検証](https://developer.mozilla.org/ja/docs/Learn/Forms/Form_validation)  
 
 クライアント側検証は最初のチェックであり、ユーザーの使い勝手を良くするために重要な機能ですクライアント側で不当なデータを捕捉することで、ユーザーはすぐに修正できます。もしも無効なデータがサーバーに送られてから拒否される場合、サーバーへの往復とクライアント側に戻ってユーザーにデータを修正するように指示することにより、かなり時間を浪費します。  
 
@@ -12,7 +12,21 @@ validationについて
 2. ユーザーのデータを保護したい。
 3. 自分たちを守りたい。
 
-#### 内蔵フォーム検証の利用
+### 内蔵フォーム検証の利用
+- `required`: 属性は値が入力されているべきかどうかを指定します。
+- `minlength 属性と maxlength属性`: データ長の最小値と最大値を指定します。
+- `min 属性と max属性`: 値の最小値と最大値を指定します。
+- `type 属性`: その入力データが数値や、E メールアドレスや、特定の指定型かを指定します。
+- `pattern 属性`: データが指定された正規表現にマッチするかどうかを指定します。
+
+#### HTML 属性: required
+[HTML 属性: required](https://developer.mozilla.org/ja/docs/Web/HTML/Attributes/required)  
+
+論理属性の required 属性は、存在する場合、所有するフォームを送信する前にユーザーが入力に値を指定しなければならないことを示します。 required 属性は text, search, url, tel, email, password, date, month, week, time, datetime-local, number, checkbox, radio, file の `<input>` 型と `<select>` および `<textarea>` のフォームコントロール要素で対応しています。これらの入力型や要素の何れかに設定された場合、 :required 擬似クラスが一致します。属性が設定されていない場合は :optional 擬似クラスが一致します。
+
+この属性は range と color は対応していませんし、どちらも既定値を持っているので関係がありません。 hidden は、非表示のフォームにユーザーが記入することを期待できないため、対応していません。また、 image を含むボタンの種類もいずれも対応していません。  
+
+入力欄に required 属性がある場合、 :required 擬似クラスも適用されます。逆に、 required 属性に対応していて、この属性が設定されていない入力欄は、 :optional 擬似クラスに一致します。  
 
 
 
