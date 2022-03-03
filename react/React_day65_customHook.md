@@ -12,10 +12,30 @@ Hooksを複数使う場合に命名を変えなくてはいけないため、面
 
 こんな記事もあった  
 [custom hookの返り値は配列であるべきか](https://blog.ojisan.io/why-hooks-need-array/)  
+[Should hooks always return an array?](https://dev.to/theianjones/should-hooks-always-return-an-array--21np)  
 
+#### 特定の値だけを抽出するときに不便
+```ts
+export const useHoge = () => {
+  // something
+  return [loading, data, error, refetch];
+};
+```
+この場合にdataだけが欲しいとなると、アクセスができない  
 
+```ts
+const getVal = () => [1, 2, 3, 4];
 
+const [_, second] = getVal();
+```
+```ts
+> second
+2
+```
 
+ 一応この形で抽出することはできる  
+ 
+ 
 
 
 
