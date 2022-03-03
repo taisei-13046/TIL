@@ -35,20 +35,27 @@ const [_, second] = getVal();
 
  一応この形で抽出することはできる  
  
- ### Writing Your Own React Hooks, the Return Value
+### Writing Your Own React Hooks, the Return Value
+**Returning an Array**  
+A hook that has a very general use case benefits from exporting return values as an array. A great example of this is actually the built-in React.useState hook. Exporting an array makes it easy to customize the names of the state variables and their setters. Unique names enable us to use the hook repeatedly.  
 
+```tsx
+const [color, setColor] = useState('MintCream')
+const [width, setWidth] = useState('100vw')
+```
 
+メリット
+- useStateのように、配列で返すことによって、名前を自由につけることができる。  
+- Hooksを複数回使う場合には毎回名前を変えることができるため便利
 
+デメリット
+- 配列の順番を覚える必要があるため、余計に考えることが増える
 
+**Returning an Object**  
+メリット
+- 返される値が多いときにその順番を覚えておく必要がない
 
-
-
-
-
-
-
-
-
-
+デメリット
+- そのhooksはコンポーネント内で複数使われることを想定していない
 
 
