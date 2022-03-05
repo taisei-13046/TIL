@@ -201,11 +201,29 @@ When to use React.memo You can use React.memo if your component —
 
 ### useMemo
 
+This is where useMemo shines. If we have a variable inside a component that is expensive to compute, we can use useMemo to reduce the number of times this has to happen by memoizing the computed variable.  
 
+```js
+const Encrypter = ({ dataToEncrypt, encryptKey }) => {
+    const encryptedData = useMemo(
+    () => encrypt(dataToEncrypt, secretKey),
+    [dataToEncrypt, encryptKey]
+    );
+    ...render method
+}
+```
 
+When to use useMemo Before deciding to use useMemo, make sure that —
 
+- You have profiled the component and determined if it’s calculating an expensive value in every render
+- There are no side effects (e.g async calls) in your useMemo hook because it runs during rendering and all side effects belongs in the useEffect hook.
+- You do not break the rules of React Hooks
 
+### Which one should I pick?
+Now that we have a solid understanding of both React.memo and useMemo, deciding which one to use should be simple.
 
+If you’re memoizing a whole component, use React.memo
+If you’re memoizing a value inside a functional component, use useMemo
 
 
 
