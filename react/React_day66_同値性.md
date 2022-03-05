@@ -180,15 +180,26 @@ React.memoでは、コンポーネントが返した React 要素を記録する
 ## Improving React application performance: React.memo vs useMemo
 [Improving React application performance: React.memo vs useMemo](https://blog.openreplay.com/improving-react-application-performance-react-memo-vs-usememo)  
 
+### React.memo
+Ideally, this should fix the issue but in this case, it does not. React.memo uses a shallow comparison of the component props and because of how JavaScript works, comparing objects shallowly will always return false even if they have the same values.  
 
+This is why React.memo also takes in a second argument. This argument is a custom equality check function that you, the developer, uses to decide if the component should render   
 
+```js
+const barGraphPropsAreEqual = (prevProps, newProps) => {
+    ...some custom logic to determine if the props are equal
+}
+// we update our React.memo usage
+export const memoisedBarGraph = React.memo(BarGraph, barGraphPropsAreEqual)
+```
 
+When to use React.memo You can use React.memo if your component —
 
+- Will always render the same thing given the same props (i.e, if you have to make a network call to fetch some data and there’s a chance the data might not be the same, do not use it)
+- Renders expensively (i.e, it takes at least 100ms to render)
+- Renders often
 
-
-
-
-
+### useMemo
 
 
 
