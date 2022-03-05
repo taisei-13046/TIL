@@ -160,6 +160,26 @@ The deep equality function correctly determines that hero1 and hero2 have the sa
 ## React.memoの仕組み
 [React.memo を使ったパフォーマンス最適化について](https://numb86-tech.hatenablog.com/entry/2019/12/20/222412)  
 
+メモ化とは、何らかの計算によって得られた値を記録しておき、その値が再度必要になったときに、再計算することなく値を得られるようにすることである。
+メモ化によって都度計算する必要がなくなるため、パフォーマンスの向上が期待できる。
+React.memoとは言ってみれば、メモ化を利用して不要な処理をスキップするための機能であり、それを活用することが、React アプリのパフォーマンス最適化の基本的な戦略である。  
+
+JavaScript においてはメモ化にはもうひとつ重要な役割がある。それは、同じ参照のオブジェクトを得られるようになるということ。
+記録しておいたオブジェクトを取り出すので、「値が一緒だが参照が異なる別のオブジェクト」になってしまうことを防げる。
+JavaScript のオブジェクトの等価性は「参照が同じかどうか」で判断することが多く、React も例外ではないため、これは重要な意味を持つ。  
+
+React.memoでは、コンポーネントが返した React 要素を記録する。
+そして、再レンダーが行われそうになったときは本当に再レンダーが必要なのかチェックし、必要なときだけ再レンダーし、必要ないときは記録しておいた React 要素を再利用することで、再レンダーを最低限に抑える。
+
+再レンダーが必要かどうかは、propsの等価性によって判断される。
+新しく渡されたpropsを前回のpropsと比較し、同じであると見なせば再レンダーは不要であると判断し、異なると見なせば再レンダーを行う。  
+
+デフォルトでは、等価性の判断にshallow compareを使う。これは、オブジェクトの1階層のみを比較することである。
+先程の例のChildではpropsは常に{}であるため、shallow compareによって等価であると判断される。  
+
+## Improving React application performance: React.memo vs useMemo
+[Improving React application performance: React.memo vs useMemo](https://blog.openreplay.com/improving-react-application-performance-react-memo-vs-usememo)  
+
 
 
 
