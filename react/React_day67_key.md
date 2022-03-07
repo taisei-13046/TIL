@@ -78,5 +78,42 @@ useEffect(() => {
 
 理由としては、毎回fetchUser関数が新しい参照先で生成されるから。  
 
+#### 解決策1
+```jsx
+// 1. Way to solve the infinite loop
+useEffect(() => {
+  const fetchUser = async () => {
+    const res = await fetch(
+      `https://jsonplaceholder.typicode.com/users/${userId}`
+    );
+    const newUser = await res.json();
+    setUser(newUser); // Triggers re-render, but ...
+  };
+
+  fetchUser();
+}, [userId]); // ✅ ... userId stays the same.
+```
+
+useEffectの中に閉じ込める  
+
+#### 解決策2
+```jsx
+// 2. Way to solve the infinite loop
+const fetchUser = useCallback(async () => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${userId}`
+  );
+  const newUser = await res.json();
+  setUser(newUser);
+}, [userId]);
+
+useEffect(() => {
+  fetchUser();
+}, [fetchUser]); // ✅ fetchUser stays the same between renders
+```
+
+useCallbackを使用する  
+
+
 
 
