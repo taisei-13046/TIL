@@ -14,8 +14,30 @@ reactのmapでkeyにindexを渡す危険性について
 3. 配列がreorderやfilterされることが絶対ない
 
 ### useMemoとuseCallbackの違い
+[useCallback vs useMemo](https://medium.com/@jan.hesters/usecallback-vs-usememo-c23ad1dc60)  
 
+The React docs say that useCallback:
 
+> Returns a memoized callback.
+
+And that useMemo:
+
+> Returns a memoized value.
+
+In other words, useCallback gives you **referential equality between renders for functions**. And useMemo gives you **referential equality between renders for values**.    
+
+useCallbackもuseMemoもどちらもreferential equalityで評価される。  
+
+Since JavaScript has first-class functions, useCallback(fn, deps) is equivalent to useMemo(() => fn, deps).  
+
+JSは第一級関数なので
+```
+useCallback(fn, deps)
+```
+```
+useMemo(() => fn, deps)
+```
+は等価である  
 
 
 
