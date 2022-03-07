@@ -39,6 +39,28 @@ useMemo(() => fn, deps)
 ```
 は等価である  
 
+So what is the difference? 
+
+useCallback returns **its function uncalled so you can call it later**, while useMemo calls **its function and returns the result**.    
+
+```js
+
+function foo() {
+  return 'bar';
+}
+
+const memoizedCallback = useCallback(foo, []);
+const memoizedResult = useMemo(foo, []);
+
+memoizedCallback;
+// ƒ foo() {
+//   return 'bar';
+// }
+memoizedResult; // 'bar'
+memoizedCallback(); // 'bar'
+memoizedResult(); // 🔴 TypeError
+```
+
 
 
 
