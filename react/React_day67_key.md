@@ -61,6 +61,22 @@ memoizedCallback(); // 'bar'
 memoizedResult(); // 🔴 TypeError
 ```
 
+```tsx
+const fetchUser = async () => {
+  const res = await fetch(
+    `https://jsonplaceholder.typicode.com/users/${userId}`
+  );
+  const newUser = await res.json();
+  setUser(newUser); // 🔴 setState triggers re-render
+};
+
+useEffect(() => {
+  fetchUser();
+}, [fetchUser]); // fetchUser is a new function on every render
+```
+上記のようなコードがあったときにこれでは、毎回useEffectが実行されてしまう。
+
+理由としては、毎回fetchUser関数が新しい参照先で生成されるから。  
 
 
 
