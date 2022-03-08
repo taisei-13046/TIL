@@ -9,6 +9,24 @@ TypeScriptはJavaScriptにコンパイルする「トランスパイラ」と呼
 
 トランスパイラの一種にBabelというツールがあります。これはJavaScriptの最新の言語仕様を、古いJavaScript環境でも使えるように変換するものです。BabelはTypeScriptと異なり、型のチェックなどは行いません。  
 
+### JavaScriptとECMAScriptの関係
+ECMAScriptはJavaScriptの仕様を定義したものです。仕様とは決まりごとのことで、ブラウザなどがJavaScriptを読み込んだときに、どのような文法を解釈しなければならないか、処理がどのように動くべきかといったことを決めたものです。ECMAScriptという異なる名前がついていますが、JavaScriptと別の言語があるわけではありません。  
+
+ECMAScriptは毎年1回、仕様改定されます。改定されるごとにバージョンが上がります。ECMAScriptのバージョンはリリースされた西暦になってます。たとえば、2021年に改定されたECMAScriptはES2021となります。TypeScriptもECMAScriptの仕様改定に合わせて、アップデートされていきます。  
+
+#### ECMAScriptとブラウザの仕様
+JavaScriptのうちブラウザ仕様に関する部分は、HTML Living Standardが決めています。ブラウザでJavaScriptを使うと、触れることになるのがwindowオブジェクトやHTMLDivElement、ローカルストレージなどのAPIです。これらはHTML Living Standardと呼ばれる規格が定めています。この規格はEcmaインターナショナルとは異なる標準化団体WHATWGが策定しています。
+
+JavaScriptの機能の中でも、ECMAScriptとHTML Living Standardで役割分担があるものもあります。たとえばモジュールです。ECMAScriptはモジュールの仕様を定めます。importやexportの構文や、モジュール内部の仕様などは、ECMAScriptが定めます。一方、モジュールの具体的なロード方法はHTML Living Standardが定めています。たとえば、import "指定子";の指定子の部分にどんな文字列を書いていいか、モジュールはどの順番でロードするかなどはHTML Living Standardが定めます。  
+
+#### ECMAScriptとブラウザの関係性
+主要なブラウザの内部を分解すると、レンダリングエンジンやJavaScriptエンジンと呼ばれる部品の単位があります。
+
+JavaScriptエンジンは、ECMAScriptを実装したモジュールです。JavaScriptエンジンには、主要なものでV8、SpiderMonkey、JavaScriptCoreがあります。
+
+レンダリングエンジンは、JavaScriptエンジンを組み込んだブラウザの表示機能を担うモジュールです。有名なレンダリングエンジンは、Blink、Gecko、WebKitがあります。たとえば、BlinkはV8をJavaScriptエンジンに採用しています。レンダリングエンジンはJavaScriptだけでなく、HTMLやCSSを解釈し、画面描画を総合的に行います。  
+
+![browser-rendering-engine-javascript-engine-ecmascript-relations-977f2898337ec4fefb4fa76955d63913](https://user-images.githubusercontent.com/78260526/157189149-a2b384dc-f383-48ff-8444-79d933b2f1b5.svg)
 
 
 
