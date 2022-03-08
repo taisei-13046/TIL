@@ -1,0 +1,5 @@
+## やったこと
+Typescriptのdocumentを読む  
+
+
+
