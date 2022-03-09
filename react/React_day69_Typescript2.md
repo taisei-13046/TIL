@@ -268,12 +268,126 @@ console.log(title);
 ```
 
 ### 配列  
+#### TypeScriptの要素の型
+TypeScriptでは、Type[]型の配列から要素を取り出したとき、その値の型はTypeになります。たとえば、string[]型から0番目の要素の型はstringになります。
 
+JavaScriptでは存在しないインデックスで要素アクセスした場合、エラーにならず、代わりにundefinedが得られると説明しましたが、TypeScriptでも不在要素へのアクセスについて、コンパイラーが警告することはありません。  
 
+要素アクセスで得た値はstringとundefinedどちらの可能性もありながら、TypeScriptは常にstring型であると考えるようになっています。そのため、要素アクセスでundefinedが返ってくる場合のエラーはTypeScriptでは発見できず、JavaScript実行時に判明することになります。  
 
+#### 読み取り専用の配列 (readonly array)
+TypeScriptでは配列を読み取り専用(readonly)として型注釈できます。型注釈の方法は2とおりあります。1つ目はreadonlyキーワードを使う方法です。2つ目は`ReadonlyArray<T>`を使う方法です。
 
+##### 読み取り専用配列の特徴
+読み取り専用の配列には、配列に対して破壊的操作をするpushメソッドやpopメソッドが、コンパイル時には無いことになります。したがって、readonly number[]型の変数numsに対して、nums.push(4)をするコードはコンパイルエラーになります。  
 
+これは、破壊的操作系のメソッドを呼び出そうとするコードがTypeScriptコンパイラーに警告されるだけです。配列オブジェクトからpushメソッドを削除しているわけではありません。なので、JavaScript実行時にはpushメソッドが残っている状態になります。  
 
+#### 配列の破壊的操作
+JavaScriptの配列メソッドには、破壊的なメソッドと非破壊的なメソッドの2種類があります。特に、破壊的なメソッドは注意深く使う必要があります。
+
+##### 非破壊的なメソッド
+非破壊的なメソッドは、操作に配列の変更をともなわないメソッドです。たとえば、concatは非破壊的なメソッドです。これは複数の配列を結合するメソッドです。もとの配列は書き換えず、新しい配列を返します。  
+
+##### 破壊的なメソッド
+破壊的なメソッドは、配列の内容や配列の要素の順番を変更する操作をともなうメソッドです。たとえば、pushは破壊的メソッドの1つです。これは、配列末尾に要素を追加します。  
+
+特に要注意な破壊的なメソッド
+reverseメソッドは配列を逆順にした配列を返します。戻り値があるので、一見すると非破壊なメソッドに見えなくもありません。しかし、このメソッドは配列の順番も逆にしてしまうので注意が必要です。  
+
+##### 破壊的なメソッドを安全に使う方法
+破壊的なメソッドを非破壊的に使うには、破壊的操作を行う前に、配列を別の配列にコピーします。配列のコピーはスプレッド構文...を用います。  
+
+コピーした配列に対して破壊的操作を行えば、もとの配列が変更される心配が無くなります。
+
+```ts
+const original = [1, 2, 3];
+const copy = [...original]; // コピーを作る
+copy.reverse();
+console.log(original); // 破壊的操作の影響がない
+[ 1, 2, 3 ]
+console.log(copy);
+[ 3, 2, 1 ]
+```
+
+このreverseの例は、コピーと破壊的なメソッドの呼び出しを1行に短縮して書くこともできます。
+
+```ts
+const original = [1, 2, 3];
+const reversed = [...original].reverse();
+console.log(original);
+[ 1, 2, 3 ]
+console.log(reversed);
+[ 3, 2, 1 ]
+```
+
+#### 配列の共変性 (covariance)
+型の世界の話で、共変とはその型自身、もしくは、その部分型(subtype)が代入できることを言います。たとえば、Animal型とDog型の2つの型があるとします。DogはAnimalの部分型とします。共変であれば、Animal型の変数にはAnimal自身とその部分型のDogが代入できます。
+
+一方で共変では、Dog型の変数には、DogのスーパータイプであるAnimalは代入できません。
+
+TypeScriptの配列型は共変になっています。たとえば、Animal[]型の配列にDog[]を代入できます。
+
+```ts
+const dogs: Dog[] = [pochi];
+const animals: Animal[] = dogs; // 代入OK
+```
+
+一見するとこの性質は問題なさそうです。ところが、次の例のようにanimals[0]をAnimal型の値に置き換えると問題が起こります。
+
+```ts
+type Animal = { isAnimal: boolean };
+type Dog = {
+  isAnimal: boolean;
+  wanwan(): string; // メソッド
+};
+
+const pochi = {
+  isAnimal: true,
+  wanwan() {
+    return "wanwan"; // メソッドの実装
+  },
+};
+
+const dogs: Dog[] = [pochi];
+const animals: Animal[] = dogs;
+animals[0] = { isAnimal: true }; // 同時にdogs[0]も書き換わる
+const mayBePochi: Dog = dogs[0];
+mayBePochi.wanwan();
+// JS実行時エラー: mayBePochi.wanwan is not a function
+```
+
+変数animalsにdogsを代入した場合、animalsの変更はdogsにも影響します。これはJavaScriptの配列がミュータブルなオブジェクトであるためです。animals[0]にAnimal型の値を代入すると、dogs[0]もAnimalの値になります。dogsはDog[]型なので、型どおりならAnimal型を受け付けないことが望ましいですが、実際はそれができてしまいます。その結果、dogs[0]のwanwanメソッドを呼び出すところで、メソッドが存在しないというJavaScript実行時エラーが発生します。
+
+型の安全性を突き詰めると、配列は共変であるべきではないです。型がある他の言語のJavaでは、`List<T>`型は共変ではなく非変(invariant)になっています。非変な配列では、その型自身しか代入できないようになり、上のような問題が起こらなくなります。  
+
+##### TypeScriptで配列が共変になっている理由
+配列が非変である言語がある中、TypeScriptはなぜ型の安全性を犠牲にしてまで配列を共変にしているでしょうか。それはTypeScriptが健全性(soundness)と利便性のバランスを取ること目標にして、型システムを設計しているためです。配列が非変であると健全性は高くなりますが、利便性は下がります。  
+
+### タプル
+TypeScriptの関数は1値のみ返却可能です。戻り値に複数の値を返したい時に、配列に返したいすべての値を入れて返すことがあります。  
+
+#### タプルを使う場面
+TypeScriptで非同期プログラミングをする時に、時間のかかる処理を直列ではなく並列で行いたい時があります。そのときTypeScriptではPromise.all()というものを使用します。このときタプルが役に立ちます。
+Promiseについての詳しい説明は本書に専門の頁がありますので譲ります。ここでは`Promise<T>`という型の変数はawaitをその前につけるとTが取り出せることだけ覚えておいてください。また、このTをジェネリクスと言いますが、こちらも専門の頁があるので譲ります。  
+
+```ts
+const tuple: [string, number] = await Promise.all([
+  takes3Seconds(),
+  takes5Seconds(),
+]);
+```
+
+このときPromise.all()の戻り値を受けた変数tupleは[string, number]です。実行する関数の`Promise<T>`のジェネリクスの部分とタプルの型の順番は一致します。つまり次のように入れ替えたら、入れ変えた結果のタプルである[number, string]が得られます。
+
+```ts
+const tuple: [number, string] = await Promise.all([
+  takes5Seconds(),
+  takes3Seconds(),
+]);
+```
+
+Promise.all()は先に終了した関数から順番に戻り値のタプルとして格納されることはなく、元々の順番を保持します。take3seconds()の方が早く終わるから、先にタプルに格納されるということはなく、引数に渡した順番のとおりにタプルtupleの要素の型は決まります。
 
 
 
