@@ -389,6 +389,147 @@ const tuple: [number, string] = await Promise.all([
 
 Promise.all()は先に終了した関数から順番に戻り値のタプルとして格納されることはなく、元々の順番を保持します。take3seconds()の方が早く終わるから、先にタプルに格納されるということはなく、引数に渡した順番のとおりにタプルtupleの要素の型は決まります。
 
+### 列挙型 (enum)
+TypeScriptでは、列挙型(enum)を用いると、定数のセットに意味を持たせたコード表現ができます。
+
+列挙型を宣言するには、enumキーワードの後に列挙型名とメンバーを書きます。  
+
+```ts
+enum Position {
+  Top,
+  Right,
+  Bottom,
+  Left,
+}
+```
+
+enumキーワードはTypeScript独自のものです。なのでJavaScriptにコンパイルすると次のようなコードになります。
+
+```ts
+var Position;
+(function (Position) {
+    Position[Position["Top"] = 0] = "Top";
+    Position[Position["Right"] = 1] = "Right";
+    Position[Position["Bottom"] = 2] = "Bottom";
+    Position[Position["Left"] = 3] = "Left";
+})(Position || (Position = {}));
+```
+
+#### 数値列挙型 (numeric enum)
+TypeScriptの数値列挙型(numeric enum)はもっとも典型的な列挙型です。メンバーの値は上から順に0からの連番になります。
+
+```ts
+enum Position {
+  Top, // 0
+  Right, // 1
+  Bottom, // 2
+  Left, // 3
+}
+```
+
+#### 文字列列挙型 (string enum)
+TypeScriptの列挙型では、メンバーの値に文字列も使えます。文字列で構成された列挙型は文字列列挙型(string enum)と呼ばれます。
+
+```ts
+enum Direction {
+  Up = "UP",
+  Down = "DOWN",
+  Left = "LEFT",
+  Right = "RIGHT",
+}
+```
+
+#### 列挙型(enum)の問題点と代替手段
+1. 列挙型はTypeScript独自すぎる
+
+TypeScriptは、JavaScriptを拡張した言語です。拡張といっても、むやみに機能を足すのではなく、追加するのは型の世界に限ってです。こういった思想がTypeScriptにはあるため、型に関する部分を除けば、JavaScriptの文法から離れすぎない言語になっています。
+
+JavaScriptの文法からドラスティックに離れたAltJSもあります。その中で、TypeScriptが多くの開発者に支持されているのは、JavaScriptから離れすぎないところに魅力があるからというのもひとつの要因です。
+
+TypeScriptの列挙型に目を向けると、構文もJavaScriptに無いものであるだけでなく、コンパイル後の列挙型はJavaScriptのオブジェクトに変化したりと、型の世界の拡張からはみ出している独自機能になっています。TypeScriptプログラマーの中には、この点が受け入れられない人もいます。  
+
+2. 数値列挙型には型安全上の問題がある
+
+数値列挙型は、number型なら何でも代入できるという型安全上の問題点があります。次の例は、値が0と1のメンバーだけからなる列挙型ですが、実際にはそれ以外の数値を代入できてしまいます。
+
+```ts
+enum ZeroOrOne {
+  Zero = 0,
+  One = 1,
+}
+const zeroOrOne: ZeroOrOne = 9; // コンパイルエラーは起きません！
+```
+
+列挙型には、列挙型オブジェクトに値でアクセスすると、メンバー名を得られる仕様があります。これにも問題があります。メンバーに無い値でアクセスしたら、コンパイルエラーになってほしいところですが、そうなりません。
+
+```ts
+enum ZeroOrOne {
+  Zero = 0,
+  One = 1,
+}
+ 
+console.log(ZeroOrOne[0]); // これは期待どおり
+"Zero"
+console.log(ZeroOrOne[9]); // これはコンパイルエラーになってほしいところ…
+undefined
+```
+
+3. 文字列列挙型だけ公称型になる
+
+TypeScriptの型システムは、構造的部分型を採用しています。ところが、文字列列挙型は例外的に公称型になります。
+
+```ts
+enum StringEnum {
+  Foo = "foo",
+}
+const foo1: StringEnum = StringEnum.Foo; // コンパイル通る
+const foo2: StringEnum = "foo"; // コンパイルエラーになる
+```
+
+この仕様は意外さがある部分です。加えて、数値列挙型は公称型にならないので、不揃いなところでもあります。
+
+#### 列挙型の代替案
+##### 列挙型の代替案1: ユニオン型
+もっともシンプルな代替案はユニオン型を用いる方法です。
+
+```ts
+type YesNo = "yes" | "no";
+function toJapanese(yesno: YesNo) {
+  switch (yesno) {
+    case "yes":
+      return "はい";
+    case "no":
+      return "いいえ";
+  }
+}
+```
+
+##### 列挙型の代替案2: オブジェクトリテラル
+
+```ts
+const Position = {
+  Top: 0,
+  Right: 1,
+  Bottom: 2,
+  Left: 3,
+} as const;
+type Position = typeof Position[keyof typeof Position];
+// 上は type Position = 0 | 1 | 2 | 3 と同じ意味になります
+function toJapanese(position: Position) {
+  switch (position) {
+    case Position.Top:
+      return "上";
+    case Position.Right:
+      return "右";
+    case Position.Bottom:
+      return "下";
+    case Position.Left:
+      return "左";
+  }
+} 
+```
+
+
 
 
 
