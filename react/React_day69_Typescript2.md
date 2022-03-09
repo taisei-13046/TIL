@@ -254,7 +254,21 @@ Object型はTypeScriptの公式ドキュメントで使うべきでないとさ�
 
 {}型は、プロパティを持たないオブジェクトを表す型です。プロパティを持ちうる値なら何でも代入できます。この点はObject型と似ていて、nullやundefinedを除くあらゆる型を代入できます。  
 
-#### オブジェクトの分割代入 (destructuring assignment)
+#### オプショナルチェーン (optional chaining)
+JavaScriptのオプショナルチェーン?.は、オブジェクトのプロパティが存在しない場合でも、エラーを起こさずにプロパティを参照できる安全な方法です。  
+
+Null合体演算子と組み合わせる
+オプショナルチェーンがundefinedを返したときに、デフォルト値を代入したい場合があります。その際には、Null合体演算子??を用いると便利です。
+
+```ts
+const book = undefined;
+const title = book?.title ?? "デフォルトタイトル";
+console.log(title);
+"デフォルトタイトル"
+```
+
+### 構造的部分型 (structural subtyping)
+
 
 
 
