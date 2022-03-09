@@ -142,13 +142,67 @@ let obj: Readonly<{
 }>;
 ```
 
+#### readonlyとconstの違い
+##### constは変数への代入を禁止にするもの
+constは変数への代入を禁止するものです。たとえば、constで宣言されたxに値を代入しようとすると、TypeScriptではコンパイルエラーになり、JavaScriptでは実行時エラーになります。
 
+```ts
+const x = 1;
+x = 2;
+Cannot assign to 'x' because it is a constant.
+```
 
+constの代入禁止が効くのは変数そのものへの代入だけです。変数がオブジェクトだった場合、プロパティへの代入は許可されます。
 
+```ts
+const x = { y: 1 };
+x = { y: 2 }; // 変数そのものへの代入は不可
+Cannot assign to 'x' because it is a constant.
+x.y = 2; // プロパティへの代入は許可
+```
 
+##### readonlyはプロパティへの代入を禁止にするもの
+TypeScriptのreadonlyはプロパティへの代入を禁止するものです。たとえば、readonlyがついたプロパティxに値を代入しようとすると、コンパイルエラーになります。
 
+constは変数自体を代入不可するものです。変数がオブジェクトの場合、プロパティへの代入は許可されます。一方、readonlyはプロパティを代入不可にするものです。変数自体を置き換えるような代入は許可されます。以上の違いがあるため、constとreadonlyを組み合わせると、変数自体とオブジェクトのプロパティの両方を変更不能なオブジェクトを作ることができます。  
 
+#### 余剰プロパティチェック (excess property checking)
+TypeScriptのオブジェクト型には余剰プロパティチェック(excess property checking)という、追加のチェックが働く場合があります。余剰プロパティチェックとは、オブジェクト型に存在しないプロパティを持つオブジェクトの代入を禁止する検査です。
 
+たとえば、{ x: number }はプロパティxが必須なオブジェクト型です。この型に{ x: 1, y: 2 }のような値を代入しようとします。この代入は許可されるでしょうか。代入値の型は、必須プロパティの{ x: number }を満たしているので問題なさそうです。ところが、この代入は許可されません。  
+
+このとき、「Object literal may only specify known properties, and 'y' does not exist in type '{ x: number; }'.」というコンパイルエラーが発生します。なぜこれがコンパイルエラーになるかというと、{ y: 2 }が余計だと判断されるからです。こうした余計なプロパティを許さないTypeScriptのチェックが余剰プロパティチェックなのです。
+
+#### インデックス型 (index signature)
+TypeScriptで、オブジェクトのフィールド名をあえて指定せず、プロパティのみを指定したい場合があります。そのときに使えるのがこのインデックス型(index signature)です。たとえば、プロパティがすべてnumber型であるオブジェクトは次のように型注釈します。
+
+```ts
+let obj: {
+  [K: string]: number;
+};
+```
+
+フィールド名の表現部分が[K: string]です。このKの部分は型変数です。任意の型変数名にできます。Kやkeyにするのが一般的です。stringの部分はフィールド名の型を表します。インデックス型のフィールド名の型はstring、number、symbolのみが指定できます。
+
+インデックス型のオブジェクトであれば、フィールド名が定義されていないプロパティも代入できます。たとえば、インデックス型{ [K: string]: number }には、値がnumber型であれば、aやbなど定義されていないフィールドに代入できます。
+
+```ts
+let obj: {
+  [K: string]: number;
+};
+obj = { a: 1, b: 2 }; // OK
+obj.c = 4; // OK
+obj["d"] = 5; // OK
+```
+
+##### Record<K, T>を用いたインデックス型
+
+インデックス型はRecord<K, T>ユーティリティ型を用いても表現できます。次の2つの型注釈は同じ意味になります。
+
+```ts
+let obj1: { [K: string]: number };
+let obj2: Record<string, number>;
+```
 
 
 
