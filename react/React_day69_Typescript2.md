@@ -267,7 +267,9 @@ console.log(title);
 "デフォルトタイトル"
 ```
 
-### 構造的部分型 (structural subtyping)
+### 配列  
+
+
 
 
 
