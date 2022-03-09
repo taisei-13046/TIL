@@ -29,11 +29,34 @@ if (typeof maybeUserId === "string") {
 
 ### 判別可能なユニオン型 (discriminated union)
 
+TypeScriptの判別可能なユニオン型は、ユニオンに属する各オブジェクトの型を区別するための「しるし」がついた特別なユニオン型です。オブジェクト型からなるユニオン型を絞り込む際に、分岐ロジックが複雑になる場合は、判別可能なユニオン型を使うとコードの可読性と保守性がよくなります。  
 
+TypeScriptの判別可能なユニオン型(discriminated union)はユニオン型の応用です。判別可能なユニオン型は、タグ付きユニオン(tagged union)や直和型と呼ぶこともあります。
 
+判別可能なユニオン型は次の特徴を持ったユニオン型です。
 
+1. オブジェクト型で構成されたユニオン型
+2. 各オブジェクト型を判別するためのプロパティ(しるし)を持つ  
+このプロパティのことをディスクリミネータ(discriminator)と呼ぶ  
+3. ディスクリミネータの型はリテラル型などであること
+4. ディスクリミネータさえ有れば、各オブジェクト型は固有のプロパティを持ってもよい
 
+```ts
+type UploadStatus = InProgress | Success | Failure;
+type InProgress = { type: "InProgress"; progress: number };
+type Success = { type: "Success" };
+type Failure = { type: "Failure"; error: Error };
+```
 
+#### ディスクリミネータに使える型
+ディスクリミネータに使える型は、リテラル型とnull、undefinedです。
+
+- リテラル型
+  - 文字列リテラル型: (例)"success"、"OK"など
+  - 数値リテラル型: (例)1、200など
+  - 論理値リテラル型: trueまたはfalse
+- null
+- undefined
 
 
 
