@@ -58,13 +58,149 @@ type Failure = { type: "Failure"; error: Error };
 - null
 - undefined
 
+### インターセクション型 (intersection type)
+考え方はユニオン型と相対するものです。ユニオン型がどれかを意味するならインターセクション型はどれもです。言い換えるとオブジェクトの定義を合成させることを指します。
 
+インターセクション型を作るためには合成したいオブジェクト同士を&で列挙します。  
 
+```ts
+type TwoDimensionalPoint = {
+  x: number;
+  y: number;
+};
+type Z = {
+  z: number;
+};
+type ThreeDimensionalPoint = TwoDimensionalPoint & Z;
+const p: ThreeDimensionalPoint = {
+  x: 0,
+  y: 1,
+  z: 2,
+};
+```
 
+#### インターセクション型を使いこなす
+必須とそうでないパラメータのタイプエイリアスに分離する
 
+```ts
+type Mandatory = {
+  id: string;
+  active: boolean;
+  balance: number;
+  surname: string;
+  givenName: string;
+  email: string;
+};
+type Optional = {
+  index: number;
+  photo: string;
+  age: number;
+  company: string;
+  phoneNumber: string;
+  address: string;
+};
+```
 
+`Required<T>, Partial<T>`をつける
+Mandatoryは`Required<T>`を、Optionalは`Partial<T>`をつけます。
 
+```ts
+type Mandatory = Required<{
+  id: string;
+  active: boolean;
+  balance: number;
+  surname: string;
+  givenName: string;
+  email: string;
+}>;
+type Optional = Partial<{
+  index: number;
+  photo: string;
+  age: number;
+  company: string;
+  phoneNumber: string;
+  address: string;
+}>;
+```
 
+```ts
+type Parameter = Mandatory & Optional;
+```
+
+### 型エイリアス (type alias)
+TypeScriptでは、型に名前をつけられます。名前のついた型を型エイリアス(タイプエイリアス; type alias)と呼びます。
+
+#### 型エイリアスの使い道
+型エイリアスは同じ型を再利用したいときに使うと便利です。型の定義が一箇所になるため、保守性が向上します。
+
+また、型に名前を与えることで可読性が上がる場合があります。型に名前があると、その型が何を意味しているのかがコードの読み手に伝わりやすくなります。
+
+#### interfaceとの違い
+![スクリーンショット 2022-03-10 10 24 39](https://user-images.githubusercontent.com/78260526/157568691-77ecd9b1-0a11-437b-b54e-9d6b5f389834.png)  
+
+### 型アサーション「as」(type assertion)
+TypeScriptには、型推論を上書きする機能があります。その機能を型アサーション(type assertion)と言います。
+
+TypeScriptコンパイラーはコードをヒントに型を推論してくれます。その型推論は非常に知的ですが、場合によってはコンパイラーよりもプログラマーがより正確な型を知っている場合があります。そのような場合は、型アサーションを用いるとコンパイラーに型を伝えることができます。型アサーションはコンパイラに「私を信じて！私のほうが型に詳しいから」と伝えるようなものです。  
+
+型アサーションの書き方は2つあります。1つはas構文です。
+
+```ts
+const value: string | number = "this is a string";
+const strLength: number = (value as string).length;
+```
+
+もう1つはアングルブランケット構文(angle-bracket syntax)です。
+
+```ts
+const value: string | number = "this is a string";
+const strLength: number = (<string>value).length;
+```
+
+どちらを用いるかは好みですが、アングルブランケット構文はJSXと見分けがつかないことがあるため、as構文が用いられることのほうが多いです。
+
+型アサーションとキャストの違い
+型アサーションは、他の言語のキャストに似ています。キャストとは、実行時にある値の型を別の型に変換することです。型アサーションは、実行時に影響しません。値の型変換はしないのです。あくまでコンパイル時にコンパイラーに型を伝えるだけです。コンパイラーはその情報を手がかりに、コードをチェックします。型アサーションはキャストではないため、TypeScriptでは型アサーションをキャストとは呼ばないことになっています。実行時に型変換をするには、そのためのロジックを書く必要があります。
+
+大いなる力には大いなる責任が伴う
+型アサーションには、コンパイラーの型推論を上書きする強力さがあります。そのため、プログラマーは型アサーションによってバグを産まないように十分注意する必要があります。型に関することはできるだけ、コンパイラーの型推論に頼ったほうが安全なので、型アサーションは、やむを得ない場合にのみ使うべきです。
+
+型アサーションを使う必要が出てきたら、それよりも先に、型ガードやユーザー定義型ガードで解決できないか検討してみるとよいでしょう。
+
+### constアサーション「as const」 (const assertion)
+オブジェクトリテラルの末尾にas constを記述すればプロパティがreadonlyでリテラルタイプで指定した物と同等の扱いになります。
+
+```ts
+const pikachu = {
+  name: "pikachu",
+  no: 25,
+  genre: "mouse pokémon",
+  height: 0.4,
+  weight: 6.0,
+} as const;
+```
+
+#### readonlyとconst assertionの違い
+- readonlyはプロパティごとにつけられる
+  - const assertionはオブジェクト全体に対する宣言なので、すべてのプロパティが対象になりますが、readonlyは必要なプロパティのみにつけることができます。
+- const assertionは再帰的にreadonlyにできる
+- const assertionはすべてのプロパティを固定する
+
+#### typeof型演算子
+
+```ts
+const point = { x: 135, y: 35 };
+type Point = typeof point;
+```
+
+このPoint型は次のような型になります。
+
+```ts
+type Point = {
+  x: number;
+  y: number;
+};
+```
 
 
 
