@@ -202,12 +202,18 @@ type Point = {
 };
 ```
 
+### never型
+#### void型とnever型の違い
+void型はundefinedが代入できますが、neverは値を持てません。
 
+```ts
+const ok: void = undefined;
+const ng: never = undefined;
+```
 
+![スクリーンショット 2022-03-10 11 07 03](https://user-images.githubusercontent.com/78260526/157574053-333b0161-58e7-46ad-aab8-2b153e6e5296.png)
 
-
-
-
+#### neverを使った網羅性チェック
 
 
 
