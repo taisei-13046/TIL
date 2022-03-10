@@ -213,9 +213,6 @@ const ng: never = undefined;
 
 ![スクリーンショット 2022-03-10 11 07 03](https://user-images.githubusercontent.com/78260526/157574053-333b0161-58e7-46ad-aab8-2b153e6e5296.png)
 
-#### neverを使った網羅性チェック
-
-
 
 
 
