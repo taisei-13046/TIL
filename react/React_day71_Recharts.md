@@ -84,17 +84,27 @@ const y =
 
 cx, cyとは
 
-> The x-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container width.
-> The y-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container height.
-> DEFAULT: '50%'
+> The x-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container width.  
+> The y-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container height.  
+> DEFAULT: '50%'  
 
 
 
+#### ラジアンの計算
+[度をラジアンに変換する方法](https://lab.syncer.jp/Web/JavaScript/Snippet/51/#:~:text=JavaScript%E3%81%A7%E8%A7%92%E5%BA%A6%E3%82%92%E5%8F%96%E3%82%8A%E6%89%B1%E3%81%86,180%20%E3%82%92%E3%81%8B%E3%81%91%E3%81%BE%E3%81%97%E3%82%87%E3%81%86%E3%80%82)
 
+JavaScriptで角度を取り扱う時は、単位をラジアンにするのが一般的です。度をラジアンに変換するには、値にMath.PI/180をかけましょう。
 
+```js
+var radian = degree * ( Math.PI / 180 ) ;
 
+```
 
-
+```ts
+export function radian(degree: number): number {
+  return (Math.PI / 180) * degree
+}
+```
 
 
 
