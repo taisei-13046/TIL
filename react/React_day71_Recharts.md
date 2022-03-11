@@ -28,8 +28,28 @@ ReachartsでPieChartを書く際のポイント
 **Child Components**  
 `<PolarAngleAxis /> <PolarRadiusAxis /> <PolarGrid /> <Legend /> <Tooltip /> <Pie /> <Customized />`  
 
+#### Pie
+**Child Components**  
+`<Cell /> <LabelList />`  
 
+```ts
+        <Pie
+          width={width}
+          height={height}
+          data={data}
+          dataKey="value"
+          label={label}
+          labelLine={false}
+          startAngle={START_ANGLE}
+          endAngle={END_ANGLE}
+          innerRadius={INNER_RADIUS}
+          outerRadius={PIE_RADIUS}
+          blendStroke
+        >
+```
 
+- width, heightはPieの大きさを指定している  
+- 
 
 
 
