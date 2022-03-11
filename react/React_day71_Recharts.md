@@ -40,16 +40,63 @@ ReachartsでPieChartを書く際のポイント
           dataKey="value"
           label={label}
           labelLine={false}
-          startAngle={START_ANGLE}
-          endAngle={END_ANGLE}
-          innerRadius={INNER_RADIUS}
-          outerRadius={PIE_RADIUS}
+          startAngle={90}
+          endAngle={-270}
+          innerRadius={50}
+          outerRadius={100}
           blendStroke
         >
 ```
 
 - width, heightはPieの大きさを指定している  
-- 
+- dataにはオブジェクトで`{value: string, label: string}`を渡す
+- dataKeyにvalueを渡すとdataのkeyになる
+- startAngleはPieChartの開始地点
+ - 初期は180から始まるため、右横から回る設定
+- innerRadiusは内側の余白
+- outerRadiusは外側の余白
+
+```tsx
+<PieChart width={730} height={250}>
+  <Pie data={data} cx="50%" cy="50%" outerRadius={80} label>
+    {
+      data.map((entry, index) => (
+        <Cell key={`cell-${index}`} fill={colors[index]}/>
+      ))
+    }
+  </Pie>
+</PieChart>
+```
+
+#### `<Cell />`
+`<Cell />`には書くdataをmapで展開して表示していく  
+
+### labelを生成するために
+labelを書くCellの中心の延長線上に配置したい。  
+そのx座標, y座標を求めるために。。。  
+
+```ts
+const x =
+  cx + (outerRadius + LABEL_RADIUS_PADDING) * Math.cos(-radian(midAngle))
+const y =
+  cy + (outerRadius + LABEL_RADIUS_PADDING) * Math.sin(-radian(midAngle))
+```
+
+cx, cyとは
+
+> The x-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container width.
+> The y-coordinate of center. If set a percentage, the final value is obtained by multiplying the percentage of container height.
+> DEFAULT: '50%'
+
+
+
+
+
+
+
+
+
+
 
 
 
