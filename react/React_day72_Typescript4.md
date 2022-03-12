@@ -154,7 +154,59 @@ function getMonth(date: string | Date) {
 }
 ```
 
+### anyとunknownの違い
+any, unknown型はどのような値も代入できます。
 
+any型に代入したオブジェクトのプロパティ、メソッドは使用することができます。
+
+```ts
+console.log(any4.toFixed());
+// @log: 1
+console.log(any5.length);
+// @log: 18
+console.log(any6.name);
+// @log: "origin"
+```
+
+一方、unknown型に代入したオブジェクトのプロパティ、メソッドは使用することができません。使用できないどころか、実行することができません。
+```ts
+console.log(unknown4.toFixed());
+Object is of type 'unknown'.
+console.log(unknown5.length);
+Object is of type 'unknown'.
+console.log(unknown6.name);
+Object is of type 'unknown'.
+```
+
+## 関数
+### 関数宣言と巻き上げ (hoisting)
+JavaScriptの関数宣言と関数式の違いが現れるひとつの例は巻き上げ(hoisting)です。関数宣言には巻き上げがあり、関数式には巻き上げがありません。  
+
+まずは関数宣言の例を見てみましょう。次のコードは、3行目にhello関数の関数宣言があります。そして、その宣言の前でhello関数を実行しています。
+
+```ts
+hello();
+function hello() {
+  console.log("Hello World");
+}
+```
+
+このコードは、hello関数の定義行より前でその関数を呼び出しているのに、エラーにはならず問題なく"Hello World"が出力されます。これは関数宣言には巻き上げがあるためです。
+
+次に関数式の例を見てみましょう。下のコードはhello関数を関数式を使って定義するようにしたものです。
+
+```ts
+hello();
+const hello = function () {
+  console.log("Hello World");
+};
+```
+
+このコードをJavaScriptとして実行してみると、1行目で「ReferenceError: Cannot access 'hello' before initialization」というエラーが起こります。関数式で関数を定義した場合は巻き上げがないため、このようなエラーが発生します。
+
+
+#### 関数式とアロー関数の違い
+[JavaScript: 通常の関数とアロー関数の違いは「書き方だけ」ではない。異なる性質が10個ほどある。](https://qiita.com/suin/items/a44825d253d023e31e4d)  
 
 
 
