@@ -273,6 +273,42 @@ const arrow = () => {}
 #### 違い10: super, new.targetの有無
 アロー関数には束縛されたsuperやnew.targetが無い
 
+### 関数は値
+JavaScriptの関数は値です。つまり、PHPのような他の言語と比べると特別扱いの度合いが少ないです。  
+
+#### 関数のスコープ
+関数は値なので、関数名のスコープも変数と同じようにスコープの概念があります。たとえば、関数スコープの中で定義された関数は、そのローカルスコープでのみ使うことができます。
+
+### 関数はオブジェクト
+JavaScriptの関数はオブジェクトです。したがって、関数にプロパティを持たせることができます。
+
+```ts
+function hello() {
+  return "Hello World";
+}
+hello.prop = 123;
+```
+
+### 戻り値がない関数とvoid型 (void type)
+#### undefined型とvoid型の違い
+JavaScriptの関数では、戻り値がない場合は値としてundefinedを返します。またTypeScriptにはundefined型もあります。TypeScriptの型上の意味としては、undefined型とvoid型は同じです。したがって、戻り値の型注釈にundefinedを用いることもできます。ただし、戻り値型がundefined型の場合は、return undefinedが必要です。  [
+
+void型は関数戻り値の型注釈にだけ使うのが普通なので、変数の型注釈に使うことはまずありませんが、もしも変数の型注釈にvoid型を使った場合は、異なる挙動になります。undefined型の変数をvoid型の変数に代入することができる一方、void型の変数をundefined型の変数に代入することはできません。  
+
+### オプション引数
+オプション引数は必ず最後に書かなければいけません。つまり、次のようにオプション引数より後ろに普通の引数を書くことはできません。
+
+```ts
+function distance(p1?: Point, p2: Point): number {
+  // ...
+}
+// A required parameter cannot follow an optional parameter.
+```
+
+
+
+
+
 
 
 
