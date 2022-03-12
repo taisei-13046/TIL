@@ -344,6 +344,7 @@ findProducts({ isSale: true, withDetails: true, freeShipping: true });
 ### オーバーロード関数 (overload functions)
 オーバーロードとは、関数の名称は同じでありながら異なる引数、戻り値を持つことができる機能です。TypeScriptもこの機能を用意しているのですが、大元がJavaScriptであることが災いし、やや使いづらいです。  
 
+## Promise / async / await
 
 
 
