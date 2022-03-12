@@ -345,6 +345,34 @@ findProducts({ isSale: true, withDetails: true, freeShipping: true });
 オーバーロードとは、関数の名称は同じでありながら異なる引数、戻り値を持つことができる機能です。TypeScriptもこの機能を用意しているのですが、大元がJavaScriptであることが災いし、やや使いづらいです。  
 
 ## Promise / async / await
+TypeScriptでPromiseの型を指定する場合は`Promise<T>`と書きます。TにはPromiseが解決(resolve)された時に渡す値の任意の型を指定します。  
+
+#### async関数
+関数の前にasyncキーワードをつけることで、その関数は非Promiseの値を返す時にその値を解決したPromiseを返すようになります。
+
+## オブジェクト指向
+### コンストラクタ (constructor)
+コンストラクタはクラスをnewしたときに実行される関数です。コンストラクタは、インスタンスプロパティの初期化する処理を実装する場所です。JavaScriptのコンストラクタは、constructor構文で書きます。
+
+```ts
+class Person {
+  constructor(name: string) {
+    // ...
+  }
+}
+```
+
+### フィールドの初期化子 (initializer)
+TypeScriptでは、初期化子(initializer)を使うとインスタンスのフィールドの初期値を指定できます。初期化子はフィールド名の右に= 値と書きます。初期化子は、クラスがインスタンス化されるときに自動的に実行されます。
+
+```ts
+class Point {
+  x: number = 0;
+  y: number = 0;
+}
+const point = new Point();
+console.log(point.x, point.y);
+```
 
 
 
