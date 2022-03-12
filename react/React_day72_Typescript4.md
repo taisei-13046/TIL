@@ -205,18 +205,73 @@ const hello = function () {
 このコードをJavaScriptとして実行してみると、1行目で「ReferenceError: Cannot access 'hello' before initialization」というエラーが起こります。関数式で関数を定義した場合は巻き上げがないため、このようなエラーが発生します。
 
 
-#### 関数式とアロー関数の違い
+### 関数式とアロー関数の違い
 [JavaScript: 通常の関数とアロー関数の違いは「書き方だけ」ではない。異なる性質が10個ほどある。](https://qiita.com/suin/items/a44825d253d023e31e4d)  
 
+#### 違い1: thisの指すもの
+通常関数にはthisがあり、thisが何を指すのかは、通常関数を実行したタイミングで決まります。
 
+アロー関数には、それ自体が保有するthisはなく、関数の外のthisを関数内で参照できるだけです。レキシカルスコープのthisを参照します。つまり、アロー関数は定義したときに、thisが指すものがひとつに決まり、どうやって関数が実行されるかに左右されなくなります。
 
+#### 違い2: newできるかどうか
+通常関数はnewすることができますが、アロー関数はnewすることができません。つまり、アロー関数はコンストラクタになることができません。  
 
+したがって、通常関数はclassでextendsできますが、アロー関数はできません:
 
+```ts
+function regular() {}
+const arrow = () => {}
 
+class Foo extends regular {}
+class Bar extends arrow {} //=> TypeError: Class extends value () => {} is not a constructor or null
+```
 
+#### 違い3: call, apply, bindの振る舞い
+通常関数は、call, apply, bindメソッドの第一引数で、その関数のthisを指すオブジェクトを指定することができます。アロー関数は、指定しても無視されます。
 
+#### 違い4: prototypeプロパティの有無
+通常関数にはprototypeプロパティがありますが、アロー関数にはありません。
 
+#### 違い5: argumentsの有無
+通常関数は、argumentsで引数リストを参照できますが、アロー関数ではargumentsが定義されていないため、引数リストを参照できません。アロー関数のargumentsはレキシカルスコープ変数のargumentsを参照するだけです。  
 
+ちなみに、アロー関数で引数リストを参照する場合は、可変長引数を定義する方法があります:
+
+```ts
+const arrow = (...arguments) => {
+    console.log(arguments)
+}
+arrow(1, 2, 3) //=> [ 1, 2, 3 ]
+```
+
+#### 違い6: 引数名の重複
+通常関数は、引数名の重複が許されますが、アロー関数は同じ引数名があるとエラーになります:
+
+#### 違い7: 巻き上げ(hoisting)
+通常関数は、var相当の巻き上げ(hoisting)が起こります。なので、関数定義前に呼び出しのコードを書いても、関数が実行できます:
+
+```ts
+regular() // エラーにならない
+function regular() {}
+```
+
+アロー関数は巻き上げが起こりません:
+
+```ts
+arrow() // ReferenceError: Cannot access 'arrow' before initialization
+const arrow = () => {}
+```
+
+#### 違い8: ジェネレータ関数
+通常関数はジェネレータ関数を定義できますが、アロー関数はジェネレータ関数を定義する構文がそもそもありません。  
+
+#### 違い9: 同じ関数名での再定義
+通常関数は、同じ名前の関数を定義できます。最後の関数で上書きされます。
+
+アロー関数はletやconstの仕様上、同じ関数名で定義を上書きすることができません:
+
+#### 違い10: super, new.targetの有無
+アロー関数には束縛されたsuperやnew.targetが無い
 
 
 
