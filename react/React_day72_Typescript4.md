@@ -305,8 +305,26 @@ function distance(p1?: Point, p2: Point): number {
 // A required parameter cannot follow an optional parameter.
 ```
 
+### キーワード引数とOptions Objectパターン
+JavaScriptやTypeScriptの関数には、Pythonにあるキーワード引数のような機能はありません。その代わり、分割代入引数を応用することで、キーワード引数と同じようなことができます。
 
+キーワード引数(keyword argument)は、Pythonの機能です。関数呼び出し時に、値だけを指定するのではなく、引数名を使って「名前=値」の形式で引数を指定する方法です。
 
+キーワード引数の仕様上の特徴は、位置引数(positional argument)と異なり、関数呼び出し側が引数の順番を自由に変えられるところです。
+
+```python
+# Pythonコード
+func(z=3, y=2, x=1)  # => 1 2 3
+```
+
+JavaScriptやTypeScriptにはキーワード引数のような言語仕様はありませんが、Options Objectパターンというデザインパターンで似たようなことができます。Options Objectパターンは複数の位置引数を受け取る代わりに、ひとつのオブジェクトを引数に受け取るように設計された関数を言います。
+
+Options Objectパターンの利点
+Options Objectパターンの利点は次の3つがあります。
+
+1. 引数の値が何を指すのか分かりやすい
+2. 引数追加時に古いコードを壊さない
+3. デフォルト引数が省略できる
 
 
 
