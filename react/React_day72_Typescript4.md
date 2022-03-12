@@ -64,6 +64,101 @@ Argument of type 'string' is not assignable to parameter of type 'never'.
 1. noUnusedLocalsに対応可能
 2. 実行時を意識したコードになる
 
+### 制御フロー分析と型ガードによる型の絞り込み
+
+#### 制御フロー分析
+TypeScriptはifやforループなどの制御フローを分析することで、コードが実行されるタイミングでの型の可能性を判断しています。  
+
+```ts
+function showMonth(month: string | number) {
+  if (typeof month === "string") {
+    console.log(month.padStart(2, "0"));
+  }
+}
+```
+
+#### 型ガード
+制御フローの説明において、型の曖昧さを回避するためにif(typeof month === "string")という条件判定で変数の型を判定して型の絞り込みを行いました。
+
+このような型チェックのコードを型ガードと呼びます。
+
+次の例ではtypeofでmonth変数の型をstring型と判定しています。
+
+```ts
+function showMonth(month: string | number) {
+  if (typeof month === "string") {
+    console.log(month.padStart(2, "0"));
+  }
+}
+```
+
+
+#### instanceof
+typeofでインスタンスを判定した場合はオブジェクトであることまでしか判定ができません。
+特定のクラスのインスタンスであることを判定する型ガードを書きたい場合はinstanceofを利用します。
+
+```ts
+function getMonth(date: string | Date) {
+  if (date instanceof Date) {
+    console.log(date.getMonth() + 1);
+  }
+}
+```
+
+#### in
+特定のクラスのインスタンスであることを明示せず、in演算子でオブジェクトが特定のプロパティを持つかを判定する型ガードを書くことで型を絞り込むこともできます。
+
+```ts
+interface Wizard {
+  castMagic(): void;
+}
+interface SwordMan {
+  slashSword(): void;
+}
+ 
+function attack(player: Wizard | SwordMan) {
+  if ("castMagic" in player) {
+    player.castMagic();
+  } else {
+    player.slashSword();
+  }
+}
+```
+
+#### ユーザー定義の型ガード関数
+型ガードはインラインで記述する以外にも関数として定義することもできます。
+
+```ts
+function isWizard(player: Player): player is Wizard {
+  return "castMagic" in player;
+}
+function attack(player: Wizard | SwordMan) {
+  if (isWizard(player)) {
+    player.castMagic();
+  } else {
+    player.slashSword();
+  }
+}
+```
+
+#### 型ガードの変数代入
+型ガードに変数を使うこともできます。
+ただし、この文法は TypeScript4.4 以降のみで有効なため、使用する場合はバージョンに注意してください。
+
+```ts
+function getMonth(date: string | Date) {
+  const isDate = date instanceof Date;
+  if (isDate) {
+    console.log(date.getMonth() + 1);
+  }
+}
+```
+
+
+
+
+
+
 
 
 
