@@ -24,6 +24,30 @@ onClick={onClickTag}
 
 これであれば、memo化の恩恵を受けることができる  
 
+ではなぜ、上記の記述をしてしまったのか？  
+A. それは、引数を持った関数をuseCallbackでmemo化したかったためだ  
+
+```tsx
+onClick={onClickTag(props.id)}
+```
+
+こういった記述はそもそもできない。  
+
+**これは、onClick属性に対して関数を渡す必要があるのに、関数の結果を渡してしまっているからだ**  
+
+この形式でエラーを起こさないようにするためには、
+
+```ts
+const handleChange = useCallback((id) => () => {
+  doStuff(id)
+, []}
+
+onClick={handleChange(id)}
+```
+
+上記のようにカリー化をする必要があるが、memo化をすることはできない。
+
+そのため、memo化できるところとそうでないところはしっかり判断していく必要がある  
 
 
 
