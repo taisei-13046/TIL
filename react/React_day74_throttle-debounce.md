@@ -1,0 +1,4 @@
+## やったこと
+
+throttleとdebounceについて
+
