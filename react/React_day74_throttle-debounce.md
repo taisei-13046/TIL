@@ -56,7 +56,8 @@ Web APIがrate limitの制限をかけるのは、Dos攻撃などの対策やパ
 
 その方法としてJSの間引き処理(throttle, debounce)がある。  
 
-
+参考
+- [Implement Debouncing in React in 3 Different Ways](https://javascript.plainenglish.io/implementing-debouncing-in-react-f3316ef344f5)  
 
 
 
