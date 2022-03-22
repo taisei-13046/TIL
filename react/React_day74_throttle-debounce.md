@@ -36,6 +36,11 @@ Dos攻撃の対策になりうる
 APIs are one of the biggest assets of organizations. Monetizing the API usage contributes a significant share to their profit. API throttling helps organizations to meter the usage of their APIs. For example, a web service may offer 1000 free API calls per hour, but if users need more requests per hour, they have to pay for it.
 
 
+### [What is API Throttling and Rate Limiting?](https://beabetterdev.com/2020/12/12/what-is-api-throttling-and-rate-limiting/)
+
+**Throttling is a policy that the Server enforces and the Client respects.**  
+
+### [Microsoft Throttling pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)  
 
 
 
