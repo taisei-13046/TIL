@@ -40,7 +40,20 @@ APIs are one of the biggest assets of organizations. Monetizing the API usage co
 
 **Throttling is a policy that the Server enforces and the Client respects.**  
 
-### [Microsoft Throttling pattern](https://docs.microsoft.com/en-us/azure/architecture/patterns/throttling)  
+## JSにおける間引き処理について
+
+**debounce**
+指定時間内に何度イベントが発生しても、最後の1回だけが実行される。
+指定時間内にイベントが発生すると、先のイベントをキャンセルして最後のイベントからまた指定時間待って、その間にイベントが発生しなければ処理を実行する感じ。
+
+**throttle**
+一定時間内に1回だけイベントを実行させる。
+時間を区切って、指定時間内に何度イベントが発生しても最後の1回だけを実行する。インターバルのようなイメージ。
+
+
+
+
+
 
 
 
