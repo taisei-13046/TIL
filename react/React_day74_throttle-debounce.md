@@ -50,6 +50,11 @@ APIs are one of the biggest assets of organizations. Monetizing the API usage co
 一定時間内に1回だけイベントを実行させる。
 時間を区切って、指定時間内に何度イベントが発生しても最後の1回だけを実行する。インターバルのようなイメージ。
 
+### わかったこと
+Web APIがrate limitの制限をかけるのは、Dos攻撃などの対策やパフォーマンス向上のため。  
+クライアント側では、APIへのcallを最小限にする努力が必要。  
+
+その方法としてJSの間引き処理(throttle, debounce)がある。  
 
 
 
