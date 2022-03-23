@@ -34,9 +34,23 @@ ToBoolean()という箇所で「その値が Falsy 値なのかどうか」と�
 ### ToBoolean 抽象操作
 [ECMAScript ToBoolean](https://tc39.es/ecma262/#sec-toboolean)  
 
+抽象操作は訳語であり、原典では"Abstract Operations"と記載されている  
 
+これは、JavaScript の標準的な関数による様々な「型変換」について変換の仕様を定めている  
 
+1997 年当時の仕様書では、この節は"Abstract Operations"とはなっておらず、単に"Type Conversion"とされていました。初版には次のように記載されています。
 
+> The ECMAScript runtime system performs automatic type conversion as needed
+
+最新の ECMAScript の仕様では次のように記載されています。
+
+> The ECMAScript language implicitly performs automatic type conversion as needed
+
+> 最新版では"implicitly"（暗黙的）のニュアンスが追記されていることがわかります。そう、TypeScript による explicitly（明示的）な型付けが進んでいるこの時代において、TypeScript が JavaScript に変換されて動作する以上「TypeScript を利用する explicitly を心がける開発者」であっても、言語仕様として implicitly な型変換が行われる可能性を常に考慮せざるを得ない
+
+Booleanコンテキストとは「ToBoolean 抽象操作が行われる状況」のことを指す  
+
+### Falsy値を比較せずにそのまま判定に使うことはやめる
 
 
 
