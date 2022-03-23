@@ -51,6 +51,49 @@ ToBoolean()という箇所で「その値が Falsy 値なのかどうか」と�
 Booleanコンテキストとは「ToBoolean 抽象操作が行われる状況」のことを指す  
 
 ### Falsy値を比較せずにそのまま判定に使うことはやめる
+「false以外の Falsy 値を Boolean コンテキストに渡すことをやめよう」と言い換えることができる  
+
+```js
+function getLabel(name: string): string {
+  if (!name) {
+    return "名無しさん";
+  }
+  return `${name}さん`;
+}
+```
+
+```js
+function getLabel(name: string): string {
+  if (!name.length) {
+    return "名無しさん";
+  }
+  return `${name}さん`;
+}
+```
+
+上記に二つの例がある  
+
+前者!nameと後者!name.lengthは同じ結果となりますが、Boolean コンテキストの解釈が異なります。nameはstring型の引数であるため、 ToBoolean 抽象操作にてfalseとなりうるのは""（空文字列）のときだけです。  
+
+そして、name.lengthという式にした場合、lengthはnumber型の値を返すため（根拠1, 2）number 型の値が ToBoolean 抽象操作によってfalse となりうるのは0, -0, NaNのときであることから、!name.lengthについては"".lengthの値が0になるためにfalseとなります。  
+
+```ts
+function getLabel(name: string): string {
+  if (name === "") {
+    return "名無しさん";
+  }
+  return `${name}さん`;
+}
+```
+
+そのため、上のように書いていく方針がいい
+
+Boolean コンテキストを成す ToBoolean 抽象操作は、あらゆる値をtrueかfalseに「暗黙的に」変換しています。  
+
+### 筆者の結論
+「TypeScript は暗黙的な型変換を避けるようなデザインに寄っているのだから、ToBoolean 抽象操作についてエラーとならなかったとしても言語の設計意図を汲み、Boolean コンテキストにおいてはfalse以外の Falsy 値をそのまま渡すべきではない」
+
+
 
 
 
