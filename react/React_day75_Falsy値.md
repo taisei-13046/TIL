@@ -1,5 +1,7 @@
 ## やったこと
 Falsy値についての面白い記事を見つけたので、自分なりにまとめる
+[Falsy値を比較せずにそのまま判定に使うことはやめよう](https://zenn.dev/okunokentaro/articles/01fynkwmrkrbyzxgexvhv0hnez)  
+
 
 
 ### Falsy 値とは
