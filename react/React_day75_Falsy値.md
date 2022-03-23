@@ -15,9 +15,24 @@ Falsy値についての面白い記事を見つけたので、自分なりにま
 if文の条件式に渡されたオブジェクトは、自動的に真偽値に変換されます。このように、暗黙に真理値に変換される文脈は、ブーリアンコンテキストとよばれます。
 
 ### Falsy 値は実際どう評価されているか
-[ECMAScript if statement](https://tc39.es/ecma262/#sec-if-statement)  
-[ECMAScript ToBoolean](https://tc39.es/ecma262/#sec-toboolean)
+[ECMAScript if statement](https://tc39.es/ecma262/#sec-if-statement) 
 
+```js
+if ( Expression ) Statement else Statement
+```
+
+1. Let exprRef be the result of evaluating Expression.
+2. Let exprValue be ToBoolean(? GetValue(exprRef)).
+3. If exprValue is true, then
+a. Let stmtCompletion be the result of evaluating the first Statement.
+4. Else,
+a. Let stmtCompletion be the result of evaluating the second Statement.
+5. Return ? UpdateEmpty(stmtCompletion, undefined).
+
+ToBoolean()という箇所で「その値が Falsy 値なのかどうか」という関心が作用する
+
+### ToBoolean 抽象操作
+[ECMAScript ToBoolean](https://tc39.es/ecma262/#sec-toboolean)  
 
 
 
