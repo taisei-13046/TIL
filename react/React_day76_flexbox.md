@@ -52,11 +52,21 @@ flex-direction と flex-wrap の 2 つのプロパティは、flex-flow 一括�
 - flex-shrink: このアイテムから縮小できる負の自由空間はどれくらいか。
 - flex-basis: 伸長や縮小が発生する前のアイテムの寸法はいくつか。
 
+フレックスアイテムをレイアウトするための空間を確保するには、まずアイテムの大きさをブラウザーが知る必要があります。
+
+CSS には min-content と max-content という概念があります。これらのキーワードは CSS Intrinsic and Extrinsic Sizing 仕様書で定義されており、長さの単位の代わりに使用することができます。
+
+#### max-contentとmin-content
+widthにmax-content, min-contentを指定するとどうなるのか？
+
+width: max-content; を指定すると、テキストが収まる最小幅がwidthになる  
+
+<img width="1031" alt="スクリーンショット 2022-03-27 10 30 55" src="https://user-images.githubusercontent.com/78260526/160262839-3bf63a4e-149f-4c80-9871-7a75a4e9b775.png">
+
+min-contentを指定したブロックは、テキストを単語で区切り、最大幅となる「sample-3」にあわせたwidthに調整されます。
 
 
-
-
-
+### 正と負の自由空間
 
 
 
