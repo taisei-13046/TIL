@@ -132,6 +132,8 @@ flex-grow、flex-shrink、flex-basis の各プロパティを個別に使うケ�
 
 `flex: none` は、全く伸縮性のない flex アイテムを作成します。これは flex: 0 0 auto と同じです。アイテムは伸張も収縮もせずに、flex-basis: auto のフレックスボックスとして配置されます。
 
+### フレックスコンテナー内のアイテムの配置
+
 
 
 
