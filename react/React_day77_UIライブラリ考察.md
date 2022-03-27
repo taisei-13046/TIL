@@ -33,9 +33,33 @@ The theme exposes the following palette colors (accessible under theme.palette.)
 ### variant
 variant自体は変化形という抽象的な意味合いを持つ。  
 
+MUIのbutton要素のvariantは以下のように使われている
 
+```
+'contained'
+| 'outlined'
+| 'text'
+| string
+```
 
+**色はcolorで(なるべ抽象的に)形はvariantでまとめていくのが良さそう**  
 
+### Boolean系
+今まで自分は`is~~~`とか、`can~~~`とかで全てbooleanであることを明確にしながら命名をしてきた。  
+しかし、意外にそう言った命名は少なく、
+
+```css
+⭕️
+expanded
+square
+
+❎
+isExpanded
+isSquare
+```
+
+expandedで「何かが開いてるかどうか」を意味する。  
+確かに、is~~~といった形にしなくても伝わるので、propsでは使わなくていい気がしてきた。
 
 
 
