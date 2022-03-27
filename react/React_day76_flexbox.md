@@ -133,11 +133,44 @@ flex-grow、flex-shrink、flex-basis の各プロパティを個別に使うケ�
 `flex: none` は、全く伸縮性のない flex アイテムを作成します。これは flex: 0 0 auto と同じです。アイテムは伸張も収縮もせずに、flex-basis: auto のフレックスボックスとして配置されます。
 
 ### フレックスコンテナー内のアイテムの配置
+フレックスボックスがウェブ開発者の関心を急速に集めた理由の一つに、ウェブコンテンツで適切な位置合わせができる初めての機能であってことが挙げられます。正しい縦の位置合わせが可能になったことで、ついにボックスの中央寄せを簡単にできるようになりました。このガイドでは、フレックスボックスにおいて位置合わせや行端揃えのプロパティがどのように働くかを詳しくみていきます。  
 
+ボックスを中央寄せするには、align-items プロパティを使って交差軸上 (今回の場合は縦軸上) の位置合わせをし、justify-content プロパティで主軸上 (今回の場合は横軸上) の位置合わせをします。  
 
+- justify-content — 全アイテムの主軸上の配置を制御する。
+- align-items — 全アイテムの交差軸上の配置を制御する。
+- align-self — 個別のフレックスアイテムごとに交差軸上の配置を制御する
+- align-content — 仕様では「フレックス行のパッキング (packing flex lines)」と説明されている。交差軸上でのフレックス行間の余白を制御する。
+- gap, column-gap, row-gap — フレックスアイテム間に間隔または溝を生成するために使用する。
 
+#### 交差軸
+align-items プロパティと align-self プロパティは、交差軸 (cross axis: flex-direction が row のときは列に沿った、または flex-direction が column のときは行に沿った軸) 上でのフレックスアイテムの配置を制御します。  
 
+アイテムの配置を制御するために、以下の値を使うことができます。
 
+- align-items: flex-start
+- align-items: flex-end
+- align-items: center
+- align-items: stretch
+- align-items: baseline
+
+#### align-self で個別のアイテムを位置合わせ
+align-items プロパティはすべてのアイテムの align-self プロパティをまとめて設定します。つまり、align-self プロパティでは 1 つずつ個別のアイテムを対象として指定できます。align-self プロパティには、align-items プロパティに使えるすべての値と、それに加えてフレックスコンテナーで定義した値にリセットするための auto を使うことができます。
+
+#### 交差軸上の位置合わせ — align-content プロパティ
+ここまで、フレックスコンテナーによって定義される領域の中で、アイテム全体またはアイテム個別の位置合わせをしてきました。折り返しのある複数行のフレックスコンテナーがある場合、align-content プロパティを使えば行間でのスペース分配を制御できます。  
+
+align-content が有効に動作するためには、アイテムを表示するのに必要な高さよりもフレックスコンテナーの方が高い必要があります。このプロパティはすべてのアイテムを１つのセットとして扱い、あまりのスペースの扱いと、セットに含まれるアイテムの配置について指示します。
+
+align-content プロパティには以下の値を設定できます。
+
+- align-content: flex-start
+- align-content: flex-end
+- align-content: center
+- align-content: space-between
+- align-content: space-around
+- align-content: stretch
+- align-content: space-evenly (フレックスボックス仕様には含まれていない)
 
 
 
