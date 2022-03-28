@@ -66,7 +66,21 @@ element.removeEventListener(event, handler[, phase]);
 イベントが起こったとき、ブラウザは イベントオブジェクト を作り、そこに詳細を入れ、ハンドラの引数として渡します。  
 
 #### オブジェクトハンドラ: handleEvent
+addEventListener を使用したイベントハンドラとしてオブジェクトを割り当てることも可能です。イベントが発生するとき、その handleEvent メソッドが呼ばれます。  
 
+```js
+<button id="elem">Click me</button>
+
+<script>
+  elem.addEventListener('click', {
+    handleEvent(event) {
+      alert(event.type + " at " + event.currentTarget);
+    }
+  });
+</script>
+```
+
+言い換えると、addEventListener がハンドラとしてオブジェクトを受け取ると、イベント時に object.handleEvent(event) を呼び出します。  
 
 
 
