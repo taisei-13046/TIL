@@ -114,7 +114,15 @@ setInterval() と setTimeout() は同じ ID プールを共有しており、 cl
 
 [useDebounce](https://usehooks-ts.com/react-hook/use-debounce)  
 
+[setTimeout](https://developer.mozilla.org/ja/docs/Web/API/setTimeout)  
 
+グローバルの setTimeout() メソッドは、時間切れになると関数または指定されたコードの断片を実行するタイマーを設定します。  
+
+```ts
+var timeoutID = setTimeout(function[, delay, arg1, arg2, ...]);
+var timeoutID = setTimeout(function[, delay]);
+var timeoutID = setTimeout(code[, delay]);
+```
 
 
 
