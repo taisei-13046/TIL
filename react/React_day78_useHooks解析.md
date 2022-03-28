@@ -65,3 +65,29 @@ function Comp() {
 型引数は中身に入りうるDOMノード、またはReactの要素の型だけを与えましょう
 初期値が null で型定義に null を含まない場合を条件に、特別に RefObject が得られるようになっています。これを守ることで、上記コード片での ref は `RefObject<HTMLDivElement>` になり、 .current は readonly になります。
 
+
+#### WindowEventMap
+[React HooksでWindowEventMapを使う](https://zenn.dev/tera_ny/articles/246b1d9024ff6a)  
+
+```tsx
+const useWindowEvent = <K extends keyof WindowEventMap>(
+  type: K,
+  listener: (this: Window, ev: WindowEventMap[K]) => any,
+) =>
+{
+  window.addEventListener(type, listener);
+}
+```
+
+`<K extends keyof WindowEventMap>`でWindowEventMapのkeyをunion型でもった型を継承できる  
+
+
+
+
+
+
+
+
+
+
+
