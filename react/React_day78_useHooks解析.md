@@ -95,20 +95,33 @@ var intervalID = setInterval(function[, delay]);
 var intervalID = setInterval(code, [delay]);
 ```
 
-引数
-func
+**引数**  
+**func**  
 delay ミリ秒が経過するたびに実行する関数です。最初の実行は delay ミリ秒後に行われます。
 
-code
+**code**  
 関数の代わりに文字列を含める構文も許容されており、 delay ミリ秒が経過するたびに文字列をコンパイルして実行します。 eval() の使用にリスクがあるのと同じ理由で、この構文は推奨しません。
 
-delay省略可
+**delay省略可**  
 指定した関数またはコードを実行する前にタイマーが待つべき時間をミリ秒 (1/1000 秒) 単位で指定します。引数が 10 より小さい場合は、10 を使用します。実際の遅延が長くなることがあります。例えば 遅延が指定値より長い理由 in setTimeout() をご覧ください。
 
-返値
+**返値**  
 返値 intervalID は 0 ではない正の整数値で、 setInterval() を呼び出して作成したタイマーを識別します。この値を clearInterval() へ渡せば、インターバルを取り消すことができます。
 
 setInterval() と setTimeout() は同じ ID プールを共有しており、 clearInterval() と clearTimeout() は技術的に入れ替えて使用できることを意識すると役に立つでしょう。ただし明快さのために、コードを整備するときは混乱を避けるため、常に一致させるようにするべきです。
+
+### useDebounce 
+
+[useDebounce](https://usehooks-ts.com/react-hook/use-debounce)  
+
+
+
+
+
+
+
+
+
 
 
 
