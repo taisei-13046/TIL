@@ -19,7 +19,7 @@
 ハンドラってイベント発生時に実行する関数だったのか。。。知らなかった
 
 
-##### HTML 属性
+#### HTML 属性
 ハンドラは `on<event>` と言う名前の属性で、 HTML 上で設定できます。
 
 例えば、input に対して click ハンドラを割り当てるためには、このように onclick を使います:
@@ -28,7 +28,49 @@
 <input value="Click me" onclick="alert('Click!')" type="button">
 ```
 
-##### addEventListener
+#### addEventListener
+ハンドラを割り当てるための前述の根本的な問題は – １つのイベントに複数のハンドラを割り当てられないことです。  
+
+```js
+input.onclick = function() { alert(1); }
+// ...
+input.onclick = function() { alert(2); } // 前のハンドラを上書きします
+```
+
+Web標準の開発者はずっと前に理解しており、特別なメソッド addEventListener と removeEventListener を使うことで、ハンドラを管理する別の方法を提案しました。これらはこのような問題から解放されています。
+
+ハンドラを追加する構文は次のようになります:  
+
+```js
+element.addEventListener(event, handler[, phase]);
+```
+
+##### event
+イベント名, e.g. "click".
+
+##### handler
+ハンドラ関数.
+
+##### phase
+オプションの引数で、ハンドラが動作する “フェーズ” です。後ほど説明します。通常は使いません。
+ハンドラを削除する場合は removeEventListener を使います:
+
+```js
+// addEventListener とまったく同じ引数です
+element.removeEventListener(event, handler[, phase]);
+```
+
+#### イベントオブジェクト
+イベントを適切に処理するためには、私たちは何が起こったのかをもっと知りたいです。単に “click” や “keypress” だけではなく、ポインタの座標はなにか？どのキーが押されたのか？などです。
+
+イベントが起こったとき、ブラウザは イベントオブジェクト を作り、そこに詳細を入れ、ハンドラの引数として渡します。  
+
+#### オブジェクトハンドラ: handleEvent
+
+
+
+
+
 
 
 
