@@ -1,6 +1,8 @@
 ## やったこと
 これからフロントエンドの最終課題に取り組んでいく
 
+
+
 ### Can't Unsee
 - Placeholder text capitalization
   - Placeholderは大文字から始める
