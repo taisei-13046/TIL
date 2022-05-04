@@ -9,6 +9,8 @@ atomでwidth, heightを指定するのは柔軟性に欠けるため良くない
 
 
 
+
+
 ### create react appの各ファイルについて
 ```
 .
