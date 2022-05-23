@@ -95,3 +95,9 @@ for i in range(H):
     table.append(list(map(int, input().split())))
 ```
 
+### zip関数で縦のsumを求める
+[Python, zip関数の使い方: 複数のリストの要素をまとめて取得](https://note.nkmk.me/python-zip-usage-for/)  
+
+
+
+
