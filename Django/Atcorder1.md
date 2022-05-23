@@ -36,6 +36,27 @@ for i in range(H):
     print(*li)
 ```
 
+```python
+H,W = map(int,input().split())
+#A = list(map(int,input().split()))
+A = []
+for _ in range(H):
+    A.append(list(map(int,input().split())))
+P = [0]*H
+for i in range(H):
+    for j in range(W):
+        P[i]  += A[i][j]
+Q = [0]*W
+for j in range(W):
+    for i in range(H):
+        Q[j]  += A[i][j]
+for i in range(H):
+    for j in range(W):
+        ans = P[i] + Q[j] - A[i][j]
+        print(ans,end=" ")
+    print()
+```
+
 ### map関数
 [Pythonのmap()でリストの要素に関数・処理を適用](https://note.nkmk.me/python-map-usage/)  
 
