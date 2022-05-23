@@ -57,6 +57,28 @@ for i in range(H):
     print()
 ```
 
+```python
+import copy
+
+H, W = map(int, input().split())
+table = []
+for i in range(H):
+    table.append(list(map(int, input().split())))
+
+row_sum = [sum(row) for row in table]
+column_sum = [sum(column) for column in zip(*table)]
+
+ans = copy.deepcopy(table)
+
+
+for i in range(H):
+    for j in range(W):
+        ans[i][j] = row_sum[i] + column_sum[j] - ans[i][j]
+
+for li in ans:
+    print(' '.join(map(str, li)))
+```
+
 ### map関数
 [Pythonのmap()でリストの要素に関数・処理を適用](https://note.nkmk.me/python-map-usage/)  
 
