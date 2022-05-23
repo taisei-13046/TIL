@@ -66,5 +66,10 @@ atcorderでの典型文
 
 map()の第一引数に適用する関数（呼び出し可能オブジェクト）、第二引数にリストなどのイテラブルオブジェクトを指定する。  
 
-
+### 二次元配列のinput
+```python
+table = []
+for i in range(H):
+    table.append(list(map(int, input().split())))
+```
 
