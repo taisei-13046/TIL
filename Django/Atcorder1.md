@@ -36,3 +36,14 @@ for i in range(H):
     print(*li)
 ```
 
+### map関数
+[Pythonのmap()でリストの要素に関数・処理を適用](https://note.nkmk.me/python-map-usage/)  
+
+`map(int, input().split())`
+
+atcorderでの典型文  
+
+map()の第一引数に適用する関数（呼び出し可能オブジェクト）、第二引数にリストなどのイテラブルオブジェクトを指定する。  
+
+
+
