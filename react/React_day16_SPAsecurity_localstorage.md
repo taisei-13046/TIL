@@ -12,6 +12,8 @@ type TPerson2 = TPerson & {
   address: string;
 };
 ```
+
+
 型を拡張する方法は`&`でつなぐ  
 
 ### リロードしてもデータを保存する
