@@ -3,6 +3,7 @@ Modelの操作をいまいち理解していない気がするので、改めて
 ひたすらドキュメントを読む [Django Doc Model](https://docs.djangoproject.com/ja/4.0/topics/db/models/)
 ## Modelについて
 
+
 ```python
 from django.db import models
 
