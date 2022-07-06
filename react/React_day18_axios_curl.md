@@ -3,6 +3,7 @@
 
 ### default marginの消し方
 レビューで以下のコードに指摘をもらった  
+
 ```css
 margin: 0 0 0 16px
 ```
